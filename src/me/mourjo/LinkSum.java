@@ -1,4 +1,4 @@
-package com.company;
+package me.mourjo;
 
 /**
  * https://leetcode.com/problems/add-two-numbers/

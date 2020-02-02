@@ -1,4 +1,4 @@
-package com.company;
+package me.mourjo;
 
 import java.util.HashMap;
 import java.util.HashSet;

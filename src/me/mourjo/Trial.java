@@ -1,4 +1,4 @@
-package com.company;
+package me.mourjo;
 
 public class Trial {
 

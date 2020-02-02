@@ -1,4 +1,4 @@
-package com.company;
+package me.mourjo;
 
 public class Utilities {
     public static final String RED = "\033[31m";
