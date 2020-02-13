@@ -1,5 +1,8 @@
 package me.mourjo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilities {
     public static final String RED = "\033[31m";
     public static final String BLACK = "\033[0m";
@@ -16,5 +19,19 @@ public class Utilities {
         }
         System.out.println(BLACK);
         System.out.println();
+    }
+
+    public static <T> List<T> toList (T arr[]) {
+        List<T> res = new ArrayList<>(arr.length);
+        for (T item : arr)
+            res.add(item);
+        return res;
+    }
+
+    public static List<Integer> toIntList (int arr[]) {
+        List<Integer> res = new ArrayList<>(arr.length);
+        for (int item : arr)
+            res.add(item);
+        return res;
     }
 }
