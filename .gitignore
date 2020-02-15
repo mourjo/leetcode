@@ -1,6 +1,4 @@
 /bin/
 .classpath
-.idea/
-.project
 out/
 *.log
