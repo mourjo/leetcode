@@ -6,11 +6,11 @@ import java.util.List;
 public class Utilities {
     public static final String RED = "\033[31m";
     public static final String BLACK = "\033[0m";
-    public static void check (Object actual, Object... expected) {
+    public static boolean check (Object actual, Object... expected) {
         for (Object e : expected)
             if (actual.equals(e)) {
                 System.out.println(BLACK + "Passed: " + actual);
-                return;
+                return true;
             }
 
         System.out.print(RED + "*** Actual: " + actual +" Expected: ");
@@ -19,6 +19,7 @@ public class Utilities {
         }
         System.out.println(BLACK);
         System.out.println();
+        return false;
     }
 
     public static <T> List<T> toList (T arr[]) {
