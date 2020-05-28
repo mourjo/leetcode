@@ -2,3 +2,5 @@
 .classpath
 out/
 *.log
+target/
+.idea
