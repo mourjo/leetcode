@@ -114,6 +114,17 @@ public class SlidingWindowMedian {
   }
 
   public static void main(String[] args) {
+    assertArrayEquals(new double[]{2147483647},
+        medianSlidingWindow(new int[]{2147483647, 2147483647}, 2));
+    assertArrayEquals(new double[]{4, 5},
+        medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 4));
+
+    assertArrayEquals(new double[]{4, 8, 4.5, 1.5},
+        medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 2));
+
+    assertArrayEquals(new double[]{2.5, 3.5, 4.5},
+        medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 4));
+
     assertArrayEquals(new double[]{2, 3, 4, 5},
         medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 3));
 
@@ -125,9 +136,6 @@ public class SlidingWindowMedian {
     assertArrayEquals(new double[]{7, 5, 7},
         medianSlidingWindow(new int[]{9, 5, 7, 2, 10}, 3));
     // 7, 5, 7
-
-    assertArrayEquals(new double[]{2147483647},
-        medianSlidingWindow(new int[]{2147483647, 2147483647}, 2));
 
     assertArrayEquals(new double[]{1, -1, -1, 3, 5, 6},
         medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3));
