@@ -1,6 +1,7 @@
 package me.mourjo.y24.arrays;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
@@ -38,8 +39,31 @@ public class LongestSubsequenceUnsortedArray {
 
     }
 
-
+    // neet code's solution - even slower than mine
     public int longestConsecutive(int[] nums) {
+        var set = new HashSet<Integer>();
+        for (int n : nums) {
+            set.add(n);
+        }
+
+        int longest = 0;
+        for (int n : nums) {
+            if (!set.contains(n-1)) {
+                // first in sequence
+                int length = 1;
+                while(set.contains(n + length)) {
+                 length++;
+                }
+                if (longest < length) {
+                    longest = length;
+                }
+            }
+        }
+        return longest;
+    }
+
+
+    public int longestConsecutive2(int[] nums) {
         if (nums.length == 0) {
             return 0;
         }
@@ -69,6 +93,9 @@ public class LongestSubsequenceUnsortedArray {
             counts.put(n, currSeqSize);
             if (currSeqSize > maxSeqSize) {
                 maxSeqSize = currSeqSize;
+            }
+            if (maxSeqSize == nums.length) {
+                return maxSeqSize;
             }
         }
 
