@@ -28,7 +28,7 @@ Constraints:
 -10^9 <= nums[i] <= 10^9
 
  */
-public class LongestSubsequenceUnsortedArray {
+    public class LongestSubsequenceUnsortedArray {
 
     public static void main(String[] args) {
         var app = new LongestSubsequenceUnsortedArray();
