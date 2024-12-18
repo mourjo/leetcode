@@ -1,6 +1,5 @@
 package me.mourjo.y24.dp;
 
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 
 /*
@@ -26,18 +25,21 @@ matrix[i][j] is '0' or '1'.
   */
 public class ProductDefects {
 
+    int maxSquareLength = 0;
+    int[][] cache;
+
     public static void main(String[] args) {
         var app = new ProductDefects();
         Assertions.assertEquals(4, app.maximalSquare(new char[][]{
-            {'1','0','1','0','0'},
-            {'1','0','1','1','1'},
-            {'1','1','1','1','1'},
-            {'1','0','0','1','0'},
+            {'1', '0', '1', '0', '0'},
+            {'1', '0', '1', '1', '1'},
+            {'1', '1', '1', '1', '1'},
+            {'1', '0', '0', '1', '0'},
         }));
 
         Assertions.assertEquals(1, app.maximalSquare(new char[][]{
-            {'0','1'},
-            {'1','0'},
+            {'0', '1'},
+            {'1', '0'},
         }));
 
         Assertions.assertEquals(0, app.maximalSquare(new char[][]{
@@ -45,7 +47,34 @@ public class ProductDefects {
         }));
     }
 
-    int[][] cache;
+    /**
+     * This does not cache the pre-computed values
+     */
+    public int naiveMaximalSquare(char[][] matrix) {
+        maxSquareLength = 0;
+        naiveMaxSqLengthAtPos(matrix, 0, 0);
+        return maxSquareLength * maxSquareLength;
+    }
+
+    public int naiveMaxSqLengthAtPos(char[][] matrix, int row, int col) {
+        if (row >= matrix.length || col >= matrix[0].length) {
+            return 0;
+        }
+
+        int rightSq = naiveMaxSqLengthAtPos(matrix, row, col + 1);
+        int downSq = naiveMaxSqLengthAtPos(matrix, row + 1, col);
+        int diagSq = naiveMaxSqLengthAtPos(matrix, row + 1, col + 1);
+
+        int currentValue = matrix[row][col] == '1' ? 1 : 0;
+        int currentSquareLength = 0;
+
+        if (currentValue != 0) {
+            currentSquareLength = 1 + Math.min(rightSq, Math.min(downSq, diagSq));
+        }
+
+        maxSquareLength = Math.max(maxSquareLength, currentSquareLength);
+        return currentSquareLength;
+    }
 
     public int maximalSquare(char[][] matrix) {
         cache = new int[matrix.length][matrix[0].length];
@@ -55,7 +84,7 @@ public class ProductDefects {
             }
         }
 
-        maxSqAtPos(matrix, 0, 0);
+        maxSquareLengthAtPos(matrix, 0, 0);
         int maxLen = -1;
         for (int i = 0; i < cache.length; i++) {
             for (int j = 0; j < cache[0].length; j++) {
@@ -66,10 +95,10 @@ public class ProductDefects {
             }
         }
 
-        return (int) Math.pow(maxLen,2);
+        return (int) Math.pow(maxLen, 2);
     }
 
-    int maxSqAtPos(char[][] matrix, int row, int col) {
+    int maxSquareLengthAtPos(char[][] matrix, int row, int col) {
         if (row >= matrix.length || col >= matrix[0].length) {
             return 0;
         }
@@ -78,9 +107,9 @@ public class ProductDefects {
             return cache[row][col];
         }
 
-        int rightSq = maxSqAtPos(matrix, row, col+1);
-        int downSq = maxSqAtPos(matrix, row+1, col);
-        int diagSq = maxSqAtPos(matrix, row+1, col+1);
+        int rightSq = maxSquareLengthAtPos(matrix, row, col + 1);
+        int downSq = maxSquareLengthAtPos(matrix, row + 1, col);
+        int diagSq = maxSquareLengthAtPos(matrix, row + 1, col + 1);
 
         if (matrix[row][col] == '0') {
             cache[row][col] = 0;
