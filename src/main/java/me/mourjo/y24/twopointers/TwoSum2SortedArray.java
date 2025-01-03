@@ -58,17 +58,34 @@ public class TwoSum2SortedArray {
         int p1 = 0, p2 = numbers.length-1;
         while(p1 < p2) {
             int currentSum = numbers[p1] + numbers[p2];
+
             if(currentSum == target) {
                 return new int[]{p1+1, p2+1};
             }
-            System.out.println(p1 + " " + p2);
 
-            int nextP1Sum = numbers[p1+1] + numbers[p2];
-            int nextP2Sum = numbers[p1] + numbers[p2-1];
+
+            int lower = numbers[p1+1] + numbers[p2];
+            int upper = numbers[p1] + numbers[p2-1];
+
+            if(lower == target) {
+                return new int[]{p1+2, p2+1};
+            } else if(upper == target) {
+                return new int[]{p1+1, p2};
+            }
+
+            if (lower >= target) {
+                p2--;
+                continue;
+            }
+
+            if (upper <= target) {
+                p1++;
+                continue;
+            }
 
             int currentDiff = Math.abs(currentSum - target);
-            int nextP1Diff = Math.abs(nextP1Sum - target);
-            int nextP2Diff = Math.abs(nextP2Sum - target);
+            int nextP1Diff = Math.abs(lower - target);
+            int nextP2Diff = Math.abs(upper - target);
 
             if (nextP2Diff <= currentDiff && nextP2Diff <= nextP1Diff) {
                 // p1sum is closer to the target
