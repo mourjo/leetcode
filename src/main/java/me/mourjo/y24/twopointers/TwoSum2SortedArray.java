@@ -44,53 +44,36 @@ public class TwoSum2SortedArray {
 
     public static void main(String[] args) {
         var app = new TwoSum2SortedArray();
-        Assertions.assertArrayEquals(new int[]{4,5}, app.twoSum(new int[]{1,2,3,4,4,9,56,90}, 8));
-        Assertions.assertArrayEquals(new int[]{1,2}, app.twoSum(new int[]{-1,-1,1,1,1}, -2));
-        Assertions.assertArrayEquals(new int[]{1,2}, app.twoSum(new int[]{2,7,11,15}, 9));
-        Assertions.assertArrayEquals(new int[]{1,3}, app.twoSum(new int[]{2,3, 4}, 6));
-        Assertions.assertArrayEquals(new int[]{1,2}, app.twoSum(new int[]{-1, 0}, -1));
-        Assertions.assertArrayEquals(new int[]{2,3}, app.twoSum(new int[]{1,2,3,40,50}, 5));
-        Assertions.assertArrayEquals(new int[]{}, app.twoSum(new int[]{1,2,30,40,50}, 5));
-        Assertions.assertArrayEquals(new int[]{2,4}, app.twoSum(new int[]{1,2,30,40,50}, 42));
+        Assertions.assertArrayEquals(new int[]{4, 5},
+            app.twoSum(new int[]{1, 2, 3, 4, 4, 9, 56, 90}, 8));
+        Assertions.assertArrayEquals(new int[]{1, 2}, app.twoSum(new int[]{-1, -1, 1, 1, 1}, -2));
+        Assertions.assertArrayEquals(new int[]{1, 2}, app.twoSum(new int[]{2, 7, 11, 15}, 9));
+        Assertions.assertArrayEquals(new int[]{1, 3}, app.twoSum(new int[]{2, 3, 4}, 6));
+        Assertions.assertArrayEquals(new int[]{1, 2}, app.twoSum(new int[]{-1, 0}, -1));
+        Assertions.assertArrayEquals(new int[]{2, 3}, app.twoSum(new int[]{1, 2, 3, 40, 50}, 5));
+        Assertions.assertArrayEquals(new int[]{}, app.twoSum(new int[]{1, 2, 30, 40, 50}, 5));
+        Assertions.assertArrayEquals(new int[]{2, 4}, app.twoSum(new int[]{1, 2, 30, 40, 50}, 42));
     }
 
     public int[] twoSum(int[] numbers, int target) {
-        int p1 = 0, p2 = numbers.length-1;
-        while(p1 < p2) {
+        int p1 = 0, p2 = numbers.length - 1;
+        while (p1 < p2) {
             int currentSum = numbers[p1] + numbers[p2];
 
-            if(currentSum == target) {
-                return new int[]{p1+1, p2+1};
+            if (currentSum == target) {
+                return new int[]{p1 + 1, p2 + 1};
             }
 
+            int lowerBound = numbers[p1 + 1] + numbers[p2];
+            int upperBound = numbers[p1] + numbers[p2 - 1];
 
-            int lower = numbers[p1+1] + numbers[p2];
-            int upper = numbers[p1] + numbers[p2-1];
-
-            if(lower == target) {
-                return new int[]{p1+2, p2+1};
-            } else if(upper == target) {
-                return new int[]{p1+1, p2};
-            }
-
-            if (lower >= target) {
-                p2--;
-                continue;
-            }
-
-            if (upper <= target) {
+            if (lowerBound == target) {
                 p1++;
-                continue;
-            }
-
-            int currentDiff = Math.abs(currentSum - target);
-            int nextP1Diff = Math.abs(lower - target);
-            int nextP2Diff = Math.abs(upper - target);
-
-            if (nextP2Diff <= currentDiff && nextP2Diff <= nextP1Diff) {
-                // p1sum is closer to the target
+            } else if (upperBound == target) {
                 p2--;
-            } else if (nextP1Diff <= currentDiff) {
+            } else if (lowerBound > target) {
+                p2--;
+            } else if (upperBound < target) {
                 p1++;
             } else {
                 break;
