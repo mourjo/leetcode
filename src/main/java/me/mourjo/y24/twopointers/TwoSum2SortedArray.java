@@ -60,23 +60,12 @@ public class TwoSum2SortedArray {
         while (p1 < p2) {
             int currentSum = numbers[p1] + numbers[p2];
 
-            if (currentSum == target) {
-                return new int[]{p1 + 1, p2 + 1};
-            }
-
-            int lowerBound = numbers[p1 + 1] + numbers[p2];
-            int upperBound = numbers[p1] + numbers[p2 - 1];
-
-            if (lowerBound == target) {
-                p1++;
-            } else if (upperBound == target) {
+            if (currentSum > target) {
                 p2--;
-            } else if (lowerBound > target) {
-                p2--;
-            } else if (upperBound < target) {
+            } else if (currentSum < target) {
                 p1++;
             } else {
-                break;
+                return new int[]{p1 + 1, p2 + 1};
             }
         }
         return new int[]{};
