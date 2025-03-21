@@ -23,77 +23,77 @@ import java.util.Arrays;
 
 class ListNode {
 
-  int val;
-  ListNode next;
+    int val;
+    ListNode next;
 
-  ListNode() {
-  }
+    ListNode() {
+    }
 
-  ListNode(int val) {
-    this.val = val;
-  }
+    ListNode(int val) {
+        this.val = val;
+    }
 
-  ListNode(int val, ListNode next) {
-    this.val = val;
-    this.next = next;
-  }
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
 
-  @Override
-  public String toString() {
-    return val + "->" + next;
-  }
+    @Override
+    public String toString() {
+        return val + "->" + next;
+    }
 }
 
 
 public class PartitionList {
 
-  public static ListNode partition(ListNode head, int x) {
+    public static ListNode partition(ListNode head, int x) {
 
-    ListNode p = head, less = null, high = null, pLess = null, pHigh = null;
+        ListNode p = head, less = null, high = null, pLess = null, pHigh = null;
 
-    while (p != null) {
-      if (p.val >= x) {
-        if (high == null) {
-          high = new ListNode(p.val);
-          pHigh = high;
-        } else {
-          high.next = new ListNode(p.val);
-          high = high.next;
+        while (p != null) {
+            if (p.val >= x) {
+                if (high == null) {
+                    high = new ListNode(p.val);
+                    pHigh = high;
+                } else {
+                    high.next = new ListNode(p.val);
+                    high = high.next;
+                }
+            } else {
+                if (less == null) {
+                    less = new ListNode(p.val);
+                    pLess = less;
+                } else {
+                    less.next = new ListNode(p.val);
+                    less = less.next;
+                }
+            }
+            p = p.next;
         }
-      } else {
-        if (less == null) {
-          less = new ListNode(p.val);
-          pLess = less;
-        } else {
-          less.next = new ListNode(p.val);
-          less = less.next;
+
+        if (pLess != null) {
+            less.next = pHigh;
+            return pLess;
         }
-      }
-      p = p.next;
+
+        return pHigh;
     }
 
-    if (pLess != null) {
-      less.next = pHigh;
-      return pLess;
+    public static void main(String[] args) {
+        ListNode h;
+        h = new ListNode(1);
+        ListNode p = h;
+        for (int x : Arrays.asList(4, 3, 2, 5, 2)) {
+            p.next = new ListNode(x);
+            p = p.next;
+        }
+
+        assertEquals("1->2->2->4->3->5->null", partition(h, 3).toString());
+        assertEquals("1->4->3->2->5->2->null", partition(h, 300).toString());
+        assertEquals("1->4->3->2->5->2->null", partition(h, 0).toString());
+        assertNull(partition(null, 3));
+        assertEquals("100->null", partition(new ListNode(100), 3).toString());
+        assertEquals("100->null", partition(new ListNode(100), 300).toString());
     }
-
-    return pHigh;
-  }
-
-  public static void main(String[] args) {
-    ListNode h;
-    h = new ListNode(1);
-    ListNode p = h;
-    for (int x : Arrays.asList(4, 3, 2, 5, 2)) {
-      p.next = new ListNode(x);
-      p = p.next;
-    }
-
-    assertEquals("1->2->2->4->3->5->null", partition(h, 3).toString());
-    assertEquals("1->4->3->2->5->2->null", partition(h, 300).toString());
-    assertEquals("1->4->3->2->5->2->null", partition(h, 0).toString());
-    assertNull(partition(null, 3));
-    assertEquals("100->null", partition(new ListNode(100), 3).toString());
-    assertEquals("100->null", partition(new ListNode(100), 300).toString());
-  }
 }

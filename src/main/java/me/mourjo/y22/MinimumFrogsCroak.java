@@ -37,49 +37,49 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MinimumFrogsCroak {
 
-  public static int minNumberOfFrogs(String croakOfFrogs) {
-    int c = 0, r = 0, o = 0, a = 0, k = 0, n = 0, maxn = 0;
-    for (char ch : croakOfFrogs.toCharArray()) {
-      switch (ch) {
-        case 'c':
-          c++;
-          n++;
-          break;
-        case 'r':
-          r++;
-          break;
-        case 'o':
-          o++;
-          break;
-        case 'a':
-          a++;
-          break;
-        case 'k':
-          k++;
-          n--;
-          break;
-        default:
-          return -1;
-      }
-      if (r > c || o > r || a > o || k > a) {
+    public static int minNumberOfFrogs(String croakOfFrogs) {
+        int c = 0, r = 0, o = 0, a = 0, k = 0, n = 0, maxn = 0;
+        for (char ch : croakOfFrogs.toCharArray()) {
+            switch (ch) {
+                case 'c':
+                    c++;
+                    n++;
+                    break;
+                case 'r':
+                    r++;
+                    break;
+                case 'o':
+                    o++;
+                    break;
+                case 'a':
+                    a++;
+                    break;
+                case 'k':
+                    k++;
+                    n--;
+                    break;
+                default:
+                    return -1;
+            }
+            if (r > c || o > r || a > o || k > a) {
+                return -1;
+            }
+            maxn = Math.max(maxn, n);
+        }
+        if (c == r && c == o && c == a && c == k) {
+            return maxn;
+        }
         return -1;
-      }
-      maxn = Math.max(maxn, n);
     }
-    if (c == r && c == o && c == a && c == k) {
-      return maxn;
-    }
-    return -1;
-  }
 
-  public static void main(String[] args) {
-    assertEquals(1, minNumberOfFrogs("croak"));
-    assertEquals(1, minNumberOfFrogs("croakcroak"));
-    assertEquals(2, minNumberOfFrogs("crcoakroak"));
-    assertEquals(-1, minNumberOfFrogs("croakcrook"));
-    assertEquals(-1, minNumberOfFrogs("croakcroa"));
-    assertEquals(-1, minNumberOfFrogs("croakcrook"));
-    assertEquals(-1, minNumberOfFrogs("croak8"));
-    assertEquals(3, minNumberOfFrogs("croakcroakcrocrocroakakak"));
-  }
+    public static void main(String[] args) {
+        assertEquals(1, minNumberOfFrogs("croak"));
+        assertEquals(1, minNumberOfFrogs("croakcroak"));
+        assertEquals(2, minNumberOfFrogs("crcoakroak"));
+        assertEquals(-1, minNumberOfFrogs("croakcrook"));
+        assertEquals(-1, minNumberOfFrogs("croakcroa"));
+        assertEquals(-1, minNumberOfFrogs("croakcrook"));
+        assertEquals(-1, minNumberOfFrogs("croak8"));
+        assertEquals(3, minNumberOfFrogs("croakcroakcrocrocroakakak"));
+    }
 }

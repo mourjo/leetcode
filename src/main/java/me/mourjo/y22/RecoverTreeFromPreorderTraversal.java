@@ -48,118 +48,118 @@ import java.util.Stack;
 
 public class RecoverTreeFromPreorderTraversal {
 
-  public static TreeNode recoverFromPreorder(String s) {
-    Stack<TreeNode> stack = new Stack<>();
-    TreeNode root = null, ptr = null;
+    public static TreeNode recoverFromPreorder(String s) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode root = null, ptr = null;
 
-    for (int i = 0; i < s.length(); i++) {
-      int depth = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int depth = 0;
 
-      while (i < s.length() && s.charAt(i) == '-') {
-        depth++;
-        i++;
-      }
+            while (i < s.length() && s.charAt(i) == '-') {
+                depth++;
+                i++;
+            }
 
-      int d = 0;
-      while (i < s.length() && s.charAt(i) != '-') {
-        d = d * 10 + (s.charAt(i) - '0');
-        i++;
-      }
+            int d = 0;
+            while (i < s.length() && s.charAt(i) != '-') {
+                d = d * 10 + (s.charAt(i) - '0');
+                i++;
+            }
 
-      if (root == null) {
-        root = new TreeNode(d);
-        stack.push(root);
-      } else {
-        while (depth < stack.size() - 1) {
-          stack.pop();
+            if (root == null) {
+                root = new TreeNode(d);
+                stack.push(root);
+            } else {
+                while (depth < stack.size() - 1) {
+                    stack.pop();
+                }
+                ptr = stack.peek();
+                TreeNode newNode = new TreeNode(d);
+                stack.push(newNode);
+                if (ptr.left == null) {
+                    ptr.left = newNode;
+                } else {
+                    ptr.right = newNode;
+                }
+            }
         }
-        ptr = stack.peek();
-        TreeNode newNode = new TreeNode(d);
-        stack.push(newNode);
-        if (ptr.left == null) {
-          ptr.left = newNode;
-        } else {
-          ptr.right = newNode;
+        return root;
+    }
+
+    public static void main(String[] args) {
+        TreeNode node = recoverFromPreorder("1");
+        assertEquals(node.val, 1);
+        assertNull(node.left);
+        assertNull(node.right);
+
+        node = recoverFromPreorder("1-2--3");
+        assertEquals(node.val, 1);
+        assertEquals(node.left.val, 2);
+        assertEquals(node.left.left.val, 3);
+        assertNull(node.left.right);
+        assertNull(node.left.left.right);
+        assertNull(node.left.left.left);
+        assertNull(node.right);
+
+        node = recoverFromPreorder("1-2--3-4");
+        assertEquals(node.val, 1);
+        assertEquals(node.left.val, 2);
+        assertEquals(node.left.left.val, 3);
+        assertEquals(node.right.val, 4);
+        assertNull(node.right.left);
+        assertNull(node.right.right);
+        assertNull(node.left.left.right);
+        assertNull(node.left.left.left);
+
+        node = recoverFromPreorder("1-2--3--4-5--6--7");
+        assertEquals(node.val, 1);
+        assertEquals(node.left.val, 2);
+        assertEquals(node.left.left.val, 3);
+        assertEquals(node.left.right.val, 4);
+        assertEquals(node.right.val, 5);
+        assertEquals(node.right.left.val, 6);
+        assertEquals(node.right.right.val, 7);
+
+        node = recoverFromPreorder("1-2--3---4-5--6---7");
+        assertEquals(node.val, 1);
+        assertEquals(node.left.val, 2);
+        assertEquals(node.left.left.val, 3);
+        assertEquals(node.left.left.left.val, 4);
+        assertEquals(node.right.val, 5);
+        assertEquals(node.right.left.val, 6);
+        assertEquals(node.right.left.left.val, 7);
+
+        node = recoverFromPreorder("1-401--349---90--88");
+        assertEquals(node.val, 1);
+        assertEquals(node.left.val, 401);
+        assertEquals(node.left.left.val, 349);
+        assertEquals(node.left.left.left.val, 90);
+        assertEquals(node.left.right.val, 88);
+
+    }
+
+    public static class TreeNode {
+
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
         }
-      }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+
+        @Override
+        public String toString() {
+            return "" + val;
+        }
     }
-    return root;
-  }
-
-  public static void main(String[] args) {
-    TreeNode node = recoverFromPreorder("1");
-    assertEquals(node.val, 1);
-    assertNull(node.left);
-    assertNull(node.right);
-
-    node = recoverFromPreorder("1-2--3");
-    assertEquals(node.val, 1);
-    assertEquals(node.left.val, 2);
-    assertEquals(node.left.left.val, 3);
-    assertNull(node.left.right);
-    assertNull(node.left.left.right);
-    assertNull(node.left.left.left);
-    assertNull(node.right);
-
-    node = recoverFromPreorder("1-2--3-4");
-    assertEquals(node.val, 1);
-    assertEquals(node.left.val, 2);
-    assertEquals(node.left.left.val, 3);
-    assertEquals(node.right.val, 4);
-    assertNull(node.right.left);
-    assertNull(node.right.right);
-    assertNull(node.left.left.right);
-    assertNull(node.left.left.left);
-
-    node = recoverFromPreorder("1-2--3--4-5--6--7");
-    assertEquals(node.val, 1);
-    assertEquals(node.left.val, 2);
-    assertEquals(node.left.left.val, 3);
-    assertEquals(node.left.right.val, 4);
-    assertEquals(node.right.val, 5);
-    assertEquals(node.right.left.val, 6);
-    assertEquals(node.right.right.val, 7);
-
-    node = recoverFromPreorder("1-2--3---4-5--6---7");
-    assertEquals(node.val, 1);
-    assertEquals(node.left.val, 2);
-    assertEquals(node.left.left.val, 3);
-    assertEquals(node.left.left.left.val, 4);
-    assertEquals(node.right.val, 5);
-    assertEquals(node.right.left.val, 6);
-    assertEquals(node.right.left.left.val, 7);
-
-    node = recoverFromPreorder("1-401--349---90--88");
-    assertEquals(node.val, 1);
-    assertEquals(node.left.val, 401);
-    assertEquals(node.left.left.val, 349);
-    assertEquals(node.left.left.left.val, 90);
-    assertEquals(node.left.right.val, 88);
-
-  }
-
-  public static class TreeNode {
-
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-      this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-      this.val = val;
-      this.left = left;
-      this.right = right;
-    }
-
-    @Override
-    public String toString() {
-      return "" + val;
-    }
-  }
 }

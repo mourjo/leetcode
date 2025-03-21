@@ -1,30 +1,25 @@
 package me.mourjo.y24.arrays;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 
 /**
- * Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
- *
+ * Design an algorithm to encode a list of strings to a string. The encoded string is then sent over
+ * the network and is decoded back to the original list of strings.
+ * <p>
  * Please implement encode and decode
- *
- * Example
- * Input: ["lint","code","love","you"]
- * Output: ["lint","code","love","you"]
- * Explanation:
- * One possible encode method is: "lint:;code:;love:;you"
- *
- * Example
- * Input: ["we", "say", ":", "yes"]
- * Output: ["we", "say", ":", "yes"]
- * Explanation:
- * One possible encode method is: "we:;say:;:::;yes"
- *
+ * <p>
+ * Example Input: ["lint","code","love","you"] Output: ["lint","code","love","you"] Explanation: One
+ * possible encode method is: "lint:;code:;love:;you"
+ * <p>
+ * Example Input: ["we", "say", ":", "yes"] Output: ["we", "say", ":", "yes"] Explanation: One
+ * possible encode method is: "we:;say:;:::;yes"
+ * <p>
  * https://neetcode.io/problems/string-encode-and-decode
  */
 public class EncodeAndDecodeStrings {
+
     public static void main(String[] args) {
         var app = new EncodeAndDecodeStrings();
         app.verify(List.of("this", "is", "a sentence:", "with", "a", "colon"));
@@ -36,7 +31,7 @@ public class EncodeAndDecodeStrings {
         app.verify(List.of());
     }
 
-    void verify(List<String> input){
+    void verify(List<String> input) {
         Assertions.assertEquals(input, decode(encode(input)));
     }
 
@@ -47,7 +42,7 @@ public class EncodeAndDecodeStrings {
         // Gets [this, is, a sentence:, with, a, colon]
         // Produces 4:this2:is11:a sentence:4:with1:a5:colon
         StringBuilder sb = new StringBuilder();
-        for(String s : arr) {
+        for (String s : arr) {
             sb.append(s.length());
             sb.append(DELIM);
             sb.append(s);
@@ -64,7 +59,7 @@ public class EncodeAndDecodeStrings {
         for (int i = 0; i < str.length(); i++) {
             // reading number
             StringBuilder len = new StringBuilder();
-            while(str.charAt(i) != DELIM) {
+            while (str.charAt(i) != DELIM) {
                 len.append(str.charAt(i));
                 i++;
             }
@@ -75,7 +70,7 @@ public class EncodeAndDecodeStrings {
 
             // reading word
             StringBuilder word = new StringBuilder();
-            for(int j = 0; j < wordLen; j++) {
+            for (int j = 0; j < wordLen; j++) {
                 word.append(str.charAt(i + j));
             }
             i += wordLen - 1; // move pointer to the end of the current word

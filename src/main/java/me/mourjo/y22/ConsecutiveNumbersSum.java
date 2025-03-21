@@ -28,41 +28,41 @@ import org.junit.jupiter.api.Test;
 
 public class ConsecutiveNumbersSum {
 
-  public static int consecutiveNumbersSum(int n) {
-    int count = 0;
-    boolean stopEven = false, stopOdd = false;
+    public static int consecutiveNumbersSum(int n) {
+        int count = 0;
+        boolean stopEven = false, stopOdd = false;
 
-    for (int k = 2; k < n && !stopEven && !stopOdd; k++) {
-      if (k % 2 == 0) {
-        if (((double) n / k) - (n / k) == 0.5) {
-          if ((n / k) >= (k / 2)) {
-            count++;
-          } else {
-            stopEven = true;
-          }
+        for (int k = 2; k < n && !stopEven && !stopOdd; k++) {
+            if (k % 2 == 0) {
+                if (((double) n / k) - (n / k) == 0.5) {
+                    if ((n / k) >= (k / 2)) {
+                        count++;
+                    } else {
+                        stopEven = true;
+                    }
+                }
+            } else {
+                if ((n % k == 0)) {
+                    if ((n / k) > (k - 1) / 2) {
+                        count++;
+                    } else {
+                        stopOdd = true;
+                    }
+                }
+            }
         }
-      } else {
-        if ((n % k == 0)) {
-          if ((n / k) > (k - 1) / 2) {
-            count++;
-          } else {
-            stopOdd = true;
-          }
-        }
-      }
+        return count + 1;
     }
-    return count + 1;
-  }
 
-  @Test
-  public static void main(String[] args) {
-    assertEquals(2, consecutiveNumbersSum(5));
-    assertEquals(3, consecutiveNumbersSum(9));
-    assertEquals(4, consecutiveNumbersSum(15));
+    @Test
+    public static void main(String[] args) {
+        assertEquals(2, consecutiveNumbersSum(5));
+        assertEquals(3, consecutiveNumbersSum(9));
+        assertEquals(4, consecutiveNumbersSum(15));
 
-    // 4+5+6+7+8       +         9+10+11+12+13
-    assertEquals(4, consecutiveNumbersSum(85));
-    assertEquals(2, consecutiveNumbersSum(3));
-    assertEquals(4, consecutiveNumbersSum(21));
-  }
+        // 4+5+6+7+8       +         9+10+11+12+13
+        assertEquals(4, consecutiveNumbersSum(85));
+        assertEquals(2, consecutiveNumbersSum(3));
+        assertEquals(4, consecutiveNumbersSum(21));
+    }
 }

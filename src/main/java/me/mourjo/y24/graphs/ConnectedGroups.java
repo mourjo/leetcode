@@ -8,10 +8,10 @@ public class ConnectedGroups {
 
     public static void main(String[] args) {
         var app = new ConnectedGroups();
-        System.out.println(app.findCircleNum(new int[][]{{1,1,0},{1,1,0},{0,0,1}}));
-        System.out.println(app.findCircleNum(new int[][]{{1,0,0},{0,1,0},{0,0,1}}));
+        System.out.println(app.findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}));
+        System.out.println(app.findCircleNum(new int[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}));
         System.out.println(app.findCircleNum(new int[][]{
-            {1,0,0,1},{0,1,1,0},{0,1,1,1},{1,0,1,1}
+            {1, 0, 0, 1}, {0, 1, 1, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}
         }));
     }
 
@@ -22,12 +22,11 @@ public class ConnectedGroups {
             return 0;
         }
 
-
         int components = 0;
         visited = new HashSet<>();
 
-        for (int i = 0 ; i < relationships.size(); i++) {
-            if(visit(relationships, i)) {
+        for (int i = 0; i < relationships.size(); i++) {
+            if (visit(relationships, i)) {
                 components++;
             }
         }
@@ -41,7 +40,7 @@ public class ConnectedGroups {
         }
         visited.add(self);
 
-        for(int neighbor = 0; neighbor < relationships.get(self).length() ; neighbor++) {
+        for (int neighbor = 0; neighbor < relationships.get(self).length(); neighbor++) {
             if (neighbor != self && relationships.get(self).charAt(neighbor) == '1') {
                 visit(relationships, neighbor);
             }
@@ -56,7 +55,7 @@ public class ConnectedGroups {
         }
         visited.add(self);
 
-        for(int neighbor = 0; neighbor < matrix.length ; neighbor++) {
+        for (int neighbor = 0; neighbor < matrix.length; neighbor++) {
             if (neighbor != self && matrix[self][neighbor] == 1) {
                 visit(matrix, neighbor);
             }
@@ -69,15 +68,14 @@ public class ConnectedGroups {
     public int findCircleNum(int[][] matrix) {
         int components = 0;
         visited = new HashSet<>();
-        for (int i = 0 ; i < matrix.length; i++) {
-            if(visit(matrix, i)) {
+        for (int i = 0; i < matrix.length; i++) {
+            if (visit(matrix, i)) {
                 components++;
             }
         }
 
         return components;
     }
-
 
 
 }

@@ -28,7 +28,7 @@ Constraints:
 -10^9 <= nums[i] <= 10^9
 
  */
-    public class LongestSubsequenceUnsortedArray {
+public class LongestSubsequenceUnsortedArray {
 
     public static void main(String[] args) {
         var app = new LongestSubsequenceUnsortedArray();
@@ -48,11 +48,11 @@ Constraints:
 
         int longest = 0;
         for (int n : nums) {
-            if (!set.contains(n-1)) {
+            if (!set.contains(n - 1)) {
                 // first in sequence
                 int length = 1;
-                while(set.contains(n + length)) {
-                 length++;
+                while (set.contains(n + length)) {
+                    length++;
                 }
                 if (longest < length) {
                     longest = length;

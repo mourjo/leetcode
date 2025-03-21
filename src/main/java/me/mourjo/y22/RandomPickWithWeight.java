@@ -62,146 +62,148 @@ import java.util.TreeSet;
 
 public class RandomPickWithWeight {
 
-  public static void main(String[] args) {
-    Solution obj = new Solution(new int[]{2, 8});
-    StringBuilder res = new StringBuilder();
-    for (int i = 0; i < 10000; i++) {
-      res.append(obj.pickIndex()).append(",");
-    }
-    System.out.println(frequencies(res.toString()));
-
-    obj = new Solution(new int[]{40, 1});
-    res = new StringBuilder();
-    for (int i = 0; i < 10000; i++) {
-      res.append(obj.pickIndex()).append(",");
-    }
-    System.out.println(frequencies(res.toString()));
-
-    obj = new Solution(new int[]{3, 3, 3});
-    res = new StringBuilder();
-    for (int i = 0; i < 10000; i++) {
-      res.append(obj.pickIndex()).append(",");
-    }
-    System.out.println(frequencies(res.toString()));
-
-    obj = new Solution(new int[]{100, 1, 1, 1, 1, 1, 1, 10});
-    res = new StringBuilder();
-    for (int i = 0; i < 10000; i++) {
-      res.append(obj.pickIndex()).append(",");
-    }
-    System.out.println(frequencies(res.toString()));
-
-    obj = new Solution(new int[]{188, 927, 949, 95, 151, 659, 405, 906, 481, 363, 728, 839});
-    res = new StringBuilder();
-    for (int i = 0; i < 6691 * 100; i++) {
-      res.append(obj.pickIndex()).append(",");
-    }
-    System.out.println(frequencies(res.toString()));
-
-  }
-
-  public static Map<String, Integer> frequencies(String s) {
-    Map<String, Integer> m = new TreeMap<>();
-    for (String c : s.split(",")) {
-      if (!c.isEmpty()) {
-        m.putIfAbsent(c, 0);
-        m.compute(c, (k, v) -> v + 1);
-      }
-    }
-    return m;
-  }
-
-  static class SolutionAlt1 {
-
-    int[] reset;
-    Map<Integer, Integer> current;
-    Random r;
-
-    public SolutionAlt1(int[] w) {
-      reset = w;
-      current = new HashMap<>(w.length);
-      for (int i = 0; i < w.length; i++) {
-        current.put(i, w[i]);
-      }
-      r = new Random();
-    }
-
-    public int pickIndex() {
-      if (current.isEmpty()) {
-        for (int i = 0; i < reset.length; i++) {
-          current.put(i, reset[i]);
+    public static void main(String[] args) {
+        Solution obj = new Solution(new int[]{2, 8});
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < 10000; i++) {
+            res.append(obj.pickIndex()).append(",");
         }
-      }
+        System.out.println(frequencies(res.toString()));
 
-      int res = 0;
-      Iterator<Integer> it = current.keySet().iterator();
-      for (int i = r.nextInt(current.size()); i >= 0; i--) {
-        res = it.next();
-      }
-
-      current.compute(res, (key, oldV) -> oldV - 1);
-      if (current.get(res) == 0) {
-        current.remove(res);
-      }
-
-      return res;
-    }
-  }
-
-  static class SolutionAlt2 {
-    TreeSet<Integer> sums;
-    HashMap<Integer, Integer> lookup;
-    int total;
-    Random r;
-
-    public SolutionAlt2(int[] w) {
-      int t = 0;
-      sums = new TreeSet<>();
-      lookup = new HashMap<>();
-      for (int i = 0; i < w.length; i++) {
-        t += w[i];
-        sums.add(t);
-        lookup.put(t, i);
-      }
-      total = t;
-      r = new Random();
-    }
-
-    public int pickIndex() {
-      int needle = r.nextInt(total) + 1;
-      return lookup.get(sums.ceiling(needle));
-    }
-  }
-
-  static class Solution {
-    int[] sums;
-    int total;
-    Random r;
-
-    public Solution(int[] w) {
-      int t = 0;
-      sums = new int[w.length];
-      for (int i = 0; i < w.length; i++) {
-        t += w[i];
-        sums[i] = t;
-      }
-      total = t;
-      r = new Random();
-    }
-
-    public int pickIndex() {
-      int needle = r.nextInt(total) + 1;
-      int low = 0, high = sums.length - 1;
-
-      while (low < high) {
-        int mid = low + (high - low) / 2;
-        if (needle > sums[mid]) {
-          low = mid + 1;
-        } else {
-          high = mid;
+        obj = new Solution(new int[]{40, 1});
+        res = new StringBuilder();
+        for (int i = 0; i < 10000; i++) {
+            res.append(obj.pickIndex()).append(",");
         }
-      }
-      return high;
+        System.out.println(frequencies(res.toString()));
+
+        obj = new Solution(new int[]{3, 3, 3});
+        res = new StringBuilder();
+        for (int i = 0; i < 10000; i++) {
+            res.append(obj.pickIndex()).append(",");
+        }
+        System.out.println(frequencies(res.toString()));
+
+        obj = new Solution(new int[]{100, 1, 1, 1, 1, 1, 1, 10});
+        res = new StringBuilder();
+        for (int i = 0; i < 10000; i++) {
+            res.append(obj.pickIndex()).append(",");
+        }
+        System.out.println(frequencies(res.toString()));
+
+        obj = new Solution(new int[]{188, 927, 949, 95, 151, 659, 405, 906, 481, 363, 728, 839});
+        res = new StringBuilder();
+        for (int i = 0; i < 6691 * 100; i++) {
+            res.append(obj.pickIndex()).append(",");
+        }
+        System.out.println(frequencies(res.toString()));
+
     }
-  }
+
+    public static Map<String, Integer> frequencies(String s) {
+        Map<String, Integer> m = new TreeMap<>();
+        for (String c : s.split(",")) {
+            if (!c.isEmpty()) {
+                m.putIfAbsent(c, 0);
+                m.compute(c, (k, v) -> v + 1);
+            }
+        }
+        return m;
+    }
+
+    static class SolutionAlt1 {
+
+        int[] reset;
+        Map<Integer, Integer> current;
+        Random r;
+
+        public SolutionAlt1(int[] w) {
+            reset = w;
+            current = new HashMap<>(w.length);
+            for (int i = 0; i < w.length; i++) {
+                current.put(i, w[i]);
+            }
+            r = new Random();
+        }
+
+        public int pickIndex() {
+            if (current.isEmpty()) {
+                for (int i = 0; i < reset.length; i++) {
+                    current.put(i, reset[i]);
+                }
+            }
+
+            int res = 0;
+            Iterator<Integer> it = current.keySet().iterator();
+            for (int i = r.nextInt(current.size()); i >= 0; i--) {
+                res = it.next();
+            }
+
+            current.compute(res, (key, oldV) -> oldV - 1);
+            if (current.get(res) == 0) {
+                current.remove(res);
+            }
+
+            return res;
+        }
+    }
+
+    static class SolutionAlt2 {
+
+        TreeSet<Integer> sums;
+        HashMap<Integer, Integer> lookup;
+        int total;
+        Random r;
+
+        public SolutionAlt2(int[] w) {
+            int t = 0;
+            sums = new TreeSet<>();
+            lookup = new HashMap<>();
+            for (int i = 0; i < w.length; i++) {
+                t += w[i];
+                sums.add(t);
+                lookup.put(t, i);
+            }
+            total = t;
+            r = new Random();
+        }
+
+        public int pickIndex() {
+            int needle = r.nextInt(total) + 1;
+            return lookup.get(sums.ceiling(needle));
+        }
+    }
+
+    static class Solution {
+
+        int[] sums;
+        int total;
+        Random r;
+
+        public Solution(int[] w) {
+            int t = 0;
+            sums = new int[w.length];
+            for (int i = 0; i < w.length; i++) {
+                t += w[i];
+                sums[i] = t;
+            }
+            total = t;
+            r = new Random();
+        }
+
+        public int pickIndex() {
+            int needle = r.nextInt(total) + 1;
+            int low = 0, high = sums.length - 1;
+
+            while (low < high) {
+                int mid = low + (high - low) / 2;
+                if (needle > sums[mid]) {
+                    low = mid + 1;
+                } else {
+                    high = mid;
+                }
+            }
+            return high;
+        }
+    }
 }

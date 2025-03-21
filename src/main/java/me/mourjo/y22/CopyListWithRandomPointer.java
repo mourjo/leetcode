@@ -47,115 +47,116 @@ import java.util.HashMap;
 
 public class CopyListWithRandomPointer {
 
-  public static Node copyRandomList(final Node head) {
-    if (head == null) {
-      return head;
-    }
-    Node h = head;
-    Node newhead = null;
-    Node ph = null;
-    HashMap<Node, Node> map = new HashMap<>(1000);
+    public static Node copyRandomList(final Node head) {
+        if (head == null) {
+            return head;
+        }
+        Node h = head;
+        Node newhead = null;
+        Node ph = null;
+        HashMap<Node, Node> map = new HashMap<>(1000);
 
-    while (h != null) {
-      if (ph != null) {
-        ph.next = new Node(h.val);
-        ph = ph.next;
-      } else {
-        ph = new Node(h.val);
-      }
-      if (newhead == null) {
-        newhead = ph;
-      }
-      map.put(h, ph);
-      h = h.next;
+        while (h != null) {
+            if (ph != null) {
+                ph.next = new Node(h.val);
+                ph = ph.next;
+            } else {
+                ph = new Node(h.val);
+            }
+            if (newhead == null) {
+                newhead = ph;
+            }
+            map.put(h, ph);
+            h = h.next;
 
-    }
+        }
 
-    h = head;
-    ph = newhead;
-    while (h != null) {
-      if (h.random != null && map.containsKey(h.random)) {
-        ph.random = map.get(h.random);
-      }
+        h = head;
+        ph = newhead;
+        while (h != null) {
+            if (h.random != null && map.containsKey(h.random)) {
+                ph.random = map.get(h.random);
+            }
 
-      h = h.next;
-      ph = ph.next;
-    }
-    return newhead;
-  }
-
-  public static void main(String[] args) {
-    Node head;
-    int hashcode;
-    head = new Node(8);
-
-    head.next = new Node(9);
-    head.random = head.next;
-    assertEquals(head.toString(), copyRandomList(head).toString());
-    Node cp = copyRandomList(head);
-    while (head != null) {
-      assertNotEquals(cp, head);
-      assertEquals(head.val, cp.val);
-      if (head.random != null) {
-        assertNotEquals(head.random, cp.random);
-      } else {
-        assertNull(cp.random);
-      }
-      if (head.random != null) {
-        assertNotEquals(head.random.val, cp.random.random);
-      }
-      cp = cp.next;
-      head = head.next;
+            h = h.next;
+            ph = ph.next;
+        }
+        return newhead;
     }
 
-    head = new Node(7);
-    head.next = new Node(13);
-    head.next.next = new Node(11);
-    head.next.next.next = new Node(10);
-    head.next.next.next.next = new Node(1);
-    head.next.random = head;
-    head.next.next.random = head.next.next.next.next;
-    head.next.next.next.random = head.next.next;
-    head.next.next.next.next.random = head;
+    public static void main(String[] args) {
+        Node head;
+        int hashcode;
+        head = new Node(8);
 
-    hashcode = head.next.random.hashCode();
-    copyRandomList(head);
-    assertEquals(head.next.random.val, copyRandomList(head).next.random.val);
-    copyRandomList(head);
-    cp = copyRandomList(head);
-    assertEquals(hashcode, head.next.random.hashCode());
-    while (head != null) {
-      assertNotEquals(cp, head);
-      assertEquals(head.val, cp.val);
-      if (head.random != null) {
-        assertNotEquals(head.random, cp.random);
-      } else {
-        assertNull(cp.random);
-      }
-      if (head.random != null) {
-        assertNotEquals(head.random.val, cp.random.random);
-      }
-      cp = cp.next;
-      head = head.next;
+        head.next = new Node(9);
+        head.random = head.next;
+        assertEquals(head.toString(), copyRandomList(head).toString());
+        Node cp = copyRandomList(head);
+        while (head != null) {
+            assertNotEquals(cp, head);
+            assertEquals(head.val, cp.val);
+            if (head.random != null) {
+                assertNotEquals(head.random, cp.random);
+            } else {
+                assertNull(cp.random);
+            }
+            if (head.random != null) {
+                assertNotEquals(head.random.val, cp.random.random);
+            }
+            cp = cp.next;
+            head = head.next;
+        }
+
+        head = new Node(7);
+        head.next = new Node(13);
+        head.next.next = new Node(11);
+        head.next.next.next = new Node(10);
+        head.next.next.next.next = new Node(1);
+        head.next.random = head;
+        head.next.next.random = head.next.next.next.next;
+        head.next.next.next.random = head.next.next;
+        head.next.next.next.next.random = head;
+
+        hashcode = head.next.random.hashCode();
+        copyRandomList(head);
+        assertEquals(head.next.random.val, copyRandomList(head).next.random.val);
+        copyRandomList(head);
+        cp = copyRandomList(head);
+        assertEquals(hashcode, head.next.random.hashCode());
+        while (head != null) {
+            assertNotEquals(cp, head);
+            assertEquals(head.val, cp.val);
+            if (head.random != null) {
+                assertNotEquals(head.random, cp.random);
+            } else {
+                assertNull(cp.random);
+            }
+            if (head.random != null) {
+                assertNotEquals(head.random.val, cp.random.random);
+            }
+            cp = cp.next;
+            head = head.next;
+        }
     }
-  }
 
-  static class Node {
+    static class Node {
 
-    int val;
-    Node next;
-    Node random;
+        int val;
+        Node next;
+        Node random;
 
-    public Node(int val) {
-      this.val = val;
-      this.next = null;
-      this.random = null;
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+
+        @Override
+        public String toString() {
+            return "{ val=" + val + ", next=" + next + ", rand=" + (random == null ? ""
+                : random.val)
+                + " }";
+        }
     }
-
-    @Override
-    public String toString() {
-      return "{ val=" + val + ", next=" + next + ", rand=" + (random == null ? "" : random.val)
-          + " }";
-    }
-  }
 }

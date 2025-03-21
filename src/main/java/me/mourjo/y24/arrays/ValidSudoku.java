@@ -1,6 +1,5 @@
 package me.mourjo.y24.arrays;
 
-import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 
 /* Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
@@ -53,15 +52,15 @@ public class ValidSudoku {
         Assertions.assertTrue(
             app.isValidSudoku(
                 new char[][]{
-                    {'5','3','.','.','7','.','.','.','.'},
-                    {'6','.','.','1','9','5','.','.','.'},
-                    {'.','9','8','.','.','.','.','6','.'},
-                    {'8','.','.','.','6','.','.','.','3'},
-                    {'4','.','.','8','.','3','.','.','1'},
-                    {'7','.','.','.','2','.','.','.','6'},
-                    {'.','6','.','.','.','.','2','8','.'},
-                    {'.','.','.','4','1','9','.','.','5'},
-                    {'.','.','.','.','8','.','.','7','9'}
+                    {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                    {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                    {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                    {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                    {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                    {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                    {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                    {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                    {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
                 }
 
             )
@@ -70,15 +69,15 @@ public class ValidSudoku {
         Assertions.assertFalse(
             app.isValidSudoku(
                 new char[][]{
-                    {'8','3','.','.','7','.','.','.','.'},
-                    {'6','.','.','1','9','5','.','.','.'},
-                    {'.','9','8','.','.','.','.','6','.'},
-                    {'8','.','.','.','6','.','.','.','3'},
-                    {'4','.','.','8','.','3','.','.','1'},
-                    {'7','.','.','.','2','.','.','.','6'},
-                    {'.','6','.','.','.','.','2','8','.'},
-                    {'.','.','.','4','1','9','.','.','5'},
-                    {'.','.','.','.','8','.','.','7','9'}
+                    {'8', '3', '.', '.', '7', '.', '.', '.', '.'},
+                    {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                    {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                    {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                    {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                    {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                    {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                    {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                    {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
                 }
 
             )
@@ -92,7 +91,7 @@ public class ValidSudoku {
         boolean miniSqLocs[][][] = new boolean[3][3][10];
 
         int rowNum = -1;
-        for (char[] rowContents : board){
+        for (char[] rowContents : board) {
             rowNum++;
             int colNum = -1;
             for (char element : rowContents) {
@@ -107,14 +106,14 @@ public class ValidSudoku {
                 }
                 rowLocs[rowNum][elem] = true;
 
-                if(colLocs[colNum][elem]) {
+                if (colLocs[colNum][elem]) {
                     return false;
                 }
                 colLocs[colNum][elem] = true;
 
-                int miniSqRow = rowNum/3;
-                int miniSqCol = colNum/3;
-                if(miniSqLocs[miniSqRow][miniSqCol][elem]) {
+                int miniSqRow = rowNum / 3;
+                int miniSqCol = colNum / 3;
+                if (miniSqLocs[miniSqRow][miniSqCol][elem]) {
                     return false;
                 }
                 miniSqLocs[miniSqRow][miniSqCol][elem] = true;

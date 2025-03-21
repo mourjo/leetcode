@@ -35,75 +35,75 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Search2dArray {
 
-  public static boolean binarySearch(int[] a, int k) {
-    int low = 0;
-    int high = a.length - 1;
+    public static boolean binarySearch(int[] a, int k) {
+        int low = 0;
+        int high = a.length - 1;
 
-    while (low < high) {
-      int mid = (low + high) / 2;
-      if (a[mid] == k) {
-        return true;
-      }
-      if (k < a[mid]) {
-        high = mid - 1;
-      } else {
-        low = mid + 1;
-      }
-    }
-    return a[low] == k;
-  }
-
-  public static boolean searchMatrix(int[][] matrix, int target) {
-    if (matrix.length == 0) {
-      return false;
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (a[mid] == k) {
+                return true;
+            }
+            if (k < a[mid]) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return a[low] == k;
     }
 
-    for (int[] row : matrix) {
-      if (row.length == 0) {
-        continue;
-      }
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix.length == 0) {
+            return false;
+        }
 
-      if (row[row.length - 1] == target) {
-        return true;
-      }
-      if (row[0] == target) {
-        return true;
-      }
+        for (int[] row : matrix) {
+            if (row.length == 0) {
+                continue;
+            }
 
-      if (target <= row[row.length - 1] && target >= row[0]) {
-        return binarySearch(row, target);
-      }
+            if (row[row.length - 1] == target) {
+                return true;
+            }
+            if (row[0] == target) {
+                return true;
+            }
+
+            if (target <= row[row.length - 1] && target >= row[0]) {
+                return binarySearch(row, target);
+            }
+        }
+        return false;
     }
-    return false;
-  }
 
-  public static void main(String[] args) {
-    assertTrue(searchMatrix(new int[][]{
+    public static void main(String[] args) {
+        assertTrue(searchMatrix(new int[][]{
+                {1, 3, 5, 7},
+                {10, 11, 16, 20},
+                {23, 30, 34, 50}},
+            3));
+
+        assertTrue(searchMatrix(new int[][]{
             {1, 3, 5, 7},
             {10, 11, 16, 20},
-            {23, 30, 34, 50}},
-        3));
+            {23, 30, 34, 50}
+        }, 1));
 
-    assertTrue(searchMatrix(new int[][]{
-        {1, 3, 5, 7},
-        {10, 11, 16, 20},
-        {23, 30, 34, 50}
-    }, 1));
+        assertFalse(searchMatrix(new int[][]{
+            {1, 3, 5, 7},
+            {10, 11, 16, 20},
+            {23, 30, 34, 50}
+        }, 13));
 
-    assertFalse(searchMatrix(new int[][]{
-        {1, 3, 5, 7},
-        {10, 11, 16, 20},
-        {23, 30, 34, 50}
-    }, 13));
-
-    assertFalse(searchMatrix(new int[][]{}, 13));
-    assertFalse(searchMatrix(new int[][]{{}, {}, {}}, 13));
-    assertFalse(searchMatrix(new int[][]{{1}, {2}, {3}}, 13));
-    assertTrue(searchMatrix(new int[][]{{1}, {2}, {3}}, 2));
-    assertTrue(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 2));
-    assertTrue(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 10));
-    assertTrue(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 100));
-    assertFalse(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 21));
-  }
+        assertFalse(searchMatrix(new int[][]{}, 13));
+        assertFalse(searchMatrix(new int[][]{{}, {}, {}}, 13));
+        assertFalse(searchMatrix(new int[][]{{1}, {2}, {3}}, 13));
+        assertTrue(searchMatrix(new int[][]{{1}, {2}, {3}}, 2));
+        assertTrue(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 2));
+        assertTrue(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 10));
+        assertTrue(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 100));
+        assertFalse(searchMatrix(new int[][]{{1, 2}, {}, {3, 10, 100, 10000}}, 21));
+    }
 
 }

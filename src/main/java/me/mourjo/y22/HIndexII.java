@@ -30,46 +30,46 @@ Could you solve it in logarithmic time complexity?
  */
 public class HIndexII {
 
-  public static int hIndex(int[] a) {
-    if (a.length == 0) {
-      return 0;
+    public static int hIndex(int[] a) {
+        if (a.length == 0) {
+            return 0;
+        }
+        int low = 0, high = a.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (a[mid] == a.length - mid) {
+                return a.length - mid;
+            }
+            if (a[mid] < a.length - mid) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return a.length - low;
     }
-    int low = 0, high = a.length - 1;
-    while (low <= high) {
-      int mid = (low + high) / 2;
-      if (a[mid] == a.length - mid) {
-        return a.length - mid;
-      }
-      if (a[mid] < a.length - mid) {
-        low = mid + 1;
-      } else {
-        high = mid - 1;
-      }
-    }
-    return a.length - low;
-  }
 
-  public static void main(String[] args) {
-    assertEquals(3, hIndex(new int[]{0, 1, 3, 5, 6}));
-    assertEquals(3, hIndex(new int[]{1, 2, 3, 4, 5}));
-    assertEquals(5, hIndex(new int[]{10, 20, 30, 40, 50}));
-    assertEquals(5, hIndex(new int[]{100, 200, 200, 200, 200}));
-    assertEquals(2, hIndex(new int[]{0, 1, 2, 3, 4}));
-    assertEquals(2, hIndex(new int[]{0, 0, 0, 5, 6}));
-    assertEquals(5, hIndex(new int[]{6, 6, 6, 6, 6}));
-    assertEquals(1, hIndex(new int[]{1, 1, 1, 1, 1}));
-    assertEquals(2, hIndex(new int[]{1, 2, 3, 4}));
-    assertEquals(4, hIndex(new int[]{1, 2, 3, 4, 4, 4, 4, 4, 4, 40000}));
-    assertEquals(1, hIndex(new int[]{0, 0, 0, 0, 6}));
-    assertEquals(1, hIndex(new int[]{0, 0, 0, 0, 1}));
-    assertEquals(0, hIndex(new int[]{0, 0, 0, 0, 0}));
-    assertEquals(1, hIndex(new int[]{1}));
-    assertEquals(1, hIndex(new int[]{1, 1}));
-    assertEquals(1, hIndex(new int[]{2}));
-    assertEquals(1, hIndex(new int[]{200}));
-    assertEquals(3, hIndex(new int[]{200, 200, 200}));
-    assertEquals(8, hIndex(new int[]{10, 10, 10, 10, 10, 10, 10, 20}));
-    assertEquals(3, hIndex(new int[]{1, 4, 7, 9}));
-  }
+    public static void main(String[] args) {
+        assertEquals(3, hIndex(new int[]{0, 1, 3, 5, 6}));
+        assertEquals(3, hIndex(new int[]{1, 2, 3, 4, 5}));
+        assertEquals(5, hIndex(new int[]{10, 20, 30, 40, 50}));
+        assertEquals(5, hIndex(new int[]{100, 200, 200, 200, 200}));
+        assertEquals(2, hIndex(new int[]{0, 1, 2, 3, 4}));
+        assertEquals(2, hIndex(new int[]{0, 0, 0, 5, 6}));
+        assertEquals(5, hIndex(new int[]{6, 6, 6, 6, 6}));
+        assertEquals(1, hIndex(new int[]{1, 1, 1, 1, 1}));
+        assertEquals(2, hIndex(new int[]{1, 2, 3, 4}));
+        assertEquals(4, hIndex(new int[]{1, 2, 3, 4, 4, 4, 4, 4, 4, 40000}));
+        assertEquals(1, hIndex(new int[]{0, 0, 0, 0, 6}));
+        assertEquals(1, hIndex(new int[]{0, 0, 0, 0, 1}));
+        assertEquals(0, hIndex(new int[]{0, 0, 0, 0, 0}));
+        assertEquals(1, hIndex(new int[]{1}));
+        assertEquals(1, hIndex(new int[]{1, 1}));
+        assertEquals(1, hIndex(new int[]{2}));
+        assertEquals(1, hIndex(new int[]{200}));
+        assertEquals(3, hIndex(new int[]{200, 200, 200}));
+        assertEquals(8, hIndex(new int[]{10, 10, 10, 10, 10, 10, 10, 20}));
+        assertEquals(3, hIndex(new int[]{1, 4, 7, 9}));
+    }
 
 }

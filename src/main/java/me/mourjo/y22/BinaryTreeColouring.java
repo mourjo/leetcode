@@ -34,101 +34,101 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BinaryTreeColouring {
 
-  public static class TreeNode {
+    public static class TreeNode {
 
-    int val;
-    TreeNode left;
-    TreeNode right;
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-      this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-      this.val = val;
-      this.left = left;
-      this.right = right;
-    }
-
-    public static boolean btreeGameWinningMove(TreeNode root, int n, int x) {
-      TreeNode parent = findParent(root, null, x);
-      if (parent == null) {
-        // root
-        int leftsize = countSubtree(root.left);
-        int rightsize = countSubtree(root.right);
-        return leftsize != rightsize;
-      } else {
-        TreeNode xnode = null;
-
-        if (parent.left != null && parent.left.val == x) {
-          xnode = parent.left;
-        } else if (parent.right != null && parent.right.val == x) {
-          xnode = parent.right;
+        TreeNode() {
         }
 
-        int xleftsize = countSubtree(xnode.left);
-        if (xleftsize > (n - xleftsize)) {
-          return true;
+        TreeNode(int val) {
+            this.val = val;
         }
 
-        int xrightsize = countSubtree(xnode.right);
-        if (xrightsize > (n - xrightsize)) {
-          return true;
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
 
-        return (xleftsize + xrightsize + 1 < (n - (xleftsize + xrightsize + 1)));
-      }
+        public static boolean btreeGameWinningMove(TreeNode root, int n, int x) {
+            TreeNode parent = findParent(root, null, x);
+            if (parent == null) {
+                // root
+                int leftsize = countSubtree(root.left);
+                int rightsize = countSubtree(root.right);
+                return leftsize != rightsize;
+            } else {
+                TreeNode xnode = null;
+
+                if (parent.left != null && parent.left.val == x) {
+                    xnode = parent.left;
+                } else if (parent.right != null && parent.right.val == x) {
+                    xnode = parent.right;
+                }
+
+                int xleftsize = countSubtree(xnode.left);
+                if (xleftsize > (n - xleftsize)) {
+                    return true;
+                }
+
+                int xrightsize = countSubtree(xnode.right);
+                if (xrightsize > (n - xrightsize)) {
+                    return true;
+                }
+
+                return (xleftsize + xrightsize + 1 < (n - (xleftsize + xrightsize + 1)));
+            }
+        }
+
+        public static int countSubtree(TreeNode me) {
+            if (me == null) {
+                return 0;
+            }
+            return 1 + countSubtree(me.left) + countSubtree(me.right);
+        }
+
+        public static TreeNode findParent(TreeNode me, TreeNode parent, int x) {
+            if (me == null) {
+                return null;
+            }
+            if (me.val == x) {
+                return parent;
+            }
+            TreeNode p = findParent(me.left, me, x);
+            if (p != null) {
+                return p;
+            }
+            return findParent(me.right, me, x);
+        }
+
+        public static void main(String[] args) {
+            TreeNode root = new TreeNode(1);
+            root.left = new TreeNode(2);
+            root.right = new TreeNode(3);
+            root.left.left = new TreeNode(4);
+            root.left.right = new TreeNode(5);
+            root.right.left = new TreeNode(6);
+            root.right.right = new TreeNode(7);
+            root.left.left.left = new TreeNode(8);
+            root.left.left.right = new TreeNode(9);
+            root.left.right.left = new TreeNode(10);
+            root.left.right.right = new TreeNode(11);
+
+            assertTrue(btreeGameWinningMove(root, 11, 3));
+            assertFalse(btreeGameWinningMove(root, 11, 2));
+            assertTrue(btreeGameWinningMove(root, 11, 4));
+            assertTrue(btreeGameWinningMove(root, 11, 1));
+            assertTrue(btreeGameWinningMove(root, 11, 11));
+            assertTrue(btreeGameWinningMove(root, 11, 7));
+
+            root = new TreeNode(1);
+            assertFalse(btreeGameWinningMove(root, 1, 1));
+
+        }
+
+
     }
-
-    public static int countSubtree(TreeNode me) {
-      if (me == null) {
-        return 0;
-      }
-      return 1 + countSubtree(me.left) + countSubtree(me.right);
-    }
-
-    public static TreeNode findParent(TreeNode me, TreeNode parent, int x) {
-      if (me == null) {
-        return null;
-      }
-      if (me.val == x) {
-        return parent;
-      }
-      TreeNode p = findParent(me.left, me, x);
-      if (p != null) {
-        return p;
-      }
-      return findParent(me.right, me, x);
-    }
-
-    public static void main(String[] args) {
-      TreeNode root = new TreeNode(1);
-      root.left = new TreeNode(2);
-      root.right = new TreeNode(3);
-      root.left.left = new TreeNode(4);
-      root.left.right = new TreeNode(5);
-      root.right.left = new TreeNode(6);
-      root.right.right = new TreeNode(7);
-      root.left.left.left = new TreeNode(8);
-      root.left.left.right = new TreeNode(9);
-      root.left.right.left = new TreeNode(10);
-      root.left.right.right = new TreeNode(11);
-
-      assertTrue(btreeGameWinningMove(root, 11, 3));
-      assertFalse(btreeGameWinningMove(root, 11, 2));
-      assertTrue(btreeGameWinningMove(root, 11, 4));
-      assertTrue(btreeGameWinningMove(root, 11, 1));
-      assertTrue(btreeGameWinningMove(root, 11, 11));
-      assertTrue(btreeGameWinningMove(root, 11, 7));
-
-      root = new TreeNode(1);
-      assertFalse(btreeGameWinningMove(root, 1, 1));
-
-    }
-
-
-  }
 }

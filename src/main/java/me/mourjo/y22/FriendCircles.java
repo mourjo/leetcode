@@ -44,165 +44,166 @@ import java.util.Stack;
 
 public class FriendCircles {
 
-  public static int findCircleNumOld(int[][] M) {
-    HashSet<Integer>[] friends = new HashSet[M.length];
+    public static int findCircleNumOld(int[][] M) {
+        HashSet<Integer>[] friends = new HashSet[M.length];
 
-    for (int i = 0; i < friends.length; i++) {
-      friends[i] = new HashSet<>();
-      friends[i].add(i);
-    }
-
-    for (int i = 0; i < M.length; i++) {
-      for (int j = 0; j < M[i].length; j++) {
-        if (i == j || friends[i] == friends[j]) {
-          continue;
+        for (int i = 0; i < friends.length; i++) {
+            friends[i] = new HashSet<>();
+            friends[i].add(i);
         }
 
-        if (friends[i].size() == M[i].length || friends[j].size() == M[i].length) {
-          return 1;
+        for (int i = 0; i < M.length; i++) {
+            for (int j = 0; j < M[i].length; j++) {
+                if (i == j || friends[i] == friends[j]) {
+                    continue;
+                }
+
+                if (friends[i].size() == M[i].length || friends[j].size() == M[i].length) {
+                    return 1;
+                }
+
+                if (M[i][j] == 1 || friends[i].contains(j) || friends[j].contains(i)) {
+                    // merge
+                    friends[i].addAll(friends[j]);
+                    friends[j] = friends[i];
+                }
+            }
         }
 
-        if (M[i][j] == 1 || friends[i].contains(j) || friends[j].contains(i)) {
-          // merge
-          friends[i].addAll(friends[j]);
-          friends[j] = friends[i];
-        }
-      }
+        HashSet<HashSet<Integer>> circles = new HashSet<>();
+        Collections.addAll(circles, friends);
+        return circles.size();
     }
 
-    HashSet<HashSet<Integer>> circles = new HashSet<>();
-    Collections.addAll(circles, friends);
-    return circles.size();
-  }
+    static void traverse(int[][] M, int me, boolean[] seen) {
+        Stack<Integer> friendships = new Stack<>();
 
-  static void traverse(int[][] M, int me, boolean[] seen) {
-    Stack<Integer> friendships = new Stack<>();
+        seen[me] = true;
 
-    seen[me] = true;
+        for (int potentialFriend = 0; potentialFriend < M[me].length; potentialFriend++) {
+            if (me == potentialFriend) {
+                continue;
+            }
 
-    for (int potentialFriend = 0; potentialFriend < M[me].length; potentialFriend++) {
-      if (me == potentialFriend) {
-        continue;
-      }
-
-      if (M[me][potentialFriend] == 1 && !seen[potentialFriend]) {
-        seen[potentialFriend] = true;
-        friendships.push(potentialFriend);
-      }
-    }
-
-    while (!friendships.isEmpty()) {
-      int friend = friendships.pop();
-
-      for (int transitiveFriend = 0; transitiveFriend < M[friend].length; transitiveFriend++) {
-        if (transitiveFriend == friend) {
-          continue;
+            if (M[me][potentialFriend] == 1 && !seen[potentialFriend]) {
+                seen[potentialFriend] = true;
+                friendships.push(potentialFriend);
+            }
         }
 
-        if (M[friend][transitiveFriend] == 1 && !seen[transitiveFriend]) {
-          seen[transitiveFriend] = true;
-          friendships.push(transitiveFriend);
+        while (!friendships.isEmpty()) {
+            int friend = friendships.pop();
+
+            for (int transitiveFriend = 0; transitiveFriend < M[friend].length;
+                transitiveFriend++) {
+                if (transitiveFriend == friend) {
+                    continue;
+                }
+
+                if (M[friend][transitiveFriend] == 1 && !seen[transitiveFriend]) {
+                    seen[transitiveFriend] = true;
+                    friendships.push(transitiveFriend);
+                }
+            }
         }
-      }
     }
-  }
 
-  public static int findCircleNumNonRec(int[][] M) {
-    boolean[] seen = new boolean[M.length];
-    int circles = 0;
-    for (int i = 0; i < M.length; i++) {
-      if (!seen[i]) {
-        circles++;
-        traverse(M, i, seen);
-      }
+    public static int findCircleNumNonRec(int[][] M) {
+        boolean[] seen = new boolean[M.length];
+        int circles = 0;
+        for (int i = 0; i < M.length; i++) {
+            if (!seen[i]) {
+                circles++;
+                traverse(M, i, seen);
+            }
+        }
+        return circles;
     }
-    return circles;
-  }
 
-  public static void walk(int[][] M, int i, boolean[] seen) {
-    seen[i] = true;
+    public static void walk(int[][] M, int i, boolean[] seen) {
+        seen[i] = true;
 
-    for (int j = 0; j < M[i].length; j++) {
-      if (i != j && M[i][j] == 1 && !seen[j]) {
-        walk(M, j, seen);
-      }
+        for (int j = 0; j < M[i].length; j++) {
+            if (i != j && M[i][j] == 1 && !seen[j]) {
+                walk(M, j, seen);
+            }
+        }
     }
-  }
 
 
-  public static int findCircleNum(int[][] M) {
-    boolean[] seen = new boolean[M.length];
-    int circles = 0;
-    for (int i = 0; i < M.length; i++) {
-      if (!seen[i]) {
-        circles++;
-        walk(M, i, seen);
-      }
+    public static int findCircleNum(int[][] M) {
+        boolean[] seen = new boolean[M.length];
+        int circles = 0;
+        for (int i = 0; i < M.length; i++) {
+            if (!seen[i]) {
+                circles++;
+                walk(M, i, seen);
+            }
+        }
+        return circles;
     }
-    return circles;
-  }
 
-  public static void main(String[] args) {
-    assertEquals(2,
-        findCircleNum(new int[][]
-            {
-                {1, 1, 0},
-                {1, 1, 0},
-                {0, 0, 1}
-            }));
+    public static void main(String[] args) {
+        assertEquals(2,
+            findCircleNum(new int[][]
+                {
+                    {1, 1, 0},
+                    {1, 1, 0},
+                    {0, 0, 1}
+                }));
 
-    assertEquals(1,
-        findCircleNum(new int[][]
-            {
-                {1, 1, 0},
-                {1, 1, 1},
-                {0, 1, 1}
-            }));
+        assertEquals(1,
+            findCircleNum(new int[][]
+                {
+                    {1, 1, 0},
+                    {1, 1, 1},
+                    {0, 1, 1}
+                }));
 
-    assertEquals(1, findCircleNum(new int[][]{
+        assertEquals(1, findCircleNum(new int[][]{
 
-        {1, 0, 1, 0, 0},
-        {0, 1, 0, 1, 1},
-        {1, 0, 1, 0, 1},
-        {0, 1, 0, 1, 0},
-        {0, 1, 1, 0, 1}
-    }));
-
-    assertEquals(2, findCircleNum(new int[][]{
-
-        {1, 0, 1, 1, 0},
-        {0, 1, 0, 0, 1},
-        {1, 0, 1, 0, 0},
-        {1, 0, 0, 1, 0},
-        {0, 1, 0, 0, 1}
-    }));
-
-    assertEquals(0, findCircleNum(new int[][]{}));
-
-    assertEquals(4, findCircleNum(new int[][]{
-        {1, 0, 0, 0},
-        {0, 1, 0, 0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 1}
-    }));
-
-    assertEquals(3, findCircleNum(
-        new int[][]{
-            {1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-            {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
-            {0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-            {0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
-            {1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1},
-            {0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-            {0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1}
+            {1, 0, 1, 0, 0},
+            {0, 1, 0, 1, 1},
+            {1, 0, 1, 0, 1},
+            {0, 1, 0, 1, 0},
+            {0, 1, 1, 0, 1}
         }));
-  }
+
+        assertEquals(2, findCircleNum(new int[][]{
+
+            {1, 0, 1, 1, 0},
+            {0, 1, 0, 0, 1},
+            {1, 0, 1, 0, 0},
+            {1, 0, 0, 1, 0},
+            {0, 1, 0, 0, 1}
+        }));
+
+        assertEquals(0, findCircleNum(new int[][]{}));
+
+        assertEquals(4, findCircleNum(new int[][]{
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        }));
+
+        assertEquals(3, findCircleNum(
+            new int[][]{
+                {1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+                {1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1},
+                {0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1}
+            }));
+    }
 }

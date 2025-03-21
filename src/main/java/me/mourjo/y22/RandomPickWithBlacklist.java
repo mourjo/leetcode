@@ -51,80 +51,80 @@ import java.util.Set;
 
 class Solution {
 
-  Random rand;
-  int actualUpper;
-  Map<Integer, Integer> table;
+    Random rand;
+    int actualUpper;
+    Map<Integer, Integer> table;
 
-  public Solution(int N, int[] blacklist) {
-    rand = new Random();
-    actualUpper = N - blacklist.length;
-    table = new HashMap<Integer, Integer>();
-    Set<Integer> blackSet = new HashSet<>();
-    Set<Integer> goodBeyond = new HashSet<>();
+    public Solution(int N, int[] blacklist) {
+        rand = new Random();
+        actualUpper = N - blacklist.length;
+        table = new HashMap<Integer, Integer>();
+        Set<Integer> blackSet = new HashSet<>();
+        Set<Integer> goodBeyond = new HashSet<>();
 
-    for (int item : blacklist) {
-      blackSet.add(item);
+        for (int item : blacklist) {
+            blackSet.add(item);
+        }
+
+        for (int i = actualUpper; i < N; i++) {
+            if (!blackSet.contains(i)) {
+                goodBeyond.add(i);
+            }
+        }
+
+        Iterator<Integer> goodBeyondIterator = goodBeyond.iterator();
+        for (int item : blackSet) {
+            if (item < actualUpper) {
+                table.put(item, goodBeyondIterator.next());
+            }
+        }
     }
 
-    for (int i = actualUpper; i < N; i++) {
-      if (!blackSet.contains(i)) {
-        goodBeyond.add(i);
-      }
+    public int pick() {
+        int i = rand.nextInt(actualUpper);
+        return table.getOrDefault(i, i);
     }
-
-    Iterator<Integer> goodBeyondIterator = goodBeyond.iterator();
-    for (int item : blackSet) {
-      if (item < actualUpper) {
-        table.put(item, goodBeyondIterator.next());
-      }
-    }
-  }
-
-  public int pick() {
-    int i = rand.nextInt(actualUpper);
-    return table.getOrDefault(i, i);
-  }
 }
 
 
 public class RandomPickWithBlacklist {
 
-  public static void main(String[] args) {
-    Solution obj;
-    obj = new Solution(4, new int[]{2});
-    for (int i = 0; i < 100; i++) {
-      int p = obj.pick();
-      assertTrue(p != 2 && p >= 0 && p < 4);
-    }
+    public static void main(String[] args) {
+        Solution obj;
+        obj = new Solution(4, new int[]{2});
+        for (int i = 0; i < 100; i++) {
+            int p = obj.pick();
+            assertTrue(p != 2 && p >= 0 && p < 4);
+        }
 
-    obj = new Solution(4, new int[]{1, 2, 3});
-    for (int i = 0; i < 100; i++) {
-      int p = obj.pick();
-      assertTrue(p == 0);
-    }
+        obj = new Solution(4, new int[]{1, 2, 3});
+        for (int i = 0; i < 100; i++) {
+            int p = obj.pick();
+            assertTrue(p == 0);
+        }
 
-    obj = new Solution(4, new int[]{0, 2, 3});
-    for (int i = 0; i < 100; i++) {
-      int p = obj.pick();
-      assertTrue(p == 1);
-    }
+        obj = new Solution(4, new int[]{0, 2, 3});
+        for (int i = 0; i < 100; i++) {
+            int p = obj.pick();
+            assertTrue(p == 1);
+        }
 
-    obj = new Solution(4, new int[]{});
-    for (int i = 0; i < 100; i++) {
-      int p = obj.pick();
-      assertTrue(p >= 0 && p < 4);
-    }
+        obj = new Solution(4, new int[]{});
+        for (int i = 0; i < 100; i++) {
+            int p = obj.pick();
+            assertTrue(p >= 0 && p < 4);
+        }
 
-    obj = new Solution(4, new int[]{2, 3});
-    for (int i = 0; i < 100; i++) {
-      int p = obj.pick();
-      assertTrue(p == 0 || p == 1);
-    }
+        obj = new Solution(4, new int[]{2, 3});
+        for (int i = 0; i < 100; i++) {
+            int p = obj.pick();
+            assertTrue(p == 0 || p == 1);
+        }
 
-    obj = new Solution(1000000000, new int[]{640145908});
-    for (int i = 0; i < 100000000; i++) {
-      int p = obj.pick();
-      assertTrue(p != 640145908 && p >= 0 && p < 1000000000);
+        obj = new Solution(1000000000, new int[]{640145908});
+        for (int i = 0; i < 100000000; i++) {
+            int p = obj.pick();
+            assertTrue(p != 640145908 && p >= 0 && p < 1000000000);
+        }
     }
-  }
 }

@@ -9,9 +9,9 @@ public class ContainsDuplicates {
 
     public static void main(String[] args) {
         var app = new ContainsDuplicates();
-        Assertions.assertFalse(app.containsDuplicate(new int[]{1,2,3,4}));
-        Assertions.assertTrue(app.containsDuplicate(new int[]{1,2,3,1}));
-        Assertions.assertTrue(app.containsDuplicate(new int[]{1,2,3,3,1}));
+        Assertions.assertFalse(app.containsDuplicate(new int[]{1, 2, 3, 4}));
+        Assertions.assertTrue(app.containsDuplicate(new int[]{1, 2, 3, 1}));
+        Assertions.assertTrue(app.containsDuplicate(new int[]{1, 2, 3, 3, 1}));
     }
 
     public boolean containsDuplicate(int[] nums) {

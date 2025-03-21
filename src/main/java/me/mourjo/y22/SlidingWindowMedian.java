@@ -41,106 +41,106 @@ non-empty array. Answers within 10^-5 of the actual value will be accepted as co
 
 public class SlidingWindowMedian {
 
-  public static boolean isUnblanced(TreeSet left, TreeSet right, int k) {
-    if (k % 2 == 0) {
-      return left.size() != right.size();
-    }
-    return Math.abs(left.size() - right.size()) > 1;
-  }
-
-  public static void balance(TreeSet<Integer> left, TreeSet<Integer> right, int k) {
-    while (isUnblanced(left, right, k)) {
-      right.add(left.pollFirst());
-    }
-  }
-
-
-  public static double calculateMedian(int[] a, TreeSet<Integer> left, TreeSet<Integer> right,
-      int k) {
-    if (k % 2 == 0) {
-      return (0.0 + a[left.first()] + a[right.first()]) / 2.0;
-    }
-    return a[left.first()];
-  }
-
-  public static double[] medianSlidingWindow(int[] a, int k) {
-
-    // left sorted in descending
-    TreeSet<Integer> left = new TreeSet<>(new Comparator<Integer>() {
-      @Override
-      public int compare(Integer idx1, Integer idx2) {
-        if (a[idx1] == a[idx2]) {
-          return Integer.compare(idx2, idx1);
+    public static boolean isUnblanced(TreeSet left, TreeSet right, int k) {
+        if (k % 2 == 0) {
+            return left.size() != right.size();
         }
-        return Integer.compare(a[idx2], a[idx1]);
-      }
-    });
+        return Math.abs(left.size() - right.size()) > 1;
+    }
 
-    // right sorted in ascending order
-    TreeSet<Integer> right = new TreeSet<>(new Comparator<Integer>() {
-      @Override
-      public int compare(Integer idx1, Integer idx2) {
-        if (a[idx1] == a[idx2]) {
-          return Integer.compare(idx1, idx2);
+    public static void balance(TreeSet<Integer> left, TreeSet<Integer> right, int k) {
+        while (isUnblanced(left, right, k)) {
+            right.add(left.pollFirst());
         }
-        return Integer.compare(a[idx1], a[idx2]);
-      }
-    });
-
-    double[] medians = new double[a.length - k + 1];
-    int count = 0;
-
-    for (int i = 0; i < k; i++) {
-      left.add(i);
     }
 
-    balance(left, right, k);
-    medians[count++] = calculateMedian(a, left, right, k);
 
-    for (int i = 1; i < a.length - k + 1; i++) {
-      int idxRemoved = i - 1;
-      int idxAdded = i + k - 1;
-      if (!left.remove(idxRemoved)) {
-        right.remove(idxRemoved);
-      }
-
-      right.add(idxAdded);
-      left.add(right.pollFirst());
-
-      balance(left, right, k);
-      medians[count++] = calculateMedian(a, left, right, k);
+    public static double calculateMedian(int[] a, TreeSet<Integer> left, TreeSet<Integer> right,
+        int k) {
+        if (k % 2 == 0) {
+            return (0.0 + a[left.first()] + a[right.first()]) / 2.0;
+        }
+        return a[left.first()];
     }
-    return medians;
-  }
 
-  public static void main(String[] args) {
-    assertArrayEquals(new double[]{2147483647},
-        medianSlidingWindow(new int[]{2147483647, 2147483647}, 2));
-    assertArrayEquals(new double[]{4, 5},
-        medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 4));
+    public static double[] medianSlidingWindow(int[] a, int k) {
 
-    assertArrayEquals(new double[]{4, 8, 4.5, 1.5},
-        medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 2));
+        // left sorted in descending
+        TreeSet<Integer> left = new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer idx1, Integer idx2) {
+                if (a[idx1] == a[idx2]) {
+                    return Integer.compare(idx2, idx1);
+                }
+                return Integer.compare(a[idx2], a[idx1]);
+            }
+        });
 
-    assertArrayEquals(new double[]{2.5, 3.5, 4.5},
-        medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 4));
+        // right sorted in ascending order
+        TreeSet<Integer> right = new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer idx1, Integer idx2) {
+                if (a[idx1] == a[idx2]) {
+                    return Integer.compare(idx1, idx2);
+                }
+                return Integer.compare(a[idx1], a[idx2]);
+            }
+        });
 
-    assertArrayEquals(new double[]{2, 3, 4, 5},
-        medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 3));
+        double[] medians = new double[a.length - k + 1];
+        int count = 0;
 
-    assertArrayEquals(new double[]{2, 3, 4},
-        medianSlidingWindow(new int[]{1, 2, 3, 4, 5}, 3));
-    // 2,3,4
+        for (int i = 0; i < k; i++) {
+            left.add(i);
+        }
 
-    // 2,3,4,5
-    assertArrayEquals(new double[]{7, 5, 7},
-        medianSlidingWindow(new int[]{9, 5, 7, 2, 10}, 3));
-    // 7, 5, 7
+        balance(left, right, k);
+        medians[count++] = calculateMedian(a, left, right, k);
 
-    assertArrayEquals(new double[]{1, -1, -1, 3, 5, 6},
-        medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3));
+        for (int i = 1; i < a.length - k + 1; i++) {
+            int idxRemoved = i - 1;
+            int idxAdded = i + k - 1;
+            if (!left.remove(idxRemoved)) {
+                right.remove(idxRemoved);
+            }
+
+            right.add(idxAdded);
+            left.add(right.pollFirst());
+
+            balance(left, right, k);
+            medians[count++] = calculateMedian(a, left, right, k);
+        }
+        return medians;
+    }
+
+    public static void main(String[] args) {
+        assertArrayEquals(new double[]{2147483647},
+            medianSlidingWindow(new int[]{2147483647, 2147483647}, 2));
+        assertArrayEquals(new double[]{4, 5},
+            medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 4));
+
+        assertArrayEquals(new double[]{4, 8, 4.5, 1.5},
+            medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 2));
+
+        assertArrayEquals(new double[]{2.5, 3.5, 4.5},
+            medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 4));
+
+        assertArrayEquals(new double[]{2, 3, 4, 5},
+            medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 3));
+
+        assertArrayEquals(new double[]{2, 3, 4},
+            medianSlidingWindow(new int[]{1, 2, 3, 4, 5}, 3));
+        // 2,3,4
+
+        // 2,3,4,5
+        assertArrayEquals(new double[]{7, 5, 7},
+            medianSlidingWindow(new int[]{9, 5, 7, 2, 10}, 3));
+        // 7, 5, 7
+
+        assertArrayEquals(new double[]{1, -1, -1, 3, 5, 6},
+            medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3));
 
 
-  }
+    }
 
 }

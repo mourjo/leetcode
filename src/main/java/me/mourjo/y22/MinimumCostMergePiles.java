@@ -47,86 +47,88 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class MinimumCostMergePiles {
-  public static int mergeStones(int[] stones, int k) {
-    if (stones.length < k ) return 0;
-    if (stones.length == k) return Arrays.stream(stones).sum();
-    for (int i = stones.length; i != k; i=i-(k-1)) {
-      if (i < k) return -1;
-    }
 
-
-    int cost = 0;
-    LinkedList<Integer> list = new LinkedList<>();
-    for(int s : stones) list.add(s);
-
-    while (list.size()>k) {
-      System.out.println(list);
-      int minpile = Integer.MAX_VALUE, running = 0, minpileIdx = -1;
-      for (int i = 0; i < k - 1; i++)
-        running += list.get(i);
-
-      for (int i = 0; i <= list.size() - k; i++) {
-
-        running += list.get(i + k - 1);
-        if (running < minpile) {
-          minpile = running;
-          minpileIdx = i;
+    public static int mergeStones(int[] stones, int k) {
+        if (stones.length < k) {
+            return 0;
         }
-        running -= list.get(i);
-      }
-      System.out.println(minpileIdx);
-      cost += minpile;
-      list.set(minpileIdx, minpile);
-      for (int i = minpileIdx+k-1 ; i >= minpileIdx+1; i--)
-        list.remove(i);
+        if (stones.length == k) {
+            return Arrays.stream(stones).sum();
+        }
+        for (int i = stones.length; i != k; i = i - (k - 1)) {
+            if (i < k) {
+                return -1;
+            }
+        }
+
+        int cost = 0;
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int s : stones) {
+            list.add(s);
+        }
+
+        while (list.size() > k) {
+            System.out.println(list);
+            int minpile = Integer.MAX_VALUE, running = 0, minpileIdx = -1;
+            for (int i = 0; i < k - 1; i++) {
+                running += list.get(i);
+            }
+
+            for (int i = 0; i <= list.size() - k; i++) {
+
+                running += list.get(i + k - 1);
+                if (running < minpile) {
+                    minpile = running;
+                    minpileIdx = i;
+                }
+                running -= list.get(i);
+            }
+            System.out.println(minpileIdx);
+            cost += minpile;
+            list.set(minpileIdx, minpile);
+            for (int i = minpileIdx + k - 1; i >= minpileIdx + 1; i--) {
+                list.remove(i);
+            }
+        }
+        System.out.println(list);
+        return cost + list.stream().reduce(0, (a, b) -> a + b);
     }
-     System.out.println(list);
-    return cost + list.stream().reduce(0, (a, b) -> a+b);
-  }
 
 
-  public static void main(String[] args) {
-    assertEquals(40, mergeStones(new int[]{6,4,4,6}, 2));
-    assertEquals(0, mergeStones(new int[]{1}, 2));
-    assertEquals(25, mergeStones(new int[]{3,5,1,2,6}, 3));
-    assertEquals(20, mergeStones(new int[]{3,2,4,1}, 2));
+    public static void main(String[] args) {
+        assertEquals(40, mergeStones(new int[]{6, 4, 4, 6}, 2));
+        assertEquals(0, mergeStones(new int[]{1}, 2));
+        assertEquals(25, mergeStones(new int[]{3, 5, 1, 2, 6}, 3));
+        assertEquals(20, mergeStones(new int[]{3, 2, 4, 1}, 2));
+
+        System.out.println("---");
+
+        assertEquals(-1, mergeStones(new int[]{1, 1, 30, 2, 40, 200, 20, 40}, 4));
+
+        // (1,1,30,2),40,200,20,40
+        // 34,40,200,20,40
+        //
+        assertEquals(-1, mergeStones(new int[]{1, 1, 30, 2, 40, 200, 20, 40}, 4));
+        assertEquals(-1, mergeStones(new int[]{3, 2, 4, 1}, 3));
+
+        assertEquals(-1, mergeStones(new int[]{1, 1, 30, 2, 40, 200, 20, 40, 1}, 4));
+
+        // 1,1,30,2,40,200,20,40,1    =>
+        assertEquals(409, mergeStones(new int[]{1, 1, 30, 2, 40, 200, 20, 40, 1}, 5));
+
+        // 5,2,300,4,1,(1,1,1),3 => 3
+        // 5,2,300,4,(1,3,3)     => 7
+        // (5,2,300),4,7         => 307
+        // (307,4,7)             => 318
+        assertEquals(634, mergeStones(new int[]{5, 2, 300, 4, 1, 1, 1, 1, 3}, 3));
+
+        // (1,1),1,2,200,2      => 2
+        // (2,1),2,200,2        => 3
+        // (3,2),200,2          => 5
+        // 5,(200,2)            => 202
+        // 5,202                => 207
+        assertEquals(419, mergeStones(new int[]{1, 1, 1, 2, 200, 2}, 2));
 
 
-
-
-
-    System.out.println("---");
-
-
-    assertEquals(-1, mergeStones(new int[]{1,1,30,2,40,200,20,40}, 4));
-
-    // (1,1,30,2),40,200,20,40
-    // 34,40,200,20,40
-    //
-    assertEquals(-1, mergeStones(new int[]{1,1,30,2,40,200,20,40}, 4));
-    assertEquals(-1, mergeStones(new int[]{3,2,4,1}, 3));
-
-    assertEquals(-1, mergeStones(new int[]{1,1,30,2,40,200,20,40,1}, 4));
-
-
-
-    // 1,1,30,2,40,200,20,40,1    =>
-    assertEquals(409, mergeStones(new int[]{1,1,30,2,40,200,20,40,1}, 5));
-
-
-    // 5,2,300,4,1,(1,1,1),3 => 3
-    // 5,2,300,4,(1,3,3)     => 7
-    // (5,2,300),4,7         => 307
-    // (307,4,7)             => 318
-    assertEquals(634, mergeStones(new int[]{5,2,300,4,1,1,1,1,3}, 3));
-
-    // (1,1),1,2,200,2      => 2
-    // (2,1),2,200,2        => 3
-    // (3,2),200,2          => 5
-    // 5,(200,2)            => 202
-    // 5,202                => 207
-    assertEquals(419, mergeStones(new int[]{1,1,1,2,200,2}, 2));
-
-
-  }
+    }
 }

@@ -31,37 +31,37 @@ The answer is guaranteed to fit in a 32-bit signed integer.
  */
 public class MaximiseProfitMinimizeCostLimitedTrials {
 
-  public static int findMaximizedCapital(int k, int W, int[] p, int[] c) {
-    PriorityQueue<Integer> profits = new PriorityQueue<>(new Comparator<Integer>() {
-      public int compare(Integer x, Integer y) {
-        return Integer.compare(p[x], p[y]);
-      }
-    }.reversed());
+    public static int findMaximizedCapital(int k, int W, int[] p, int[] c) {
+        PriorityQueue<Integer> profits = new PriorityQueue<>(new Comparator<Integer>() {
+            public int compare(Integer x, Integer y) {
+                return Integer.compare(p[x], p[y]);
+            }
+        }.reversed());
 
-    PriorityQueue<Integer> costs = new PriorityQueue<>(new Comparator<Integer>() {
-      public int compare(Integer x, Integer y) {
-        return Integer.compare(c[x], c[y]);
-      }
-    });
+        PriorityQueue<Integer> costs = new PriorityQueue<>(new Comparator<Integer>() {
+            public int compare(Integer x, Integer y) {
+                return Integer.compare(c[x], c[y]);
+            }
+        });
 
-    for (int i = 0; i < c.length; i++) {
-      costs.add(i);
+        for (int i = 0; i < c.length; i++) {
+            costs.add(i);
+        }
+
+        for (int i = 0; i < k; i++) {
+            while (!costs.isEmpty() && c[costs.peek()] <= W) {
+                profits.add(costs.remove());
+            }
+            if (profits.isEmpty()) {
+                break;
+            }
+            W += p[profits.remove()];
+        }
+
+        return W;
     }
 
-    for (int i = 0; i < k; i++) {
-      while (!costs.isEmpty() && c[costs.peek()] <= W) {
-        profits.add(costs.remove());
-      }
-      if (profits.isEmpty()) {
-        break;
-      }
-      W += p[profits.remove()];
+    public static void main(String[] args) {
+        assertEquals(4, findMaximizedCapital(2, 0, new int[]{1, 2, 3}, new int[]{0, 1, 1}));
     }
-
-    return W;
-  }
-
-  public static void main(String[] args) {
-    assertEquals(4, findMaximizedCapital(2, 0, new int[]{1, 2, 3}, new int[]{0, 1, 1}));
-  }
 }

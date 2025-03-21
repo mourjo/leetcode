@@ -68,7 +68,8 @@ public class CourseSchedule {
         return true;
     }
 
-    boolean dfs(Map<Integer, List<Integer>> dependencies, Set<Integer> inProgress, Set<Integer> completed, int node) {
+    boolean dfs(Map<Integer, List<Integer>> dependencies, Set<Integer> inProgress,
+        Set<Integer> completed, int node) {
         if (completed.contains(node)) {
             return true;
         }

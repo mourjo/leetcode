@@ -37,66 +37,66 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PalindromicSubSequences {
 
-  static int m = 1_000_000_007;
+    static int m = 1_000_000_007;
 
-  public static int countPalindromicSubsequences(String s) {
-    long[][][] perms = new long[4][s.length()][s.length()];
+    public static int countPalindromicSubsequences(String s) {
+        long[][][] perms = new long[4][s.length()][s.length()];
 
-    for (int i = s.length() - 1; i >= 0; i--) {
-      for (int j = i; j < s.length(); j++) {
-        for (int k = 0; k < 4; k++) {
-          char c = (char) ('a' + k);
+        for (int i = s.length() - 1; i >= 0; i--) {
+            for (int j = i; j < s.length(); j++) {
+                for (int k = 0; k < 4; k++) {
+                    char c = (char) ('a' + k);
 
-          if (i == j && s.charAt(j) == c) {
-            perms[k][i][j] = 1;
-          } else if (i == j) {
-            perms[k][i][j] = 0;
-          } else {
-            if (s.charAt(i) != c) {
-              perms[k][i][j] = perms[k][i + 1][j];
-            } else if (s.charAt(j) != c) {
-              perms[k][i][j] = perms[k][i][j - 1];
-            } else {
+                    if (i == j && s.charAt(j) == c) {
+                        perms[k][i][j] = 1;
+                    } else if (i == j) {
+                        perms[k][i][j] = 0;
+                    } else {
+                        if (s.charAt(i) != c) {
+                            perms[k][i][j] = perms[k][i + 1][j];
+                        } else if (s.charAt(j) != c) {
+                            perms[k][i][j] = perms[k][i][j - 1];
+                        } else {
 
-              if (j == i + 1) {
-                // aa -> a, aa (irrespective of k)
-                // ab -> a, b
-                perms[k][i][j] = 2;
-              } else {
-                perms[k][i][j] = perms[0][i + 1][j - 1];
-                perms[k][i][j] %= m;
-                perms[k][i][j] += perms[1][i + 1][j - 1];
-                perms[k][i][j] %= m;
-                perms[k][i][j] += perms[2][i + 1][j - 1];
-                perms[k][i][j] %= m;
-                perms[k][i][j] += perms[3][i + 1][j - 1];
-                perms[k][i][j] %= m;
-                perms[k][i][j] += 2;
-                perms[k][i][j] %= m;
-              }
+                            if (j == i + 1) {
+                                // aa -> a, aa (irrespective of k)
+                                // ab -> a, b
+                                perms[k][i][j] = 2;
+                            } else {
+                                perms[k][i][j] = perms[0][i + 1][j - 1];
+                                perms[k][i][j] %= m;
+                                perms[k][i][j] += perms[1][i + 1][j - 1];
+                                perms[k][i][j] %= m;
+                                perms[k][i][j] += perms[2][i + 1][j - 1];
+                                perms[k][i][j] %= m;
+                                perms[k][i][j] += perms[3][i + 1][j - 1];
+                                perms[k][i][j] %= m;
+                                perms[k][i][j] += 2;
+                                perms[k][i][j] %= m;
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+        long t = perms[0][0][s.length() - 1];
+        t %= m;
+        t += perms[1][0][s.length() - 1];
+        t %= m;
+        t += perms[2][0][s.length() - 1];
+        t %= m;
+        t += perms[3][0][s.length() - 1];
+        t %= m;
+
+        return (int) t;
     }
-    long t = perms[0][0][s.length() - 1];
-    t %= m;
-    t += perms[1][0][s.length() - 1];
-    t %= m;
-    t += perms[2][0][s.length() - 1];
-    t %= m;
-    t += perms[3][0][s.length() - 1];
-    t %= m;
 
-    return (int) t;
-  }
-
-  public static void main(String[] args) {
-    assertEquals(1, countPalindromicSubsequences("a"));
-    assertEquals(6, countPalindromicSubsequences("bccb"));
-    assertEquals(744991227, countPalindromicSubsequences(
-        "bddaabdbbccdcdcbbdbddccbaaccabbcacbadbdadbccddccdbdbdbdabdbddcccadddaaddbcbcbabdcaccaacabdbdaccbaacc"));
-    assertEquals(104860361, countPalindromicSubsequences(
-        "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"));
-  }
+    public static void main(String[] args) {
+        assertEquals(1, countPalindromicSubsequences("a"));
+        assertEquals(6, countPalindromicSubsequences("bccb"));
+        assertEquals(744991227, countPalindromicSubsequences(
+            "bddaabdbbccdcdcbbdbddccbaaccabbcacbadbdadbccddccdbdbdbdabdbddcccadddaaddbcbcbabdcaccaacabdbdaccbaacc"));
+        assertEquals(104860361, countPalindromicSubsequences(
+            "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"));
+    }
 }

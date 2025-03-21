@@ -35,42 +35,42 @@ The k will be in the range [1, m * n]
  */
 public class KthSmallestNumberInMultiplicationTable {
 
-  public static int findKthNumber(int m, int n, int k) {
-    int low = 1, high = m * n;
-    while (low < high) {
-      // maintain high as the greatest value that satisfies >= kth rank
-      // minimize high as much as possible
-      int mid = (low + high) / 2;
-      if (enough(mid, m, n, k)) {
-        high = mid; // we want to minimize
-      } else {
-        low = mid + 1;
-      }
+    public static int findKthNumber(int m, int n, int k) {
+        int low = 1, high = m * n;
+        while (low < high) {
+            // maintain high as the greatest value that satisfies >= kth rank
+            // minimize high as much as possible
+            int mid = (low + high) / 2;
+            if (enough(mid, m, n, k)) {
+                high = mid; // we want to minimize
+            } else {
+                low = mid + 1;
+            }
+        }
+        return high;
     }
-    return high;
-  }
 
-  public static boolean enough(int mid, int rows, int cols, int requiredRank) {
-    int rank = 0;
-    for (int i = 1; i <= rows; i++) {
-      // for each row, calculate the number of elements <= mid
-      // sum on each row to get the number of elements in total <= mid
-      //
-      // in the table of 5s, the number of elements <= 30 is 6 (30/6)
-      // in the table of 5s, the number of elements <= 29 is 5 (20/5)
-      // in the table of 8s, the number of elements <= 87 is 10 (87/8)
-      //
-      // if the number of elements in a table exceeds the number of columns,
-      // should be ignored: 87102938471/5 is 17420587694 but if the number
-      // of columns is 10, the max number of elements in the 5th row <=
-      // 87102938471 is 10.
-      rank += Math.min(mid / i, cols);
+    public static boolean enough(int mid, int rows, int cols, int requiredRank) {
+        int rank = 0;
+        for (int i = 1; i <= rows; i++) {
+            // for each row, calculate the number of elements <= mid
+            // sum on each row to get the number of elements in total <= mid
+            //
+            // in the table of 5s, the number of elements <= 30 is 6 (30/6)
+            // in the table of 5s, the number of elements <= 29 is 5 (20/5)
+            // in the table of 8s, the number of elements <= 87 is 10 (87/8)
+            //
+            // if the number of elements in a table exceeds the number of columns,
+            // should be ignored: 87102938471/5 is 17420587694 but if the number
+            // of columns is 10, the max number of elements in the 5th row <=
+            // 87102938471 is 10.
+            rank += Math.min(mid / i, cols);
+        }
+        return requiredRank <= rank;
     }
-    return requiredRank <= rank;
-  }
 
-  public static void main(String[] args) {
-    assertEquals(3, findKthNumber(3, 3, 5));
-    assertEquals(6, findKthNumber(2, 3, 6));
-  }
+    public static void main(String[] args) {
+        assertEquals(3, findKthNumber(3, 3, 5));
+        assertEquals(6, findKthNumber(2, 3, 6));
+    }
 }

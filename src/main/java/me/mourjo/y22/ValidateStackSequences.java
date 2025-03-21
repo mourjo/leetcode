@@ -32,42 +32,42 @@ import java.util.Stack;
 
 public class ValidateStackSequences {
 
-  public static boolean validateStackSequencesONSpace(int[] pushed, int[] popped) {
-    Stack<Integer> stack = new Stack<>();
-    int j = 0;
-    for (int value : pushed) {
-      stack.push(value);
-      while (!stack.isEmpty() && stack.peek() == popped[j]) {
-        stack.pop();
-        j++;
-      }
+    public static boolean validateStackSequencesONSpace(int[] pushed, int[] popped) {
+        Stack<Integer> stack = new Stack<>();
+        int j = 0;
+        for (int value : pushed) {
+            stack.push(value);
+            while (!stack.isEmpty() && stack.peek() == popped[j]) {
+                stack.pop();
+                j++;
+            }
+        }
+
+        while (!stack.isEmpty() && stack.peek() == popped[j]) {
+            stack.pop();
+            j++;
+        }
+
+        return stack.isEmpty() && j == popped.length;
     }
 
-    while (!stack.isEmpty() && stack.peek() == popped[j]) {
-      stack.pop();
-      j++;
+    public static boolean validateStackSequences(int[] pushed, int[] popped) {
+        int head = 0, j = 0;
+        for (int x : pushed) {
+            // everything before x is already processed, so use that space as the stack
+            // by swapping and keeping the index of the top of the stack
+            pushed[head++] = x;
+            while (head > 0 && pushed[head - 1] == popped[j]) {
+                head--; // tos
+                j++;    // popped index
+            }
+        }
+        return head == 0;
     }
 
-    return stack.isEmpty() && j == popped.length;
-  }
-
-  public static boolean validateStackSequences(int[] pushed, int[] popped) {
-    int head = 0, j = 0;
-    for (int x : pushed) {
-      // everything before x is already processed, so use that space as the stack
-      // by swapping and keeping the index of the top of the stack
-      pushed[head++] = x;
-      while (head > 0 && pushed[head - 1] == popped[j]) {
-        head--; // tos
-        j++;    // popped index
-      }
+    public static void main(String[] args) {
+        assertTrue(validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 5, 3, 2, 1}));
+        assertFalse(validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 3, 5, 1, 2}));
+        assertTrue(validateStackSequences(new int[]{1, 0}, new int[]{1, 0}));
     }
-    return head == 0;
-  }
-
-  public static void main(String[] args) {
-    assertTrue(validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 5, 3, 2, 1}));
-    assertFalse(validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 3, 5, 1, 2}));
-    assertTrue(validateStackSequences(new int[]{1, 0}, new int[]{1, 0}));
-  }
 }

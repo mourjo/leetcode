@@ -36,19 +36,16 @@ strs[i] consists of lowercase English letters.
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import org.junit.jupiter.api.Assertions;
 
 public class GroupAnagrams {
 
     public static void main(String[] args) {
         var app = new GroupAnagrams();
-        System.out.println(app.groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"}));
+        System.out.println(
+            app.groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
         System.out.println(app.groupAnagrams(new String[]{"a"}));
     }
 
@@ -65,7 +62,7 @@ public class GroupAnagrams {
 
         var list = new ArrayList<List<String>>();
 
-        for(String s : anagramMap.keySet()){
+        for (String s : anagramMap.keySet()) {
             List<String> candidates = anagramMap.get(s);
             list.add(candidates);
         }

@@ -32,45 +32,45 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReachingPoints {
 
-  public static boolean reachingPoints(int sx, int sy, int tx, int ty) {
-    int ix = tx, iy = ty;
+    public static boolean reachingPoints(int sx, int sy, int tx, int ty) {
+        int ix = tx, iy = ty;
 
-    while (ix >= sx && iy >= sy) {
-      if (ix == iy) {
-        return (ix == sx && iy == sy);
-      }
+        while (ix >= sx && iy >= sy) {
+            if (ix == iy) {
+                return (ix == sx && iy == sy);
+            }
 
-      if (ix == sx && iy == sy) {
-        return true;
-      }
+            if (ix == sx && iy == sy) {
+                return true;
+            }
 
-      if (ix > iy) {
-        if (iy > sy) {
-          ix = ix % iy;
-        } else {
-          return (ix - sx) % iy == 0;
+            if (ix > iy) {
+                if (iy > sy) {
+                    ix = ix % iy;
+                } else {
+                    return (ix - sx) % iy == 0;
+                }
+            } else {
+                if (ix > sx) {
+                    iy = iy % ix;
+                } else {
+                    return (iy - sy) % ix == 0;
+                }
+            }
         }
-      } else {
-        if (ix > sx) {
-          iy = iy % ix;
-        } else {
-          return (iy - sy) % ix == 0;
-        }
-      }
+        return false;
     }
-    return false;
-  }
 
-  public static void main(String[] args) {
-    assertTrue(reachingPoints(1, 1, 3, 5));
-    assertTrue(reachingPoints(7, 20, 27, 74));
-    assertTrue(reachingPoints(7, 20, 67, 20));
-    assertTrue(reachingPoints(7, 20, 87, 20));
-    assertTrue(reachingPoints(7, 20, 34, 61));
-    assertTrue(reachingPoints(7, 20, 61, 27));
-    assertTrue(reachingPoints(7, 20, 61, 27));
-    assertFalse(reachingPoints(7, 20, 34, 47));
-    assertTrue(reachingPoints(21, 23, 86, 151));
-    assertFalse(reachingPoints(1, 5, 999999997, 5));
-  }
+    public static void main(String[] args) {
+        assertTrue(reachingPoints(1, 1, 3, 5));
+        assertTrue(reachingPoints(7, 20, 27, 74));
+        assertTrue(reachingPoints(7, 20, 67, 20));
+        assertTrue(reachingPoints(7, 20, 87, 20));
+        assertTrue(reachingPoints(7, 20, 34, 61));
+        assertTrue(reachingPoints(7, 20, 61, 27));
+        assertTrue(reachingPoints(7, 20, 61, 27));
+        assertFalse(reachingPoints(7, 20, 34, 47));
+        assertTrue(reachingPoints(21, 23, 86, 151));
+        assertFalse(reachingPoints(1, 5, 999999997, 5));
+    }
 }

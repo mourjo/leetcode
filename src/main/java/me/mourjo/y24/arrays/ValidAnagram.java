@@ -26,11 +26,11 @@ s and t consist of lowercase English letters.
         int[] frequencies = new int[27];
 
         for (char c : s.toCharArray()) {
-            frequencies[c-'a']++;
+            frequencies[c - 'a']++;
         }
 
         for (char c : t.toCharArray()) {
-            frequencies[c-'a']--;
+            frequencies[c - 'a']--;
         }
 
         for (int c : frequencies) {

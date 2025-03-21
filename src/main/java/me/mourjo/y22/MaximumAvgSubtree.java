@@ -26,110 +26,110 @@ Answers will be accepted as correct if they are within 10^-5 of the correct answ
  */
 public class MaximumAvgSubtree {
 
-  static double maxavg;
+    static double maxavg;
 
-  public static double maximumAverageSubtree(TreeNode root) {
-    if (root == null) {
-      return 0;
-    }
-    if (root.left == null && root.right == null) {
-      return root.val;
-    }
-    maxavg = Double.MIN_VALUE;
-    dfs(root);
-    return maxavg;
-  }
-
-  public static int[] dfs(TreeNode root) {
-
-    if (root.left == null && root.right == null) {
-      if (root.val > maxavg) {
-        maxavg = root.val;
-      }
-      return new int[]{root.val, 1};
-    }
-    if (root.left != null && root.right == null) {
-      int[] d = dfs(root.left);
-      d[0] += root.val;
-      d[1]++;
-      if (((double) d[0]) / d[1] > maxavg) {
-        maxavg = ((double) d[0]) / d[1];
-      }
-      return d;
-    }
-    if (root.right != null && root.left == null) {
-      int[] d = dfs(root.right);
-      d[0] += root.val;
-      d[1]++;
-      if (((double) d[0]) / d[1] > maxavg) {
-        maxavg = ((double) d[0]) / d[1];
-      }
-      return d;
+    public static double maximumAverageSubtree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        if (root.left == null && root.right == null) {
+            return root.val;
+        }
+        maxavg = Double.MIN_VALUE;
+        dfs(root);
+        return maxavg;
     }
 
-    int[] dleft = dfs(root.left);
-    int[] dright = dfs(root.right);
+    public static int[] dfs(TreeNode root) {
 
-    dleft[0] += root.val + dright[0];
-    dleft[1] += 1 + dright[1];
-    if (((double) dleft[0]) / dleft[1] > maxavg) {
-      maxavg = ((double) dleft[0]) / dleft[1];
-    }
-    return dleft;
-  }
+        if (root.left == null && root.right == null) {
+            if (root.val > maxavg) {
+                maxavg = root.val;
+            }
+            return new int[]{root.val, 1};
+        }
+        if (root.left != null && root.right == null) {
+            int[] d = dfs(root.left);
+            d[0] += root.val;
+            d[1]++;
+            if (((double) d[0]) / d[1] > maxavg) {
+                maxavg = ((double) d[0]) / d[1];
+            }
+            return d;
+        }
+        if (root.right != null && root.left == null) {
+            int[] d = dfs(root.right);
+            d[0] += root.val;
+            d[1]++;
+            if (((double) d[0]) / d[1] > maxavg) {
+                maxavg = ((double) d[0]) / d[1];
+            }
+            return d;
+        }
 
-  public static void main(String[] args) {
-    TreeNode root;
+        int[] dleft = dfs(root.left);
+        int[] dright = dfs(root.right);
 
-    root = new TreeNode(5);
-    root.left = new TreeNode(6);
-    root.right = new TreeNode(1);
-    assertEquals(6d, maximumAverageSubtree(root));
-
-    root = new TreeNode(2);
-    root.right = new TreeNode(1);
-    assertEquals(1.5d, maximumAverageSubtree(root));
-
-    root = new TreeNode(2);
-    root.right = new TreeNode(100);
-    assertEquals(100, maximumAverageSubtree(root));
-
-    root = new TreeNode(2);
-    root.right = new TreeNode(1);
-    root.right.right = new TreeNode(-1);
-    assertEquals(2d / 3, maximumAverageSubtree(root));
-
-    root = new TreeNode(10);
-    root.right = new TreeNode(10);
-    root.left = new TreeNode(10);
-    assertEquals(10, maximumAverageSubtree(root));
-
-    root = new TreeNode(10);
-    root.right = new TreeNode(11);
-    root.left = new TreeNode(9);
-    root.left.left = new TreeNode(10);
-    assertEquals(11, maximumAverageSubtree(root));
-    root.left.left = new TreeNode(-10);
-    assertEquals(11, maximumAverageSubtree(root));
-  }
-
-  public static class TreeNode {
-
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode() {
+        dleft[0] += root.val + dright[0];
+        dleft[1] += 1 + dright[1];
+        if (((double) dleft[0]) / dleft[1] > maxavg) {
+            maxavg = ((double) dleft[0]) / dleft[1];
+        }
+        return dleft;
     }
 
-    TreeNode(int val) {
-      this.val = val;
+    public static void main(String[] args) {
+        TreeNode root;
+
+        root = new TreeNode(5);
+        root.left = new TreeNode(6);
+        root.right = new TreeNode(1);
+        assertEquals(6d, maximumAverageSubtree(root));
+
+        root = new TreeNode(2);
+        root.right = new TreeNode(1);
+        assertEquals(1.5d, maximumAverageSubtree(root));
+
+        root = new TreeNode(2);
+        root.right = new TreeNode(100);
+        assertEquals(100, maximumAverageSubtree(root));
+
+        root = new TreeNode(2);
+        root.right = new TreeNode(1);
+        root.right.right = new TreeNode(-1);
+        assertEquals(2d / 3, maximumAverageSubtree(root));
+
+        root = new TreeNode(10);
+        root.right = new TreeNode(10);
+        root.left = new TreeNode(10);
+        assertEquals(10, maximumAverageSubtree(root));
+
+        root = new TreeNode(10);
+        root.right = new TreeNode(11);
+        root.left = new TreeNode(9);
+        root.left.left = new TreeNode(10);
+        assertEquals(11, maximumAverageSubtree(root));
+        root.left.left = new TreeNode(-10);
+        assertEquals(11, maximumAverageSubtree(root));
     }
 
-    TreeNode(int val, TreeNode left, TreeNode right) {
-      this.val = val;
-      this.left = left;
-      this.right = right;
+    public static class TreeNode {
+
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
-  }
 }

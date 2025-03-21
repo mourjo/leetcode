@@ -30,30 +30,30 @@ Note:  1 <= S.length <= 200 S consists only of characters from the set {'D', 'I'
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidPermulationsDISeq {
-  public static int numPermsDISequence(String S) {
 
+    public static int numPermsDISequence(String S) {
 
-    return  -1;
-  }
+        return -1;
+    }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    // D 0,1
-    // 1, 0
-    assertEquals(1, numPermsDISequence("D"));
+        // D 0,1
+        // 1, 0
+        assertEquals(1, numPermsDISequence("D"));
 
-    // DI   0 1 2
-    // 1 0 2
-    // 2 1 0
-    assertEquals(2, numPermsDISequence("DI"));
+        // DI   0 1 2
+        // 1 0 2
+        // 2 1 0
+        assertEquals(2, numPermsDISequence("DI"));
 
-    // D I D           0 1 2 3
-    // 3 1 2 0
-    // 3 0 2 1
-    // 2 0 3 1
-    // 2 1 3 0
-    // 1 0 3 2
+        // D I D           0 1 2 3
+        // 3 1 2 0
+        // 3 0 2 1
+        // 2 0 3 1
+        // 2 1 3 0
+        // 1 0 3 2
 
-    assertEquals(5, numPermsDISequence("DID"));
-  }
+        assertEquals(5, numPermsDISequence("DID"));
+    }
 }

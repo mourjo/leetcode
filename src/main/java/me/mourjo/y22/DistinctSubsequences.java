@@ -52,44 +52,44 @@ import java.util.List;
 
 public class DistinctSubsequences {
 
-  public static int numDistinct(String haystack, String n) {
-    HashMap<Character, List<Integer>> nLookup = new HashMap<>(n.length());
+    public static int numDistinct(String haystack, String n) {
+        HashMap<Character, List<Integer>> nLookup = new HashMap<>(n.length());
 
-    for (int i = 0; i < n.length(); i++) {
-      char c = n.charAt(i);
-      List<Integer> x = nLookup.getOrDefault(c, new ArrayList<>(n.length()));
-      x.add(n.length() - i - 1); // indexes in reversed order
-      nLookup.put(c, x);
-    }
-
-    int[] table = new int[n.length()];
-    for (int i = haystack.length() - 1; i >= 0; i--) {
-      char c = haystack.charAt(i);
-
-      if (nLookup.containsKey(c)) {
-        for (int loc : nLookup.get(c)) {
-          if (loc > 0) {
-            table[loc] += table[loc - 1];
-          } else {
-            table[loc] += 1;
-          }
+        for (int i = 0; i < n.length(); i++) {
+            char c = n.charAt(i);
+            List<Integer> x = nLookup.getOrDefault(c, new ArrayList<>(n.length()));
+            x.add(n.length() - i - 1); // indexes in reversed order
+            nLookup.put(c, x);
         }
-      }
+
+        int[] table = new int[n.length()];
+        for (int i = haystack.length() - 1; i >= 0; i--) {
+            char c = haystack.charAt(i);
+
+            if (nLookup.containsKey(c)) {
+                for (int loc : nLookup.get(c)) {
+                    if (loc > 0) {
+                        table[loc] += table[loc - 1];
+                    } else {
+                        table[loc] += 1;
+                    }
+                }
+            }
+        }
+        return table[table.length - 1];
     }
-    return table[table.length - 1];
-  }
 
-  public static void main(String[] args) {
-    assertEquals(7, numDistinct("bbabbag", "bbag"));
-    assertEquals(1, numDistinct("abc", "abc"));
-    assertEquals(0, numDistinct("abcd", "abcde"));
-    assertEquals(4, numDistinct("abcabc", "abc"));
-    // aa
-    assertEquals(10, numDistinct("aaaaa", "aa"));
+    public static void main(String[] args) {
+        assertEquals(7, numDistinct("bbabbag", "bbag"));
+        assertEquals(1, numDistinct("abc", "abc"));
+        assertEquals(0, numDistinct("abcd", "abcde"));
+        assertEquals(4, numDistinct("abcabc", "abc"));
+        // aa
+        assertEquals(10, numDistinct("aaaaa", "aa"));
 
-    assertEquals(3, numDistinct("rabbbit", "rabbit"));
-    assertEquals(5, numDistinct("babgbag", "bag"));
-  }
+        assertEquals(3, numDistinct("rabbbit", "rabbit"));
+        assertEquals(5, numDistinct("babgbag", "bag"));
+    }
 
 
 }

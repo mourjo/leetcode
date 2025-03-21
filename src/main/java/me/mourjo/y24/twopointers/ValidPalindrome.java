@@ -44,9 +44,8 @@ public class ValidPalindrome {
             char ch1 = s.charAt(p1);
             char ch2 = s.charAt(p2);
 
-
             if (isAscii(ch1) && isAscii(ch2)) {
-                if(lower(ch1) != lower(ch2)) {
+                if (lower(ch1) != lower(ch2)) {
                     return false;
                 }
 

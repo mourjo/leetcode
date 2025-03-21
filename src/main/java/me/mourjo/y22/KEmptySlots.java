@@ -47,26 +47,26 @@ import java.util.TreeSet;
 
 public class KEmptySlots {
 
-  public static int kEmptySlots(int[] bulbs, int K) {
-    TreeSet<Integer> tree = new TreeSet<>();
+    public static int kEmptySlots(int[] bulbs, int K) {
+        TreeSet<Integer> tree = new TreeSet<>();
 
-    for (int day = 0; day < bulbs.length; day++) {
-      int b = bulbs[day];
+        for (int day = 0; day < bulbs.length; day++) {
+            int b = bulbs[day];
 
-      if (tree.floor(b) != null && b - tree.floor(b) == K + 1) {
-        return day + 1;
-      }
-      if (tree.ceiling(b) != null && tree.ceiling(b) - b == K + 1) {
-        return day + 1;
-      }
-      tree.add(b);
+            if (tree.floor(b) != null && b - tree.floor(b) == K + 1) {
+                return day + 1;
+            }
+            if (tree.ceiling(b) != null && tree.ceiling(b) - b == K + 1) {
+                return day + 1;
+            }
+            tree.add(b);
+        }
+        return -1;
     }
-    return -1;
-  }
 
-  public static void main(String[] args) {
-    assertEquals(2, kEmptySlots(new int[]{1, 3, 2}, 1));
-    assertEquals(-1, kEmptySlots(new int[]{1, 2, 3}, 1));
-    assertEquals(8, kEmptySlots(new int[]{6, 5, 8, 9, 7, 1, 10, 2, 3, 4}, 2));
-  }
+    public static void main(String[] args) {
+        assertEquals(2, kEmptySlots(new int[]{1, 3, 2}, 1));
+        assertEquals(-1, kEmptySlots(new int[]{1, 2, 3}, 1));
+        assertEquals(8, kEmptySlots(new int[]{6, 5, 8, 9, 7, 1, 10, 2, 3, 4}, 2));
+    }
 }

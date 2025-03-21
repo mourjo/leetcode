@@ -1,13 +1,8 @@
 package me.mourjo.y24.arrays;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 import org.junit.jupiter.api.Assertions;
 
 /*
@@ -36,9 +31,12 @@ public class TopKFrequent {
 
     public static void main(String[] args) {
         var app = new TopKFrequent();
-        Assertions.assertArrayEquals(new int[]{1,2}, app.topKFrequent(new int[]{1,1,1,2,2,3}, 2));
+        Assertions.assertArrayEquals(new int[]{1, 2},
+            app.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2));
         Assertions.assertArrayEquals(new int[]{1}, app.topKFrequent(new int[]{1}, 1));
-        Assertions.assertArrayEquals(new int[]{4,1}, app.topKFrequent(new int[]{4,3,1,1,1,2,2,3,4,4,4,1,4,4,4,4,4,1,1,1}, 2));
+        Assertions.assertArrayEquals(new int[]{4, 1},
+            app.topKFrequent(new int[]{4, 3, 1, 1, 1, 2, 2, 3, 4, 4, 4, 1, 4, 4, 4, 4, 4, 1, 1, 1},
+                2));
     }
 
     public int[] topKFrequent(int[] nums, int k) {
@@ -53,7 +51,7 @@ public class TopKFrequent {
             numToFreq.put(n, numToFreq.getOrDefault(n, 0) + 1);
         }
 
-        for (int num : numToFreq.keySet()){
+        for (int num : numToFreq.keySet()) {
             int freq = numToFreq.get(num);
             if (freqsToNum[freq] == null) {
                 freqsToNum[freq] = new ArrayList<>();

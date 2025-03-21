@@ -32,7 +32,6 @@ Only one valid answer exists.
 */
 
 import java.util.HashMap;
-import java.util.HashSet;
 import org.junit.jupiter.api.Assertions;
 
 public class TwoSum {
@@ -45,7 +44,7 @@ public class TwoSum {
     }
 
     public int[] twoSum(int[] nums, int target) {
-        var mappings = new HashMap<Integer,Integer>();
+        var mappings = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; i++) {
             if (mappings.containsKey(target - nums[i])) {
                 return new int[]{mappings.get(target - nums[i]), i};

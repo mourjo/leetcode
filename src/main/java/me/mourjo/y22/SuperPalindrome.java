@@ -25,55 +25,55 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SuperPalindrome {
 
-  public static final int magic = 100_000;
+    public static final int magic = 100_000;
 
-  public static int superpalindromesInRange(String L, String R) {
-    // max = 10^18
-    // max check = sqrt(10^18) = 10^9
-    // palin check max = half of max check = 10 ^ 5
-    long lower = Long.parseLong(L), higher = Long.parseLong(R);
-    int count = 0;
+    public static int superpalindromesInRange(String L, String R) {
+        // max = 10^18
+        // max check = sqrt(10^18) = 10^9
+        // palin check max = half of max check = 10 ^ 5
+        long lower = Long.parseLong(L), higher = Long.parseLong(R);
+        int count = 0;
 
-    for (int i = 1; i < magic; i++) {
-      long oddPalin = mirror(i, true);
-      oddPalin *= oddPalin;
-      if (lower <= oddPalin && oddPalin <= higher && isPalin(oddPalin)) {
-        count++;
-      }
+        for (int i = 1; i < magic; i++) {
+            long oddPalin = mirror(i, true);
+            oddPalin *= oddPalin;
+            if (lower <= oddPalin && oddPalin <= higher && isPalin(oddPalin)) {
+                count++;
+            }
 
-      if (higher < oddPalin) {
-        break;
-      }
+            if (higher < oddPalin) {
+                break;
+            }
 
-      long evenPalin = mirror(i, false);
-      evenPalin *= evenPalin;
-      if (lower <= evenPalin && evenPalin <= higher && isPalin(evenPalin)) {
-        count++;
-      }
+            long evenPalin = mirror(i, false);
+            evenPalin *= evenPalin;
+            if (lower <= evenPalin && evenPalin <= higher && isPalin(evenPalin)) {
+                count++;
+            }
+        }
+        return count;
     }
-    return count;
-  }
 
-  public static long mirror(int i, boolean isOddLen) {
-    long s = i;
-    for (int j = isOddLen ? i / 10 : i; j > 0; j /= 10) {
-      int digit = j % 10;
-      s = s * 10 + digit;
+    public static long mirror(int i, boolean isOddLen) {
+        long s = i;
+        for (int j = isOddLen ? i / 10 : i; j > 0; j /= 10) {
+            int digit = j % 10;
+            s = s * 10 + digit;
+        }
+        return s;
     }
-    return s;
-  }
 
-  public static boolean isPalin(long v) {
-    long rev = 0, orig = v;
-    while (v > 0) {
-      rev = rev * 10 + (v % 10);
-      v /= 10;
+    public static boolean isPalin(long v) {
+        long rev = 0, orig = v;
+        while (v > 0) {
+            rev = rev * 10 + (v % 10);
+            v /= 10;
+        }
+        return rev == orig;
     }
-    return rev == orig;
-  }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    assertEquals(4, superpalindromesInRange("4", "1000"));
-  }
+        assertEquals(4, superpalindromesInRange("4", "1000"));
+    }
 }

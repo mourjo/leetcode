@@ -59,82 +59,83 @@ import java.util.stream.Collectors;
 
 public class SearchSuggestionsSystem {
 
-  public static List<List<String>> suggestedProducts(String[] products, String searchWord) {
-    TreeMap<String, Integer> tree = new TreeMap<>();
-    for (String p : products) {
-      tree.put(p, tree.getOrDefault(p, 0) + 1);
+    public static List<List<String>> suggestedProducts(String[] products, String searchWord) {
+        TreeMap<String, Integer> tree = new TreeMap<>();
+        for (String p : products) {
+            tree.put(p, tree.getOrDefault(p, 0) + 1);
+        }
+
+        List<String> currentMatches, prevMatches = null;
+        List<List<String>> res = new ArrayList<>();
+
+        for (int i = 0; i < searchWord.length(); i++) {
+            String prefix = searchWord.substring(0, i + 1);
+
+            // caching
+            if (prevMatches != null) {
+                List<String> stillValidPrevs = prevMatches
+                    .stream()
+                    .filter(x -> x.startsWith(prefix))
+                    .collect(Collectors.toList());
+
+                if (prevMatches.size() < 3 || (prevMatches.size() == 3
+                    && stillValidPrevs.size() == 3)) {
+                    res.add(stillValidPrevs);
+                    prevMatches = stillValidPrevs;
+                    continue;
+                }
+            }
+
+            currentMatches = new ArrayList<>();
+            Entry<String, Integer> candidate = tree.ceilingEntry(prefix);
+
+            while (currentMatches.size() < 3) {
+                if (candidate == null || !candidate.getKey().startsWith(prefix)) {
+                    break;
+                }
+                int occ = candidate.getValue();
+                for (int j = 0; j < 3 && j < occ && currentMatches.size() < 3; j++) {
+                    currentMatches.add(candidate.getKey());
+                }
+                candidate = tree.higherEntry(candidate.getKey());
+            }
+            res.add(currentMatches);
+            prevMatches = currentMatches;
+        }
+
+        while (res.size() < searchWord.length()) {
+            res.add(new ArrayList<>());
+        }
+
+        return res;
     }
 
-    List<String> currentMatches, prevMatches = null;
-    List<List<String>> res = new ArrayList<>();
+    public static void main(String[] args) {
+        assertEquals(Arrays.asList(
+                Arrays.asList("mobile", "moneypot", "monitor"),
+                Arrays.asList("mobile", "moneypot", "monitor"),
+                Arrays.asList("mouse", "mousepad"),
+                Arrays.asList("mouse", "mousepad"),
+                Arrays.asList("mouse", "mousepad")),
+            suggestedProducts(new String[]{"mobile", "mouse", "moneypot", "monitor", "mousepad"},
+                "mouse"));
 
-    for (int i = 0; i < searchWord.length(); i++) {
-      String prefix = searchWord.substring(0, i + 1);
+        assertEquals(Arrays.asList(
+                Arrays.asList("havana"),
+                Arrays.asList("havana"),
+                Arrays.asList("havana"),
+                Arrays.asList("havana"),
+                Arrays.asList("havana"),
+                Arrays.asList("havana")),
+            suggestedProducts(new String[]{"havana"},
+                "havana"));
 
-      // caching
-      if (prevMatches != null) {
-        List<String> stillValidPrevs = prevMatches
-            .stream()
-            .filter(x -> x.startsWith(prefix))
-            .collect(Collectors.toList());
-
-        if (prevMatches.size() < 3 || (prevMatches.size() == 3 && stillValidPrevs.size() == 3)) {
-          res.add(stillValidPrevs);
-          prevMatches = stillValidPrevs;
-          continue;
-        }
-      }
-
-      currentMatches = new ArrayList<>();
-      Entry<String, Integer> candidate = tree.ceilingEntry(prefix);
-
-      while (currentMatches.size() < 3) {
-        if (candidate == null || !candidate.getKey().startsWith(prefix)) {
-          break;
-        }
-        int occ = candidate.getValue();
-        for (int j = 0; j < 3 && j < occ && currentMatches.size() < 3; j++) {
-          currentMatches.add(candidate.getKey());
-        }
-        candidate = tree.higherEntry(candidate.getKey());
-      }
-      res.add(currentMatches);
-      prevMatches = currentMatches;
+        assertEquals(Arrays.asList(
+                Arrays.asList("baggage", "bags", "banner"),
+                Arrays.asList("baggage", "bags", "banner"),
+                Arrays.asList("baggage", "bags"),
+                Arrays.asList("bags")),
+            suggestedProducts(new String[]{"bags", "baggage", "banner", "box", "cloths"},
+                "bags"));
     }
-
-    while (res.size() < searchWord.length()) {
-      res.add(new ArrayList<>());
-    }
-
-    return res;
-  }
-
-  public static void main(String[] args) {
-    assertEquals(Arrays.asList(
-        Arrays.asList("mobile", "moneypot", "monitor"),
-        Arrays.asList("mobile", "moneypot", "monitor"),
-        Arrays.asList("mouse", "mousepad"),
-        Arrays.asList("mouse", "mousepad"),
-        Arrays.asList("mouse", "mousepad")),
-        suggestedProducts(new String[]{"mobile", "mouse", "moneypot", "monitor", "mousepad"},
-            "mouse"));
-
-    assertEquals(Arrays.asList(
-        Arrays.asList("havana"),
-        Arrays.asList("havana"),
-        Arrays.asList("havana"),
-        Arrays.asList("havana"),
-        Arrays.asList("havana"),
-        Arrays.asList("havana")),
-        suggestedProducts(new String[]{"havana"},
-            "havana"));
-
-    assertEquals(Arrays.asList(
-        Arrays.asList("baggage", "bags", "banner"),
-        Arrays.asList("baggage", "bags", "banner"),
-        Arrays.asList("baggage", "bags"),
-        Arrays.asList("bags")),
-        suggestedProducts(new String[]{"bags", "baggage", "banner", "box", "cloths"},
-            "bags"));
-  }
 }

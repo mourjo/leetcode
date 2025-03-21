@@ -36,76 +36,76 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomPointInCircle {
 
-  public static void main(String[] args) {
-    Solution s = new Solution(1, 0, 0);
-    double[] res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
+    public static void main(String[] args) {
+        Solution s = new Solution(1, 0, 0);
+        double[] res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
 
-    System.out.println("---");
-    s = new Solution(10, 5, -7.5);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
+        System.out.println("---");
+        s = new Solution(10, 5, -7.5);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
 
-    System.out.println("---");
+        System.out.println("---");
 
-    s = new Solution(10, 5000, 7000);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
+        s = new Solution(10, 5000, 7000);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
 
-    System.out.println("---");
+        System.out.println("---");
 
-    s = new Solution(0.01, -73839.1, -3289891.3);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
-    res = s.randPoint();
-    System.out.println(res[0] + "," + res[1]);
+        s = new Solution(0.01, -73839.1, -3289891.3);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
+        res = s.randPoint();
+        System.out.println(res[0] + "," + res[1]);
 
-  }
-
-  static class Solution {
-
-    double h, k, rad;
-    ThreadLocalRandom r;
-
-    public Solution(double radius, double x_center, double y_center) {
-      h = x_center;
-      k = y_center;
-      rad = radius;
-      r = ThreadLocalRandom.current();
     }
 
-    public double[] randPoint() {
-      double xpos, ypos;
+    static class Solution {
 
-      while (true) {
-        if (r.nextBoolean()) {
-          xpos = h + r.nextDouble(0, rad);
-        } else {
-          xpos = h - (r.nextDouble(0, rad));
+        double h, k, rad;
+        ThreadLocalRandom r;
+
+        public Solution(double radius, double x_center, double y_center) {
+            h = x_center;
+            k = y_center;
+            rad = radius;
+            r = ThreadLocalRandom.current();
         }
 
-        if (r.nextBoolean()) {
-          ypos = k + r.nextDouble(0, rad);
-        } else {
-          ypos = k - (r.nextDouble(0, rad));
-        }
+        public double[] randPoint() {
+            double xpos, ypos;
 
-        if (((xpos - h) * (xpos - h) + ((ypos - k) * (ypos - k))) <= rad * rad) {
-          return new double[]{xpos, ypos};
+            while (true) {
+                if (r.nextBoolean()) {
+                    xpos = h + r.nextDouble(0, rad);
+                } else {
+                    xpos = h - (r.nextDouble(0, rad));
+                }
+
+                if (r.nextBoolean()) {
+                    ypos = k + r.nextDouble(0, rad);
+                } else {
+                    ypos = k - (r.nextDouble(0, rad));
+                }
+
+                if (((xpos - h) * (xpos - h) + ((ypos - k) * (ypos - k))) <= rad * rad) {
+                    return new double[]{xpos, ypos};
+                }
+            }
         }
-      }
     }
-  }
 }
