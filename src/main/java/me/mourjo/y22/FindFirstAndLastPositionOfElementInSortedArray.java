@@ -81,27 +81,27 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
     public static void main(String[] args) {
         System.out.println("Expected: " + Utilities.toList(new Integer[]{3, 4}));
         System.out.println(
-            "Actual: " + Utilities.toIntList(searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8)));
+                "Actual: " + Utilities.toIntList(searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8)));
         System.out.println();
 
         System.out.println("Expected: " + Utilities.toList(new Integer[]{-1, -1}));
         System.out.println(
-            "Actual: " + Utilities.toIntList(searchRange(new int[]{5, 7, 7, 8, 8, 10}, 6)));
+                "Actual: " + Utilities.toIntList(searchRange(new int[]{5, 7, 7, 8, 8, 10}, 6)));
         System.out.println();
 
         System.out.println("Expected: " + Utilities.toList(new Integer[]{4, 16}));
         System.out.println("Actual: " + Utilities.toIntList(
-            searchRange(new int[]{1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7}, 5)));
+                searchRange(new int[]{1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7}, 5)));
         System.out.println();
 
         System.out.println("Expected: " + Utilities.toList(new Integer[]{2, 7}));
         System.out.println(
-            "Actual: " + Utilities.toIntList(searchRange(new int[]{1, 2, 3, 3, 3, 3, 3, 3}, 3)));
+                "Actual: " + Utilities.toIntList(searchRange(new int[]{1, 2, 3, 3, 3, 3, 3, 3}, 3)));
         System.out.println();
 
         System.out.println("Expected: " + Utilities.toList(new Integer[]{0, 5}));
         System.out.println(
-            "Actual: " + Utilities.toIntList(searchRange(new int[]{1, 1, 1, 1, 1, 1, 2}, 1)));
+                "Actual: " + Utilities.toIntList(searchRange(new int[]{1, 1, 1, 1, 1, 1, 2}, 1)));
         System.out.println();
 
         System.out.println("Expected: " + Utilities.toList(new Integer[]{0, 0}));

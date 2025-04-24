@@ -1,9 +1,9 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.HashSet;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
 Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
@@ -66,45 +66,45 @@ public class LongestConsecutiveSequence {
 
     public static void main(String[] args) {
         assertEquals(5,
-            longestConsecutive(
-                shuffle(
-                    new int[]{1, 5, 2, 4, 3})));
+                longestConsecutive(
+                        shuffle(
+                                new int[]{1, 5, 2, 4, 3})));
 
         for (int i = 0; i < 10; i++) {
             assertEquals(4,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{100, 4, 200, 1, 3, 2})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{100, 4, 200, 1, 3, 2})));
 
             assertEquals(1,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{100, 4, 200, 1, 300, 200})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{100, 4, 200, 1, 300, 200})));
 
             assertEquals(5,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{1, 2, 3, 4, 5})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{1, 2, 3, 4, 5})));
 
             assertEquals(3,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{1, 2, 3, 40, 5})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{1, 2, 3, 40, 5})));
 
             assertEquals(0,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{})));
 
             assertEquals(1,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{1})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{1})));
 
             assertEquals(5,
-                longestConsecutive(
-                    shuffle(
-                        new int[]{1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 10})));
+                    longestConsecutive(
+                            shuffle(
+                                    new int[]{1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 10})));
         }
     }
 }

@@ -1,15 +1,14 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /*
   In English, we have a concept called root, which can be followed by
@@ -196,7 +195,7 @@ class Trie2 {
         return contains(s.toCharArray(), 0);
     }
 
-    boolean contains(char a[]) {
+    boolean contains(char[] a) {
         return contains(a, 0);
     }
 }
@@ -297,41 +296,41 @@ public class ReplaceWords {
         //assertEquals(3, t.size());
 
         assertEquals("the cat was rat by the bat",
-            replaceWords(Arrays.asList("cat", "bat", "rat"),
-                "the cattle was rattled by the battery"));
+                replaceWords(Arrays.asList("cat", "bat", "rat"),
+                        "the cattle was rattled by the battery"));
 
         assertEquals("",
-            replaceWords(Arrays.asList("cat", "bat", "rat"),
-                ""));
+                replaceWords(Arrays.asList("cat", "bat", "rat"),
+                        ""));
 
         assertEquals("this is it",
-            replaceWords(Arrays.asList("cat", "bat", "rat"),
-                "this is it"));
+                replaceWords(Arrays.asList("cat", "bat", "rat"),
+                        "this is it"));
 
         assertEquals("this is it",
-            replaceWords(Arrays.asList(),
-                "this is it"));
+                replaceWords(List.of(),
+                        "this is it"));
 
         assertEquals("this is it",
-            replaceWords(Arrays.asList("is"),
-                "this is it"));
+                replaceWords(List.of("is"),
+                        "this is it"));
 
         assertEquals("th is it",
-            replaceWords(Arrays.asList("th"),
-                "this is it"));
+                replaceWords(List.of("th"),
+                        "this is it"));
 
         assertEquals("this is it",
-            replaceWords(Arrays.asList("abcdefghijklmnopqrst", "isa"),
-                "this is it"));
+                replaceWords(Arrays.asList("abcdefghijklmnopqrst", "isa"),
+                        "this is it"));
 
         assertEquals("this i i",
-            replaceWords(Arrays.asList("this", "is", "it", "i"),
-                "this is it"));
+                replaceWords(Arrays.asList("this", "is", "it", "i"),
+                        "this is it"));
 
         assertEquals("th th th th it",
-            replaceWords(
-                Arrays.asList("th", "theeeeeeeeeee", "thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"),
-                "this theeeeeeeeeee thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii it"));
+                replaceWords(
+                        Arrays.asList("th", "theeeeeeeeeee", "thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"),
+                        "this theeeeeeeeeee thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii it"));
     }
 
 }

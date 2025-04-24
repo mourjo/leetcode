@@ -1,9 +1,9 @@
 package me.mourjo.y22;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Arrays;
 
 /*
 Given an array of integers nums and a positive integer k, find whether it's possible to
@@ -104,7 +104,7 @@ public class PartitionToKEqualSumSubsets {
     }
 
     public static boolean dfs(int[] nums, int currSum, int target, int maxIdx, boolean[] visited,
-        int numGroups) {
+                              int numGroups) {
         if (numGroups <= 1) {
             return true;
         }
@@ -139,10 +139,10 @@ public class PartitionToKEqualSumSubsets {
         assertTrue(canPartitionKSubsets(new int[]{2, 3, 5}, 2));
         assertFalse(canPartitionKSubsets(new int[]{1, 1, 1}, 2));
         assertTrue(
-            canPartitionKSubsets(new int[]{5, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3}, 15));
+                canPartitionKSubsets(new int[]{5, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3}, 15));
         assertTrue(canPartitionKSubsets(
-            new int[]{960, 3787, 1951, 5450, 4813, 752, 1397, 801, 1990, 1095, 3643, 8133, 893,
-                5306,
-                8341, 5246}, 6));
+                new int[]{960, 3787, 1951, 5450, 4813, 752, 1397, 801, 1990, 1095, 3643, 8133, 893,
+                        5306,
+                        8341, 5246}, 6));
     }
 }

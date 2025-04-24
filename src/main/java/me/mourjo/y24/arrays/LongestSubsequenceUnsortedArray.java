@@ -1,9 +1,10 @@
 package me.mourjo.y24.arrays;
 
+import org.junit.jupiter.api.Assertions;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import org.junit.jupiter.api.Assertions;
 
 /* Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
 
@@ -35,7 +36,7 @@ public class LongestSubsequenceUnsortedArray {
         Assertions.assertEquals(4, app.longestConsecutive(new int[]{100, 4, 200, 1, 3, 2}));
         Assertions.assertEquals(9, app.longestConsecutive(new int[]{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}));
         Assertions.assertEquals(9,
-            app.longestConsecutive(new int[]{0, 3, 7, 2, 5, 8, 3, 4, 6, 0, 1, 5, 5, 5}));
+                app.longestConsecutive(new int[]{0, 3, 7, 2, 5, 8, 3, 4, 6, 0, 1, 5, 5, 5}));
 
     }
 

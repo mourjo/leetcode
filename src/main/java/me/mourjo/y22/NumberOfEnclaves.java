@@ -29,10 +29,10 @@ Note:
 All rows have the same size.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.LinkedList;
 import java.util.Queue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class NumberOfEnclaves {
@@ -150,9 +150,9 @@ public class NumberOfEnclaves {
 
     public static void main(String[] args) {
         assertEquals(3, numEnclaves(new int[][]
-            {{0, 0, 0, 0}, {1, 0, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 0}}));
+                {{0, 0, 0, 0}, {1, 0, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 0}}));
         assertEquals(0, numEnclaves(new int[][]
-            {{0, 1, 1, 0}, {0, 0, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}}));
+                {{0, 1, 1, 0}, {0, 0, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}}));
 
     }
 }

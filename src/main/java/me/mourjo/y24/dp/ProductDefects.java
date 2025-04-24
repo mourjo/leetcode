@@ -31,19 +31,19 @@ public class ProductDefects {
     public static void main(String[] args) {
         var app = new ProductDefects();
         Assertions.assertEquals(4, app.maximalSquare(new char[][]{
-            {'1', '0', '1', '0', '0'},
-            {'1', '0', '1', '1', '1'},
-            {'1', '1', '1', '1', '1'},
-            {'1', '0', '0', '1', '0'},
+                {'1', '0', '1', '0', '0'},
+                {'1', '0', '1', '1', '1'},
+                {'1', '1', '1', '1', '1'},
+                {'1', '0', '0', '1', '0'},
         }));
 
         Assertions.assertEquals(1, app.maximalSquare(new char[][]{
-            {'0', '1'},
-            {'1', '0'},
+                {'0', '1'},
+                {'1', '0'},
         }));
 
         Assertions.assertEquals(0, app.maximalSquare(new char[][]{
-            {'0'}
+                {'0'}
         }));
     }
 

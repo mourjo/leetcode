@@ -1,10 +1,6 @@
 package me.mourjo.y22;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /*
@@ -68,9 +64,9 @@ class Node {
     @Override
     public String toString() {
         String c = children == null ? "" :
-            String.join(",", children.stream().map(Object::toString).collect(Collectors.toList()));
+                String.join(",", children.stream().map(Object::toString).collect(Collectors.toList()));
         return "{ val = " + val
-            + ", children = [" + c + "]}";
+                + ", children = [" + c + "]}";
     }
 }
 
@@ -207,19 +203,19 @@ public class SerializeDeserializeNaryTree {
         t = new Node(1);
         t.children = Arrays.asList(new Node(2), new Node(3), new Node(4), new Node(5));
         t.children.get(1).children = Arrays.asList(new Node(6), new Node(7));
-        t.children.get(2).children = Arrays.asList(new Node(8));
-        t.children.get(2).children.get(0).children = Arrays.asList(new Node(12));
+        t.children.get(2).children = List.of(new Node(8));
+        t.children.get(2).children.get(0).children = List.of(new Node(12));
         t.children.get(3).children = Arrays.asList(new Node(9), new Node(10));
-        t.children.get(3).children.get(0).children = Arrays.asList(new Node(13));
-        t.children.get(1).children.get(1).children = Arrays.asList(new Node(11));
-        t.children.get(1).children.get(1).children.get(0).children = Arrays.asList(new Node(14));
+        t.children.get(3).children.get(0).children = List.of(new Node(13));
+        t.children.get(1).children.get(1).children = List.of(new Node(11));
+        t.children.get(1).children.get(1).children.get(0).children = List.of(new Node(14));
         System.out.println(c.deserialize(c.serialize(t)));
 
         t = new Node(1);
         t.children = Arrays.asList(new Node(2), new Node(2), new Node(2));
-        t.children.get(0).children = Arrays.asList(new Node(3));
-        t.children.get(1).children = Arrays.asList(new Node(3));
-        t.children.get(2).children = Arrays.asList(new Node(3));
+        t.children.get(0).children = List.of(new Node(3));
+        t.children.get(1).children = List.of(new Node(3));
+        t.children.get(2).children = List.of(new Node(3));
         t.children.get(0).children.get(0).children = Arrays.asList(new Node(4), new Node(5));
         t.children.get(1).children.get(0).children = Arrays.asList(new Node(6), new Node(7));
         t.children.get(2).children.get(0).children = Arrays.asList(new Node(8), new Node(9));

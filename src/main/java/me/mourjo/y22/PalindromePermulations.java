@@ -1,13 +1,13 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 /*
 https://leetcode.com/problems/palindrome-permutation-ii/
@@ -30,7 +30,7 @@ public class PalindromePermulations {
             return new ArrayList<>();
         }
         if (s.length() == 1) {
-            return Arrays.asList(s);
+            return List.of(s);
         }
         int[] frequencies = new int[256];
         char[] chars = s.toCharArray();
@@ -66,7 +66,7 @@ public class PalindromePermulations {
     }
 
     public static void dfs(int[] frequencies, List<String> result, StringBuilder candidate,
-        int size) {
+                           int size) {
         if (candidate.length() == size) {
             result.add(candidate.toString());
             return;
@@ -93,18 +93,18 @@ public class PalindromePermulations {
 
 
     public static void main(String[] args) {
-        assertEquals(Arrays.asList(), generatePalindromes(""));
-        assertEquals(Arrays.asList("a"), generatePalindromes("a"));
-        assertEquals(Arrays.asList("aaa"), generatePalindromes("aaa"));
+        assertEquals(List.of(), generatePalindromes(""));
+        assertEquals(List.of("a"), generatePalindromes("a"));
+        assertEquals(List.of("aaa"), generatePalindromes("aaa"));
         assertEquals(new ArrayList<String>(), generatePalindromes("abc"));
-        assertEquals(Arrays.asList("aba"), generatePalindromes("aab"));
+        assertEquals(List.of("aba"), generatePalindromes("aab"));
         assertIterableEquals(
-            Arrays.asList("abba", "baab").stream().sorted().collect(Collectors.toList()),
-            generatePalindromes("aabb").stream().sorted().collect(Collectors.toList()));
+                Arrays.asList("abba", "baab").stream().sorted().collect(Collectors.toList()),
+                generatePalindromes("aabb").stream().sorted().collect(Collectors.toList()));
 
         assertIterableEquals(
-            Arrays.asList("abzba", "bazab").stream().sorted().collect(Collectors.toList()),
-            generatePalindromes("aabbz").stream().sorted().collect(Collectors.toList()));
+                Arrays.asList("abzba", "bazab").stream().sorted().collect(Collectors.toList()),
+                generatePalindromes("aabbz").stream().sorted().collect(Collectors.toList()));
 
     }
 }

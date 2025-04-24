@@ -12,6 +12,30 @@ public class SmoothiePub {
         this.tabs = new HashMap<>();
     }
 
+    public static void main(String[] args) {
+        SmoothiePub pub = new SmoothiePub();
+        User alice = new User("Alice");
+        pub.newTab(alice);
+        pub.orderSmoothie(alice, new Smoothie());
+        pub.orderSmoothie(alice, new Smoothie());
+
+        User bob = new User("Bob");
+        pub.newTab(bob);
+        pub.orderSmoothie(bob, new Smoothie());
+
+        pub.clearTab(alice);
+        System.out.println("Current tab: " + pub.showTabs());
+
+        pub.orderSmoothie(bob, new Smoothie());
+        pub.orderSmoothie(bob, new Smoothie());
+        pub.orderSmoothie(bob, new Smoothie());
+
+        pub.clearTab(bob);
+
+        System.out.println("Current tab: " + pub.showTabs());
+
+    }
+
     public void newTab(User user) {
         tabs.putIfAbsent(user, new Tab(user));
     }
@@ -35,30 +59,6 @@ public class SmoothiePub {
         } else {
             System.out.println("No tab for user " + user);
         }
-
-    }
-
-    public static void main(String[] args) {
-        SmoothiePub pub = new SmoothiePub();
-        User alice = new User("Alice");
-        pub.newTab(alice);
-        pub.orderSmoothie(alice, new Smoothie());
-        pub.orderSmoothie(alice, new Smoothie());
-
-        User bob = new User("Bob");
-        pub.newTab(bob);
-        pub.orderSmoothie(bob, new Smoothie());
-
-        pub.clearTab(alice);
-        System.out.println("Current tab: " + pub.showTabs());
-
-        pub.orderSmoothie(bob, new Smoothie());
-        pub.orderSmoothie(bob, new Smoothie());
-        pub.orderSmoothie(bob, new Smoothie());
-
-        pub.clearTab(bob);
-
-        System.out.println("Current tab: " + pub.showTabs());
 
     }
 }

@@ -1,9 +1,9 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Comparator;
 import java.util.PriorityQueue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
 https://leetcode.com/problems/ipo/

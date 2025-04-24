@@ -16,12 +16,12 @@ Level 3 sum = 7 + -8 = -1.
 So we return the level with the maximum sum which is level 2.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaximumLevelSumBinaryTree {
 

@@ -16,10 +16,10 @@ If there is such a window, you are guaranteed that there will always be only one
 minimum window in S.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MinimumWindowSubstring {
 
@@ -87,10 +87,10 @@ public class MinimumWindowSubstring {
                 }
                 if (requireCounts.containsKey(turnWheel.get(left)[0])) {
                     currCounts.put((char) turnWheel.get(left)[0],
-                        currCounts.get(turnWheel.get(left)[0]) - 1);
+                            currCounts.get(turnWheel.get(left)[0]) - 1);
                     satisfied =
-                        requireCounts.get(turnWheel.get(left)[0]) <= currCounts.get(
-                            turnWheel.get(left)[0]);
+                            requireCounts.get(turnWheel.get(left)[0]) <= currCounts.get(
+                                    turnWheel.get(left)[0]);
                 }
                 left++;
                 matchCount = satisfied ? requiredMatchCount : matchCount - 1;
@@ -100,10 +100,10 @@ public class MinimumWindowSubstring {
             else {
                 right++;
                 if (right < turnWheel.size() && requireCounts.containsKey(
-                    turnWheel.get(right)[0])) {
+                        turnWheel.get(right)[0])) {
                     int c = currCounts.get(turnWheel.get(right)[0]) + 1;
                     matchCount = (requireCounts.get(turnWheel.get(right)[0]) == c) ?
-                        matchCount + 1 : matchCount;
+                            matchCount + 1 : matchCount;
 
                     currCounts.put((char) turnWheel.get(right)[0], c);
                     satisfied = requiredMatchCount <= matchCount;
@@ -185,10 +185,10 @@ public class MinimumWindowSubstring {
                 }
                 if (requireCounts[(char) turnWheel.get(left)[0]] > 0) {
                     currCounts[(char) turnWheel.get(left)[0]] =
-                        currCounts[(char) turnWheel.get(left)[0]] - 1;
+                            currCounts[(char) turnWheel.get(left)[0]] - 1;
                     satisfied =
-                        requireCounts[(char) turnWheel.get(left)[0]] <= currCounts[(char) turnWheel
-                            .get(left)[0]];
+                            requireCounts[(char) turnWheel.get(left)[0]] <= currCounts[(char) turnWheel
+                                    .get(left)[0]];
                 }
                 left++;
                 matchCount = satisfied ? requiredMatchCount : matchCount - 1;
@@ -200,7 +200,7 @@ public class MinimumWindowSubstring {
                 if (right < turnWheel.size() && requireCounts[(char) turnWheel.get(right)[0]] > 0) {
                     int c = currCounts[(char) turnWheel.get(right)[0]] + 1;
                     matchCount = (requireCounts[(char) turnWheel.get(right)[0]] == c) ?
-                        matchCount + 1 : matchCount;
+                            matchCount + 1 : matchCount;
 
                     currCounts[(char) turnWheel.get(right)[0]] = c;
                     satisfied = requiredMatchCount <= matchCount;
@@ -218,7 +218,7 @@ public class MinimumWindowSubstring {
         assertEquals("ABC", minWindow("ABC", "ABC"));
         assertEquals("ABC", minWindow("111ABC111111ABVC", "ABC"));
         assertEquals("A1B1C",
-            minWindow("111A1B1C111111A888B888V111111C99A99B1222222aaaaaC", "ABC"));
+                minWindow("111A1B1C111111A888B888V111111C99A99B1222222aaaaaC", "ABC"));
         assertEquals("CYAYB", minWindow("BYBYCYCYAYBY", "ABC"));
         assertEquals("BANC", minWindow("ADOBECODEBANC", "ABC"));
         assertEquals("", minWindow("1234534523452345234523452345", "ABC"));
@@ -229,7 +229,7 @@ public class MinimumWindowSubstring {
         assertEquals("ABC", minWindowArray("ABC", "ABC"));
         assertEquals("ABC", minWindowArray("111ABC111111ABVC", "ABC"));
         assertEquals("A1B1C",
-            minWindowArray("111A1B1C111111A888B888V111111C99A99B1222222aaaaaC", "ABC"));
+                minWindowArray("111A1B1C111111A888B888V111111C99A99B1222222aaaaaC", "ABC"));
         assertEquals("CYAYB", minWindowArray("BYBYCYCYAYBY", "ABC"));
         assertEquals("BANC", minWindowArray("ADOBECODEBANC", "ABC"));
         assertEquals("", minWindowArray("1234534523452345234523452345", "ABC"));

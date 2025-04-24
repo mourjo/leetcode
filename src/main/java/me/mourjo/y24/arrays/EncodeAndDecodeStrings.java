@@ -1,8 +1,9 @@
 package me.mourjo.y24.arrays;
 
+import org.junit.jupiter.api.Assertions;
+
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 
 /**
  * Design an algorithm to encode a list of strings to a string. The encoded string is then sent over
@@ -20,6 +21,8 @@ import org.junit.jupiter.api.Assertions;
  */
 public class EncodeAndDecodeStrings {
 
+    final char DELIM = ':';
+
     public static void main(String[] args) {
         var app = new EncodeAndDecodeStrings();
         app.verify(List.of("this", "is", "a sentence:", "with", "a", "colon"));
@@ -34,8 +37,6 @@ public class EncodeAndDecodeStrings {
     void verify(List<String> input) {
         Assertions.assertEquals(input, decode(encode(input)));
     }
-
-    final char DELIM = ':';
 
     String encode(List<String> arr) {
 

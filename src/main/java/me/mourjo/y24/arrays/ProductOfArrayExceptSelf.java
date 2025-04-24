@@ -35,11 +35,11 @@ public class ProductOfArrayExceptSelf {
     public static void main(String[] args) {
         var app = new ProductOfArrayExceptSelf();
         Assertions.assertArrayEquals(new int[]{24, 12, 8, 6},
-            app.productExceptSelf(new int[]{1, 2, 3, 4}));
+                app.productExceptSelf(new int[]{1, 2, 3, 4}));
         Assertions.assertArrayEquals(new int[]{0, 0, 9, 0, 0},
-            app.productExceptSelf(new int[]{-1, 1, 0, -3, 3}));
+                app.productExceptSelf(new int[]{-1, 1, 0, -3, 3}));
         Assertions.assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0},
-            app.productExceptSelf(new int[]{-1, 1, 0, -3, 3, 0}));
+                app.productExceptSelf(new int[]{-1, 1, 0, -3, 3, 0}));
         Assertions.assertArrayEquals(new int[]{}, app.productExceptSelf(new int[]{}));
         Assertions.assertArrayEquals(new int[]{6, 3, 2}, app.productExceptSelf(new int[]{1, 2, 3}));
     }

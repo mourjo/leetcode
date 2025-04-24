@@ -1,13 +1,14 @@
 package me.mourjo.y22;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReduceArraySizeToHalf {
 
@@ -93,13 +94,13 @@ public class ReduceArraySizeToHalf {
         assertEquals(0, minSetSize(new int[]{}));
         assertEquals(1, minSetSize(new int[]{3}));
         assertEquals(1, minSetSize(
-            new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
+                new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                        1,
+                        1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
         assertEquals(1, minSetSize(new int[]{1, 1, 2, 2}));
         assertEquals(1, minSetSize(new int[]{1, 1, 1, 2, 2}));
         assertEquals(2, minSetSize(new int[]{1, 1, 2, 2, 3, 3}));
         assertEquals(5,
-            minSetSize(new int[]{9, 77, 63, 22, 92, 9, 14, 54, 8, 38, 18, 19, 38, 68, 58, 19}));
+                minSetSize(new int[]{9, 77, 63, 22, 92, 9, 14, 54, 8, 38, 18, 19, 38, 68, 58, 19}));
     }
 }

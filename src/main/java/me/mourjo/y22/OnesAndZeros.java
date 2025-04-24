@@ -65,7 +65,7 @@ public class OnesAndZeros {
 
     public static int findMaxForm(String[] strs, int zeroes, int ones) {
 
-        int table[][] = new int[zeroes + 1][ones + 1];
+        int[][] table = new int[zeroes + 1][ones + 1];
 
         for (String s : strs) {
             int[] counts = countOnesZeroes(s);
@@ -91,12 +91,12 @@ public class OnesAndZeros {
         Utilities.check(findMaxForm(new String[]{"101", "100", "11", "10", "0", "1"}, 1000, 4), 4);
 
         Utilities.check(
-            findMaxForm(
-                new String[]{"11", "11", "0", "0", "10", "1", "1", "0", "11", "1", "0", "111",
-                    "11111000", "0", "11", "000", "1", "1", "0", "00", "1", "101", "001", "000",
-                    "0", "00", "0011", "0", "10000"},
-                90,
-                66),
-            29);
+                findMaxForm(
+                        new String[]{"11", "11", "0", "0", "10", "1", "1", "0", "11", "1", "0", "111",
+                                "11111000", "0", "11", "000", "1", "1", "0", "00", "1", "101", "001", "000",
+                                "0", "00", "0011", "0", "10000"},
+                        90,
+                        66),
+                29);
     }
 }

@@ -1,8 +1,8 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-
 import java.util.Stack;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /*
 https://leetcode.com/problems/asteroid-collision/
@@ -104,14 +104,14 @@ public class CollidingAsteroids {
         assertArrayEquals(new int[]{-2, -1, 1, 2}, asteroidCollision(new int[]{-2, -1, 1, 2}));
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, asteroidCollision(new int[]{1, 2, 3, 4, 5}));
         assertArrayEquals(new int[]{-1, -2, -3, -4, -5},
-            asteroidCollision(new int[]{-1, -2, -3, -4, -5}));
+                asteroidCollision(new int[]{-1, -2, -3, -4, -5}));
         assertArrayEquals(new int[]{-1, 2}, asteroidCollision(new int[]{-1, 2}));
         assertArrayEquals(new int[]{-2}, asteroidCollision(new int[]{1, -2}));
         assertArrayEquals(new int[]{-2, -4, 5}, asteroidCollision(new int[]{1, -2, 3, -4, 5}));
         assertArrayEquals(new int[]{-1, -3, -5}, asteroidCollision(new int[]{-1, 2, -3, 4, -5}));
         assertArrayEquals(new int[]{100}, asteroidCollision(new int[]{100, -1, 2, -3, 4, -5}));
         assertArrayEquals(new int[]{-1000},
-            asteroidCollision(new int[]{100, -1, 2, -3, 4, -5, -1000}));
+                asteroidCollision(new int[]{100, -1, 2, -3, 4, -5, -1000}));
         assertArrayEquals(new int[]{-2, -2}, asteroidCollision(new int[]{1, -1, -2, -2}));
     }
 }

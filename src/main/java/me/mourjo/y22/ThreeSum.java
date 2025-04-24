@@ -81,7 +81,7 @@ public class ThreeSum {
 
         System.out.println(threeSum(new int[]{-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6}));
         System.out.println(
-            "Expected: [[-2, 6, -4], [0, 4, -4], [1, 3, -4], [2, 2, -4], [-2, 4, -2], [0, 2, -2]]\n");
+                "Expected: [[-2, 6, -4], [0, 4, -4], [1, 3, -4], [2, 2, -4], [-2, 4, -2], [0, 2, -2]]\n");
 
         System.out.println(threeSum(new int[]{1, -1, -1, 0}));
         System.out.println("Expected: [[0, 1, -1]]\n");

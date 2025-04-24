@@ -1,10 +1,6 @@
 package me.mourjo.y22;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class CombinationSum {
 
@@ -26,15 +22,14 @@ public class CombinationSum {
      */
 
     public static void combine(List<List<Integer>> result,
-        Stack<Integer> current,
-        int[] candidates,
-        int remaining,
-        int index) {
+                               Stack<Integer> current,
+                               int[] candidates,
+                               int remaining,
+                               int index) {
         if (remaining == 0) {
             result.add(new LinkedList<>(current));
         }
         if (remaining < 0) {
-            return;
         } else {
             for (int i = index; i < candidates.length; i++) {
                 int x = candidates[i];
@@ -65,17 +60,17 @@ public class CombinationSum {
 
             for (int j = 0; j < candidates.length && candidates[j] <= i; j++) {
                 if (candidates[j] == i) {
-                    currentCombinations.add(Arrays.asList(candidates[j]));
+                    currentCombinations.add(List.of(candidates[j]));
                 } else {
                     // lookup precomputed targets
                     int remaining = i - candidates[j];
                     List<List<Integer>> computedCombinations = table.get(
-                        remaining - 1); // zero is the first index
+                            remaining - 1); // zero is the first index
                     for (List<Integer> comb : computedCombinations) {
                         if (comb.get(0) <= candidates[j]) { // remove duplicate combinations
                             List<Integer> newComb = new ArrayList<>();
                             newComb.add(
-                                candidates[j]); // add in reverse order (greatest to smallest)
+                                    candidates[j]); // add in reverse order (greatest to smallest)
                             newComb.addAll(comb);
                             currentCombinations.add(newComb);
                         }
@@ -97,7 +92,7 @@ public class CombinationSum {
         System.out.println();
 
         System.out.println(
-            "Expected:\n[[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 2], [1, 1, 1, 1, 3], [1, 1, 1, 2, 2], [1, 1, 2, 3], [1, 2, 2, 2], [1, 3, 3], [2, 2, 3]]");
+                "Expected:\n[[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 2], [1, 1, 1, 1, 3], [1, 1, 1, 2, 2], [1, 1, 2, 3], [1, 2, 2, 2], [1, 3, 3], [2, 2, 3]]");
         System.out.println("Actual:\n" + combinationSum(new int[]{1, 2, 3}, 7));
         System.out.println();
 

@@ -25,20 +25,20 @@ Constraints:
 |x| + |y| <= 300
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MinimumKnightMoves {
 
     private static final int OFFSET = 4;
 
     public static void addIfNotSeen(int x, int y, int currLevel, boolean[][] seen,
-        Queue<Integer> xq,
-        Queue<Integer> yq, Queue<Integer> level) {
+                                    Queue<Integer> xq,
+                                    Queue<Integer> yq, Queue<Integer> level) {
         if (x > 300 || x < -4 || y > 300 || y < -4) {
             return;
         }
@@ -101,7 +101,7 @@ public class MinimumKnightMoves {
             return m.get(k);
         }
         int min = Math.min(dfs(Math.abs(x - 1), Math.abs(y - 2), m),
-            dfs(Math.abs(x - 2), Math.abs(y - 1), m));
+                dfs(Math.abs(x - 2), Math.abs(y - 1), m));
         m.put(k, min + 1);
         return min + 1;
     }

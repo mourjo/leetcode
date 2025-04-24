@@ -1,9 +1,9 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
 https://leetcode.com/problems/largest-component-size-by-common-factor/
@@ -89,22 +89,22 @@ public class LargestComponentSizeByCommonFactor {
         assertEquals(10, largestComponentSize(new int[]{2, 3, 5, 6, 25, 30, 37, 74, 111, 185}));
         assertEquals(10, largestComponentSize(new int[]{2, 3, 5, 6, 25, 30, 37, 74, 111, 185, 7}));
         assertEquals(10,
-            largestComponentSize(new int[]{2, 3, 5, 6, 25, 30, 37, 74, 111, 185, 7, 49}));
+                largestComponentSize(new int[]{2, 3, 5, 6, 25, 30, 37, 74, 111, 185, 7, 49}));
         assertEquals(10,
-            largestComponentSize(new int[]{2, 3, 5, 6, 25, 30, 37, 74, 111, 77, 185, 7, 49, 1771}));
+                largestComponentSize(new int[]{2, 3, 5, 6, 25, 30, 37, 74, 111, 77, 185, 7, 49, 1771}));
         assertEquals(11,
-            largestComponentSize(
-                new int[]{2, 3, 5, 6, 25, 30, 4, 37, 74, 111, 77, 185, 7, 49, 1771}));
+                largestComponentSize(
+                        new int[]{2, 3, 5, 6, 25, 30, 4, 37, 74, 111, 77, 185, 7, 49, 1771}));
 
         assertEquals(3, largestComponentSize(new int[]{401, 802, 1203}));
 
         assertEquals(84, largestComponentSize(new int[]{
-            2, 7, 522, 526, 535, 26, 944, 35, 519, 45, 48, 567, 266, 68, 74, 591, 81, 86, 602,
-            93, 610, 621, 111, 114, 629, 641, 131, 651, 142, 659, 669, 161, 674, 163, 180,
-            187, 190, 194, 195, 206, 207, 218, 737, 229, 240, 757, 770, 260, 778, 270, 272,
-            785, 274, 290, 291, 292, 296, 810, 816, 314, 829, 833, 841, 349, 880, 369, 147,
-            897, 387, 390, 905, 405, 406, 407, 414, 416, 417, 425, 938, 429, 432, 926, 959,
-            960, 449, 963, 966, 929, 457, 463, 981, 985, 79, 487, 1000, 494, 508
+                2, 7, 522, 526, 535, 26, 944, 35, 519, 45, 48, 567, 266, 68, 74, 591, 81, 86, 602,
+                93, 610, 621, 111, 114, 629, 641, 131, 651, 142, 659, 669, 161, 674, 163, 180,
+                187, 190, 194, 195, 206, 207, 218, 737, 229, 240, 757, 770, 260, 778, 270, 272,
+                785, 274, 290, 291, 292, 296, 810, 816, 314, 829, 833, 841, 349, 880, 369, 147,
+                897, 387, 390, 905, 405, 406, 407, 414, 416, 417, 425, 938, 429, 432, 926, 959,
+                960, 449, 963, 966, 929, 457, 463, 981, 985, 79, 487, 1000, 494, 508
         }));
     }
 

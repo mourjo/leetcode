@@ -25,12 +25,12 @@ equals 1 + 1 + 2 + 2 + 2 = 8.  Hence, answer[0] = 8, and so on.
 Note: 1 <= N <= 10000
  */
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class SumDistancesTree {
 
@@ -177,19 +177,19 @@ public class SumDistancesTree {
     }
 
     public static void preorderDFS(List<Integer>[] adjacency, int[] counts, int root, int[] result,
-        int previous) {
+                                   int previous) {
         // Pre-order
         for (int newRoot : adjacency[root]) {
             if (newRoot != previous) {
                 result[newRoot] =
-                    result[root] - counts[newRoot] + (adjacency.length - counts[newRoot]);
+                        result[root] - counts[newRoot] + (adjacency.length - counts[newRoot]);
                 preorderDFS(adjacency, counts, newRoot, result, root);
             }
         }
     }
 
     public static int postorderDFS(List<Integer>[] adjacency, int[] counts, int root, int previous,
-        int offset) {
+                                   int offset) {
         // Post-order
         int res = 0;
         counts[root]++;
@@ -205,36 +205,36 @@ public class SumDistancesTree {
     public static void main(String[] args) {
 
         assertArrayEquals(
-            new int[]{0},
-            sumOfDistancesInTree(1,
-                new int[][]{}));
+                new int[]{0},
+                sumOfDistancesInTree(1,
+                        new int[][]{}));
 
         assertArrayEquals(
-            new int[]{1, 1},
-            sumOfDistancesInTree(2,
-                new int[][]{
-                    {0, 1}}));
+                new int[]{1, 1},
+                sumOfDistancesInTree(2,
+                        new int[][]{
+                                {0, 1}}));
 
         assertArrayEquals(
-            new int[]{8, 12, 6, 10, 10, 10},
-            sumOfDistancesInTree(6,
-                new int[][]{
-                    {0, 1},
-                    {0, 2},
-                    {2, 3},
-                    {2, 4},
-                    {2, 5}}));
+                new int[]{8, 12, 6, 10, 10, 10},
+                sumOfDistancesInTree(6,
+                        new int[][]{
+                                {0, 1},
+                                {0, 2},
+                                {2, 3},
+                                {2, 4},
+                                {2, 5}}));
 
         assertArrayEquals(
-            new int[]{10, 6, 10, 10, 8, 12},
-            sumOfDistancesInTree(6,
-                new int[][]{
-                    {0, 1},
-                    {5, 4},
-                    {2, 1},
-                    {4, 1},
-                    {3, 1}
-                }));
+                new int[]{10, 6, 10, 10, 8, 12},
+                sumOfDistancesInTree(6,
+                        new int[][]{
+                                {0, 1},
+                                {5, 4},
+                                {2, 1},
+                                {4, 1},
+                                {3, 1}
+                        }));
 
     }
 }

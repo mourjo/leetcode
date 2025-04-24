@@ -40,14 +40,10 @@ Solution obj = new Solution(N, blacklist);
 int p1 = obj.pick();
  */
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Solution {
 
@@ -100,13 +96,13 @@ public class RandomPickWithBlacklist {
         obj = new Solution(4, new int[]{1, 2, 3});
         for (int i = 0; i < 100; i++) {
             int p = obj.pick();
-            assertTrue(p == 0);
+            assertEquals(0, p);
         }
 
         obj = new Solution(4, new int[]{0, 2, 3});
         for (int i = 0; i < 100; i++) {
             int p = obj.pick();
-            assertTrue(p == 1);
+            assertEquals(1, p);
         }
 
         obj = new Solution(4, new int[]{});

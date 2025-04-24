@@ -41,9 +41,9 @@ bulbs is a permutation of numbers from 1 to N.
 0 <= K <= 20000
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.TreeSet;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KEmptySlots {
 

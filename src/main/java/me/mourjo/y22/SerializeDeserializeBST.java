@@ -16,12 +16,10 @@ Note: Do not use class member/global/static variables to store states.
 Your serialize and deserialize algorithms should be stateless.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.LinkedList;
 import java.util.Queue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 // Definition for a binary tree node.
 class TreeNode {

@@ -1,10 +1,6 @@
 package me.mourjo.y22;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class UniquePermutations {
 
@@ -19,7 +15,7 @@ public class UniquePermutations {
 
     static final int marker = Integer.MIN_VALUE + 100;
 
-    public static void dfs(int nums[], List<List<Integer>> result, Stack<Integer> current) {
+    public static void dfs(int[] nums, List<List<Integer>> result, Stack<Integer> current) {
         if (current.size() == nums.length) {
             result.add(new ArrayList<>(current));
         } else {

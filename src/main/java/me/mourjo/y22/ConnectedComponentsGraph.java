@@ -1,13 +1,9 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiFunction;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
@@ -124,28 +120,28 @@ public class ConnectedComponentsGraph {
             for (int impl = 0; impl < 2; impl++) {
 
                 assertEquals(2, fns[impl].apply(5,
-                    shuffle(new int[][]{
-                        {0, 1},
-                        {1, 2},
-                        {3, 4}
-                    })));
+                        shuffle(new int[][]{
+                                {0, 1},
+                                {1, 2},
+                                {3, 4}
+                        })));
 
                 assertEquals(1, fns[impl].apply(5,
-                    shuffle(new int[][]{
-                        {0, 1},
-                        {1, 2},
-                        {2, 3},
-                        {3, 4}
-                    })));
+                        shuffle(new int[][]{
+                                {0, 1},
+                                {1, 2},
+                                {2, 3},
+                                {3, 4}
+                        })));
 
                 assertEquals(5, fns[impl].apply(5,
-                    shuffle(new int[][]{})));
+                        shuffle(new int[][]{})));
 
                 assertEquals(3, fns[impl].apply(5,
-                    shuffle(new int[][]{
-                        {0, 1},
-                        {3, 4}
-                    })));
+                        shuffle(new int[][]{
+                                {0, 1},
+                                {3, 4}
+                        })));
             }
         }
     }

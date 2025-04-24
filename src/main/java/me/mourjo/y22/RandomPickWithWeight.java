@@ -53,12 +53,7 @@ Constraints:
 pickIndex will be called at most 10000 times.
  */
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class RandomPickWithWeight {
 

@@ -2,36 +2,6 @@ package me.mourjo.y22;
 
 public class RemoveNthNodeFromEndofList {
 
-    /**
-     * https://leetcode.com/problems/remove-nth-node-from-end-of-list/ Given a linked list, remove
-     * the n-th node from the end of list and return its head.
-     * <p>
-     * Example: Given linked list: 1->2->3->4->5, and n = 2. After removing the second node from the
-     * end, the linked list becomes 1->2->3->5.
-     * <p>
-     * Note: Given n will always be valid.
-     * <p>
-     * Follow up: Could you do this in one pass?
-     */
-    private static class ListNode {
-
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            if (next != null) {
-                return val + " -> " + next.toString();
-            } else {
-                return "" + val;
-            }
-        }
-    }
-
     static ListNode toList(int[] d) {
         if (d.length == 0) {
             return null;
@@ -46,7 +16,6 @@ public class RemoveNthNodeFromEndofList {
 
         return head;
     }
-
 
     static public ListNode removeNthFromEnd(ListNode head, int n) {
         int size = 1, target = n + 2;
@@ -78,5 +47,35 @@ public class RemoveNthNodeFromEndofList {
         ListNode l3 = toList(new int[]{1, 2});
 
         System.out.println(removeNthFromEnd(l3, 2));
+    }
+
+    /**
+     * https://leetcode.com/problems/remove-nth-node-from-end-of-list/ Given a linked list, remove
+     * the n-th node from the end of list and return its head.
+     * <p>
+     * Example: Given linked list: 1->2->3->4->5, and n = 2. After removing the second node from the
+     * end, the linked list becomes 1->2->3->5.
+     * <p>
+     * Note: Given n will always be valid.
+     * <p>
+     * Follow up: Could you do this in one pass?
+     */
+    private static class ListNode {
+
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+
+        @Override
+        public String toString() {
+            if (next != null) {
+                return val + " -> " + next;
+            } else {
+                return "" + val;
+            }
+        }
     }
 }

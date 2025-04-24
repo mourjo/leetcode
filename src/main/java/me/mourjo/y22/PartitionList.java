@@ -16,10 +16,10 @@ Output:       1->2->2->4->3->5
  */
 
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.util.Arrays;
 
 class ListNode {
 

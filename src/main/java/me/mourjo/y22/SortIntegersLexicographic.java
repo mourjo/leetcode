@@ -10,13 +10,13 @@ For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
 Please optimize your algorithm to use less time and space. The input size may be as large as 5000000.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortIntegersLexicographic {
 
@@ -42,9 +42,9 @@ public class SortIntegersLexicographic {
             System.out.println(n);
             List<Integer> result = lexicalOrder(n);
             List<String> actual = result.stream().map(i -> Integer.toString(i))
-                .collect(Collectors.toList());
+                    .collect(Collectors.toList());
             List<String> expected = IntStream.range(1, n + 1).mapToObj(Integer::toString).sorted()
-                .collect(Collectors.toList());
+                    .collect(Collectors.toList());
             assertEquals(actual, expected);
         }
     }

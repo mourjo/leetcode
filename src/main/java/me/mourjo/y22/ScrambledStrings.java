@@ -89,7 +89,7 @@ public class ScrambledStrings {
                 return true;
             }
             if (isScramble(s1BeforeI, s2.substring(s2.length() - i)) &&
-                isScramble(s1AfterI, s2.substring(0, s2.length() - i))) {
+                    isScramble(s1AfterI, s2.substring(0, s2.length() - i))) {
                 return true;
             }
         }

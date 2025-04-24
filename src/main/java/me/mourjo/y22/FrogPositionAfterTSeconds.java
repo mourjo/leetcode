@@ -49,14 +49,9 @@ edges[i].length == 2
 1 <= target <= n
 Answers within 10^-5 of the actual value will be accepted as correct.*/
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FrogPositionAfterTSeconds {
 
@@ -166,7 +161,7 @@ public class FrogPositionAfterTSeconds {
     }
 
     public static double dfs(List<Integer>[] adjacency, int prev, int curr,
-        int time, int target, double probability) {
+                             int time, int target, double probability) {
         if (curr == target) {
             if (time == 0) {
                 return probability;
@@ -212,173 +207,173 @@ public class FrogPositionAfterTSeconds {
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             assertEquals(0.16666666666666666,
-                frogPosition(7,
-                    shuffle(new int[][]{
-                        {1, 2},
-                        {1, 3},
-                        {1, 7},
-                        {2, 4},
-                        {2, 6},
-                        {3, 5}
-                    }), 2, 4));
+                    frogPosition(7,
+                            shuffle(new int[][]{
+                                    {1, 2},
+                                    {1, 3},
+                                    {1, 7},
+                                    {2, 4},
+                                    {2, 6},
+                                    {3, 5}
+                            }), 2, 4));
 
             assertEquals(0.3333333333333333,
-                frogPosition(7,
-                    shuffle(new int[][]{
-                        {1, 2},
-                        {1, 3},
-                        {1, 7},
-                        {2, 4},
-                        {2, 6},
-                        {3, 5}
-                    }), 1, 7));
+                    frogPosition(7,
+                            shuffle(new int[][]{
+                                    {1, 2},
+                                    {1, 3},
+                                    {1, 7},
+                                    {2, 4},
+                                    {2, 6},
+                                    {3, 5}
+                            }), 1, 7));
 
             assertEquals(0.16666666666666666,
-                frogPosition(7,
-                    shuffle(new int[][]{
-                        {1, 2},
-                        {1, 3},
-                        {1, 7},
-                        {2, 4},
-                        {2, 6},
-                        {3, 5}
-                    }), 20, 6));
+                    frogPosition(7,
+                            shuffle(new int[][]{
+                                    {1, 2},
+                                    {1, 3},
+                                    {1, 7},
+                                    {2, 4},
+                                    {2, 6},
+                                    {3, 5}
+                            }), 20, 6));
 
             assertEquals((0.5 * (1.0 / 3.0)),
-                frogPosition(12,
-                    shuffle(new int[][]{
-                        {1, 2},
-                        {1, 3},
-                        {3, 4},
-                        {5, 3},
-                        {6, 3},
-                        {7, 5},
-                        {5, 8},
-                        {7, 9},
-                        {10, 7},
-                        {11, 7},
-                        {12, 7}
-                    }), 3, 6));
+                    frogPosition(12,
+                            shuffle(new int[][]{
+                                    {1, 2},
+                                    {1, 3},
+                                    {3, 4},
+                                    {5, 3},
+                                    {6, 3},
+                                    {7, 5},
+                                    {5, 8},
+                                    {7, 9},
+                                    {10, 7},
+                                    {11, 7},
+                                    {12, 7}
+                            }), 3, 6));
 
             assertEquals((0.5 * (1.0 / 3.0)),
-                frogPosition(12,
-                    shuffle(new int[][]{
-                        {1, 2},
-                        {1, 3},
-                        {3, 4},
-                        {5, 3},
-                        {6, 3},
-                        {7, 5},
-                        {5, 8},
-                        {7, 9},
-                        {10, 7},
-                        {11, 7},
-                        {12, 7}
-                    }), 5, 6));
+                    frogPosition(12,
+                            shuffle(new int[][]{
+                                    {1, 2},
+                                    {1, 3},
+                                    {3, 4},
+                                    {5, 3},
+                                    {6, 3},
+                                    {7, 5},
+                                    {5, 8},
+                                    {7, 9},
+                                    {10, 7},
+                                    {11, 7},
+                                    {12, 7}
+                            }), 5, 6));
 
             assertEquals((0.5 * (1.0 / 3.0)),
-                frogPosition(12,
-                    shuffle(new int[][]{
-                        {1, 2},
-                        {1, 3},
-                        {3, 4},
-                        {5, 3},
-                        {6, 3},
-                        {7, 5},
-                        {5, 8},
-                        {7, 9},
-                        {10, 7},
-                        {11, 7},
-                        {12, 7}
-                    }), 100, 6));
+                    frogPosition(12,
+                            shuffle(new int[][]{
+                                    {1, 2},
+                                    {1, 3},
+                                    {3, 4},
+                                    {5, 3},
+                                    {6, 3},
+                                    {7, 5},
+                                    {5, 8},
+                                    {7, 9},
+                                    {10, 7},
+                                    {11, 7},
+                                    {12, 7}
+                            }), 100, 6));
 
             assertEquals(1, frogPosition(3,
-                new int[][]{
-                    {1, 3},
-                    {2, 3}
-                }, 1, 3));
+                    new int[][]{
+                            {1, 3},
+                            {2, 3}
+                    }, 1, 3));
 
             assertEquals(0, frogPosition(3,
-                shuffle(new int[][]{
-                    {1, 3},
-                    {2, 3}
-                }), 0, 3));
+                    shuffle(new int[][]{
+                            {1, 3},
+                            {2, 3}
+                    }), 0, 3));
 
             assertEquals(0, frogPosition(3,
-                shuffle(new int[][]{
-                    {1, 3},
-                    {2, 3}
-                }), 10, 30));
+                    shuffle(new int[][]{
+                            {1, 3},
+                            {2, 3}
+                    }), 10, 30));
 
             assertEquals(0, frogPosition(3,
-                shuffle(new int[][]{
-                    {1, 3},
-                    {2, 3}
-                }), 10, 1));
+                    shuffle(new int[][]{
+                            {1, 3},
+                            {2, 3}
+                    }), 10, 1));
 
             assertEquals(1, frogPosition(3,
-                new int[][]{
-                    {1, 3},
-                    {2, 3}
-                }, 10, 2));
+                    new int[][]{
+                            {1, 3},
+                            {2, 3}
+                    }, 10, 2));
 
             assertEquals(0, frogPosition(3,
-                shuffle(new int[][]{
-                    {1, 3},
-                    {2, 3}
-                }), 10, 3));
+                    shuffle(new int[][]{
+                            {1, 3},
+                            {2, 3}
+                    }), 10, 3));
 
             assertEquals(0, frogPosition(10,
-                new int[][]{
-                }, 10, 2));
+                    new int[][]{
+                    }, 10, 2));
 
             assertEquals(1, frogPosition(10,
-                new int[][]{
-                }, 10, 1));
+                    new int[][]{
+                    }, 10, 1));
 
             assertEquals(0, frogPosition(10,
-                new int[][]{
-                    {5, 6}}, 10, 9));
+                    new int[][]{
+                            {5, 6}}, 10, 9));
 
             assertEquals(0, frogPosition(10,
-                new int[][]{
-                    {1, 2}}, 10, 9));
+                    new int[][]{
+                            {1, 2}}, 10, 9));
 
             assertEquals(0,
-                frogPosition(16,
-                    shuffle(new int[][]{
-                        {2, 1},
-                        {3, 1},
-                        {4, 1},
-                        {5, 4},
-                        {6, 3},
-                        {7, 4},
-                        {8, 7},
-                        {9, 5},
-                        {10, 4},
-                        {11, 7},
-                        {12, 3},
-                        {13, 11},
-                        {14, 3},
-                        {15, 13},
-                        {16, 15}}),
-                    1,
-                    1
-                ));
+                    frogPosition(16,
+                            shuffle(new int[][]{
+                                    {2, 1},
+                                    {3, 1},
+                                    {4, 1},
+                                    {5, 4},
+                                    {6, 3},
+                                    {7, 4},
+                                    {8, 7},
+                                    {9, 5},
+                                    {10, 4},
+                                    {11, 7},
+                                    {12, 3},
+                                    {13, 11},
+                                    {14, 3},
+                                    {15, 13},
+                                    {16, 15}}),
+                            1,
+                            1
+                    ));
 
             assertEquals(0,
-                frogPosition(9,
-                    shuffle(new int[][]{
-                        {2, 1},
-                        {3, 1},
-                        {4, 2},
-                        {5, 3},
-                        {6, 5},
-                        {7, 4},
-                        {8, 7},
-                        {9, 7}}),
-                    1,
-                    8));
+                    frogPosition(9,
+                            shuffle(new int[][]{
+                                    {2, 1},
+                                    {3, 1},
+                                    {4, 2},
+                                    {5, 3},
+                                    {6, 5},
+                                    {7, 4},
+                                    {8, 7},
+                                    {9, 7}}),
+                            1,
+                            8));
         }
     }
 }

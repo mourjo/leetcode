@@ -14,12 +14,12 @@ Input: "leetcode"
 Output: "tcode"
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LastLexicographicSubstringCombination {
 

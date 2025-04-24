@@ -1,9 +1,9 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-
 import java.util.Comparator;
 import java.util.TreeSet;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
   /*
 https://leetcode.com/problems/sliding-window-median/
@@ -56,7 +56,7 @@ public class SlidingWindowMedian {
 
 
     public static double calculateMedian(int[] a, TreeSet<Integer> left, TreeSet<Integer> right,
-        int k) {
+                                         int k) {
         if (k % 2 == 0) {
             return (0.0 + a[left.first()] + a[right.first()]) / 2.0;
         }
@@ -115,30 +115,30 @@ public class SlidingWindowMedian {
 
     public static void main(String[] args) {
         assertArrayEquals(new double[]{2147483647},
-            medianSlidingWindow(new int[]{2147483647, 2147483647}, 2));
+                medianSlidingWindow(new int[]{2147483647, 2147483647}, 2));
         assertArrayEquals(new double[]{4, 5},
-            medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 4));
+                medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 4));
 
         assertArrayEquals(new double[]{4, 8, 4.5, 1.5},
-            medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 2));
+                medianSlidingWindow(new int[]{1, 7, 9, 0, 3}, 2));
 
         assertArrayEquals(new double[]{2.5, 3.5, 4.5},
-            medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 4));
+                medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 4));
 
         assertArrayEquals(new double[]{2, 3, 4, 5},
-            medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 3));
+                medianSlidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 3));
 
         assertArrayEquals(new double[]{2, 3, 4},
-            medianSlidingWindow(new int[]{1, 2, 3, 4, 5}, 3));
+                medianSlidingWindow(new int[]{1, 2, 3, 4, 5}, 3));
         // 2,3,4
 
         // 2,3,4,5
         assertArrayEquals(new double[]{7, 5, 7},
-            medianSlidingWindow(new int[]{9, 5, 7, 2, 10}, 3));
+                medianSlidingWindow(new int[]{9, 5, 7, 2, 10}, 3));
         // 7, 5, 7
 
         assertArrayEquals(new double[]{1, -1, -1, 3, 5, 6},
-            medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3));
+                medianSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3));
 
 
     }

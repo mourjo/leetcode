@@ -41,10 +41,10 @@ Note:
 The number of nodes in the original tree is between 1 and 1000.
 Each node will have a value between 1 and 10^9. */
 
+import java.util.Stack;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.util.Stack;
 
 public class RecoverTreeFromPreorderTraversal {
 

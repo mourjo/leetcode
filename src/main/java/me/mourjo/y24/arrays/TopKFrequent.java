@@ -1,9 +1,10 @@
 package me.mourjo.y24.arrays;
 
+import org.junit.jupiter.api.Assertions;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 
 /*
 Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
@@ -32,11 +33,11 @@ public class TopKFrequent {
     public static void main(String[] args) {
         var app = new TopKFrequent();
         Assertions.assertArrayEquals(new int[]{1, 2},
-            app.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2));
+                app.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2));
         Assertions.assertArrayEquals(new int[]{1}, app.topKFrequent(new int[]{1}, 1));
         Assertions.assertArrayEquals(new int[]{4, 1},
-            app.topKFrequent(new int[]{4, 3, 1, 1, 1, 2, 2, 3, 4, 4, 4, 1, 4, 4, 4, 4, 4, 1, 1, 1},
-                2));
+                app.topKFrequent(new int[]{4, 3, 1, 1, 1, 2, 2, 3, 4, 4, 4, 1, 4, 4, 4, 4, 4, 1, 1, 1},
+                        2));
     }
 
     public int[] topKFrequent(int[] nums, int k) {

@@ -35,12 +35,7 @@ Output:             [1,2]
  */
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SmallestSufficientTeam {
 
@@ -88,7 +83,7 @@ public class SmallestSufficientTeam {
                 int newCombination = skillCombination | mySkillSet;
 
                 if (table[newCombination] == null ||
-                    table[skillCombination].size() + 1 < table[newCombination].size()) {
+                        table[skillCombination].size() + 1 < table[newCombination].size()) {
                     table[newCombination] = new HashSet<>(table[skillCombination]);
                     table[newCombination].add(me);
                 }
@@ -108,139 +103,139 @@ public class SmallestSufficientTeam {
     public static void main(String[] args) {
 
         check("0,2",
-            smallestSufficientTeam(
-                new String[]{"java", "nodejs", "reactjs"},
-                people(new String[][]{{"java"}, {"nodejs"}, {"nodejs", "reactjs", "notfound"}})));
+                smallestSufficientTeam(
+                        new String[]{"java", "nodejs", "reactjs"},
+                        people(new String[][]{{"java"}, {"nodejs"}, {"nodejs", "reactjs", "notfound"}})));
 
         check("1,2",
-            smallestSufficientTeam(new String[]
-                    {"algorithms", "math", "java", "reactjs", "csharp", "aws"},
-                people(new String[][]{
-                    {"algorithms", "math", "java"},
-                    {"algorithms", "math", "reactjs"},
-                    {"java", "csharp", "aws"},
-                    {"reactjs", "csharp"},
-                    {"csharp", "math"},
-                    {"aws", "java"}})));
+                smallestSufficientTeam(new String[]
+                                {"algorithms", "math", "java", "reactjs", "csharp", "aws"},
+                        people(new String[][]{
+                                {"algorithms", "math", "java"},
+                                {"algorithms", "math", "reactjs"},
+                                {"java", "csharp", "aws"},
+                                {"reactjs", "csharp"},
+                                {"csharp", "math"},
+                                {"aws", "java"}})));
 
         check("5,6,9,15",
-            smallestSufficientTeam(
-                new String[]{"gzkytqcynt", "kcoobskzamd", "ddofnsczakzrocob", "zjqdvz", "mksriiu",
-                    "aeuauwedm", "u", "y"},
-                people(new String[][]{
-                        {"ddofnsczakzrocob", "zjqdvz", "mksriiu"},
-                        {"zjqdvz"},
-                        {},
-                        {"kcoobskzamd", "ddofnsczakzrocob", "mksriiu", "notfound"},
-                        {"mksriiu"},
-                        {"y"},
-                        {"kcoobskzamd", "zjqdvz"},
-                        {},
-                        {"zjqdvz", "mksriiu"},
-                        {"gzkytqcynt", "u"},
-                        {},
-                        {},
-                        {"u"},
-                        {},
-                        {"mksriiu"},
-                        {"ddofnsczakzrocob", "mksriiu", "aeuauwedm"},
-                        {"gzkytqcynt", "zjqdvz", "y"},
-                        {},
-                        {"zjqdvz"},
-                        {},
-                        {"mksriiu", "u"},
-                        {},
-                        {},
-                        {},
-                        {"gzkytqcynt"},
-                        {"ddofnsczakzrocob", "zjqdvz"},
-                        {"gzkytqcynt", "ddofnsczakzrocob"},
-                        {},
-                        {},
-                        {"zjqdvz", "u"},
-                        {"mksriiu", "aeuauwedm"},
-                        {"zjqdvz"},
-                        {},
-                        {},
-                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
-                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
-                        {"ddofnsczakzrocob", "zjqdvz"},
-                        {"u"},
-                        {"gzkytqcynt"},
-                        {"ddofnsczakzrocob", "mksriiu", "u"},
-                        {"y"},
-                        {"mksriiu"},
-                        {"ddofnsczakzrocob", "zjqdvz", "y"},
-                        {"ddofnsczakzrocob"},
-                        {"mksriiu"},
-                        {"u"},
-                        {"mksriiu"},
-                        {"mksriiu"},
-                        {"ddofnsczakzrocob"},
-                        {"ddofnsczakzrocob", "mksriiu", "y"}
-                    }
-                )));
+                smallestSufficientTeam(
+                        new String[]{"gzkytqcynt", "kcoobskzamd", "ddofnsczakzrocob", "zjqdvz", "mksriiu",
+                                "aeuauwedm", "u", "y"},
+                        people(new String[][]{
+                                        {"ddofnsczakzrocob", "zjqdvz", "mksriiu"},
+                                        {"zjqdvz"},
+                                        {},
+                                        {"kcoobskzamd", "ddofnsczakzrocob", "mksriiu", "notfound"},
+                                        {"mksriiu"},
+                                        {"y"},
+                                        {"kcoobskzamd", "zjqdvz"},
+                                        {},
+                                        {"zjqdvz", "mksriiu"},
+                                        {"gzkytqcynt", "u"},
+                                        {},
+                                        {},
+                                        {"u"},
+                                        {},
+                                        {"mksriiu"},
+                                        {"ddofnsczakzrocob", "mksriiu", "aeuauwedm"},
+                                        {"gzkytqcynt", "zjqdvz", "y"},
+                                        {},
+                                        {"zjqdvz"},
+                                        {},
+                                        {"mksriiu", "u"},
+                                        {},
+                                        {},
+                                        {},
+                                        {"gzkytqcynt"},
+                                        {"ddofnsczakzrocob", "zjqdvz"},
+                                        {"gzkytqcynt", "ddofnsczakzrocob"},
+                                        {},
+                                        {},
+                                        {"zjqdvz", "u"},
+                                        {"mksriiu", "aeuauwedm"},
+                                        {"zjqdvz"},
+                                        {},
+                                        {},
+                                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
+                                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
+                                        {"ddofnsczakzrocob", "zjqdvz"},
+                                        {"u"},
+                                        {"gzkytqcynt"},
+                                        {"ddofnsczakzrocob", "mksriiu", "u"},
+                                        {"y"},
+                                        {"mksriiu"},
+                                        {"ddofnsczakzrocob", "zjqdvz", "y"},
+                                        {"ddofnsczakzrocob"},
+                                        {"mksriiu"},
+                                        {"u"},
+                                        {"mksriiu"},
+                                        {"mksriiu"},
+                                        {"ddofnsczakzrocob"},
+                                        {"ddofnsczakzrocob", "mksriiu", "y"}
+                                }
+                        )));
 
         check("46",
-            smallestSufficientTeam(
-                new String[]{"gzkytqcynt", "kcoobskzamd", "ddofnsczakzrocob", "zjqdvz", "mksriiu",
-                    "aeuauwedm", "u", "y"},
-                people(new String[][]{
-                        {"ddofnsczakzrocob", "zjqdvz", "mksriiu"},
-                        {"zjqdvz"},
-                        {},
-                        {"kcoobskzamd", "ddofnsczakzrocob", "mksriiu", "notfound"},
-                        {"mksriiu"},
-                        {"y"},
-                        {"kcoobskzamd", "zjqdvz"},
-                        {},
-                        {"zjqdvz", "mksriiu"},
-                        {"gzkytqcynt", "u"},
-                        {},
-                        {},
-                        {"u"},
-                        {},
-                        {"mksriiu"},
-                        {"ddofnsczakzrocob", "mksriiu", "aeuauwedm"},
-                        {"gzkytqcynt", "zjqdvz", "y"},
-                        {},
-                        {"zjqdvz"},
-                        {},
-                        {"mksriiu", "u"},
-                        {},
-                        {},
-                        {},
-                        {"gzkytqcynt"},
-                        {"ddofnsczakzrocob", "zjqdvz"},
-                        {"gzkytqcynt", "ddofnsczakzrocob"},
-                        {},
-                        {},
-                        {"zjqdvz", "u"},
-                        {"mksriiu", "aeuauwedm"},
-                        {"zjqdvz"},
-                        {},
-                        {},
-                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
-                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
-                        {"ddofnsczakzrocob", "zjqdvz"},
-                        {"u"},
-                        {"gzkytqcynt"},
-                        {"ddofnsczakzrocob", "mksriiu", "u"},
-                        {"y"},
-                        {"mksriiu"},
-                        {"ddofnsczakzrocob", "zjqdvz", "y"},
-                        {"ddofnsczakzrocob"},
-                        {"mksriiu"},
-                        {"u"},
-                        {"gzkytqcynt", "kcoobskzamd", "ddofnsczakzrocob", "zjqdvz", "mksriiu",
-                            "aeuauwedm",
-                            "u", "y"},
-                        {"mksriiu"},
-                        {"mksriiu"},
-                        {"ddofnsczakzrocob"},
-                        {"ddofnsczakzrocob", "mksriiu", "y"}
-                    }
-                )));
+                smallestSufficientTeam(
+                        new String[]{"gzkytqcynt", "kcoobskzamd", "ddofnsczakzrocob", "zjqdvz", "mksriiu",
+                                "aeuauwedm", "u", "y"},
+                        people(new String[][]{
+                                        {"ddofnsczakzrocob", "zjqdvz", "mksriiu"},
+                                        {"zjqdvz"},
+                                        {},
+                                        {"kcoobskzamd", "ddofnsczakzrocob", "mksriiu", "notfound"},
+                                        {"mksriiu"},
+                                        {"y"},
+                                        {"kcoobskzamd", "zjqdvz"},
+                                        {},
+                                        {"zjqdvz", "mksriiu"},
+                                        {"gzkytqcynt", "u"},
+                                        {},
+                                        {},
+                                        {"u"},
+                                        {},
+                                        {"mksriiu"},
+                                        {"ddofnsczakzrocob", "mksriiu", "aeuauwedm"},
+                                        {"gzkytqcynt", "zjqdvz", "y"},
+                                        {},
+                                        {"zjqdvz"},
+                                        {},
+                                        {"mksriiu", "u"},
+                                        {},
+                                        {},
+                                        {},
+                                        {"gzkytqcynt"},
+                                        {"ddofnsczakzrocob", "zjqdvz"},
+                                        {"gzkytqcynt", "ddofnsczakzrocob"},
+                                        {},
+                                        {},
+                                        {"zjqdvz", "u"},
+                                        {"mksriiu", "aeuauwedm"},
+                                        {"zjqdvz"},
+                                        {},
+                                        {},
+                                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
+                                        {"gzkytqcynt", "ddofnsczakzrocob", "zjqdvz", "mksriiu"},
+                                        {"ddofnsczakzrocob", "zjqdvz"},
+                                        {"u"},
+                                        {"gzkytqcynt"},
+                                        {"ddofnsczakzrocob", "mksriiu", "u"},
+                                        {"y"},
+                                        {"mksriiu"},
+                                        {"ddofnsczakzrocob", "zjqdvz", "y"},
+                                        {"ddofnsczakzrocob"},
+                                        {"mksriiu"},
+                                        {"u"},
+                                        {"gzkytqcynt", "kcoobskzamd", "ddofnsczakzrocob", "zjqdvz", "mksriiu",
+                                                "aeuauwedm",
+                                                "u", "y"},
+                                        {"mksriiu"},
+                                        {"mksriiu"},
+                                        {"ddofnsczakzrocob"},
+                                        {"ddofnsczakzrocob", "mksriiu", "y"}
+                                }
+                        )));
     }
 
     static void check(String exp, int[] x) {
@@ -260,9 +255,7 @@ public class SmallestSufficientTeam {
         List<List<String>> x = new ArrayList<>();
         for (String[] personSkills : p) {
             List<String> skills = new ArrayList<>();
-            for (String skill : personSkills) {
-                skills.add(skill);
-            }
+            Collections.addAll(skills, personSkills);
             x.add(skills);
         }
         return x;

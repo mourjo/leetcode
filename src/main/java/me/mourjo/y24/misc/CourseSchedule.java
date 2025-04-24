@@ -12,13 +12,9 @@ package me.mourjo.y24.misc;
 // Explanation: There are a total of 2 courses to take.
 // To take course 1 you should have finished course 0. So it is possible.
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.*;
 
 ///
 // Example 2:
@@ -69,7 +65,7 @@ public class CourseSchedule {
     }
 
     boolean dfs(Map<Integer, List<Integer>> dependencies, Set<Integer> inProgress,
-        Set<Integer> completed, int node) {
+                Set<Integer> completed, int node) {
         if (completed.contains(node)) {
             return true;
         }

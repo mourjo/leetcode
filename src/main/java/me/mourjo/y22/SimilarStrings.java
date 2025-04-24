@@ -71,9 +71,9 @@ public class SimilarStrings {
         assertEquals(2, numSimilarGroups(new String[]{"tars", "rats", "arts", "star"}));
         assertEquals(2, numSimilarGroups(new String[]{"tars", "rats", "arts", "star", "tsar"}));
         assertEquals(1,
-            numSimilarGroups(new String[]{"abcd", "bacd", "badc", "bdac", "dbac", "dbca", "dcba"}));
+                numSimilarGroups(new String[]{"abcd", "bacd", "badc", "bdac", "dbac", "dbca", "dcba"}));
         assertEquals(2,
-            numSimilarGroups(new String[]{"abcd", "bacd", "badc", "bdac", "dbac", "dcba"}));
+                numSimilarGroups(new String[]{"abcd", "bacd", "badc", "bdac", "dbac", "dcba"}));
         assertEquals(3, numSimilarGroups(new String[]{"abcd", "bacd", "badc", "dbac", "dcba"}));
         assertEquals(2, numSimilarGroups(new String[]{"abcd", "bacd", "badc", "dcba"}));
         assertEquals(3, numSimilarGroups(new String[]{"abcd", "badc", "dcba"}));

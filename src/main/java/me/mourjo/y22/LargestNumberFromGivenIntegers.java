@@ -16,12 +16,12 @@ Note: The result may be very large, so you need to return a string instead of an
  */
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LargestNumberFromGivenIntegers {
 
@@ -65,7 +65,7 @@ public class LargestNumberFromGivenIntegers {
         assertEquals("210", largestNumber(new int[]{10, 2}));
 
         assertEquals("9609938824824769735703560743981399",
-            largestNumber(new int[]{824, 938, 1399, 5607, 6973, 5703, 9609, 4398, 8247}));
+                largestNumber(new int[]{824, 938, 1399, 5607, 6973, 5703, 9609, 4398, 8247}));
 
     }
 }

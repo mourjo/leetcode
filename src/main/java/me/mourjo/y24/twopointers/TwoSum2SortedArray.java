@@ -45,7 +45,7 @@ public class TwoSum2SortedArray {
     public static void main(String[] args) {
         var app = new TwoSum2SortedArray();
         Assertions.assertArrayEquals(new int[]{4, 5},
-            app.twoSum(new int[]{1, 2, 3, 4, 4, 9, 56, 90}, 8));
+                app.twoSum(new int[]{1, 2, 3, 4, 4, 9, 56, 90}, 8));
         Assertions.assertArrayEquals(new int[]{1, 2}, app.twoSum(new int[]{-1, -1, 1, 1, 1}, -2));
         Assertions.assertArrayEquals(new int[]{1, 2}, app.twoSum(new int[]{2, 7, 11, 15}, 9));
         Assertions.assertArrayEquals(new int[]{1, 3}, app.twoSum(new int[]{2, 3, 4}, 6));

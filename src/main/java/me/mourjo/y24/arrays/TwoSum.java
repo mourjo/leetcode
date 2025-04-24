@@ -31,8 +31,9 @@ Constraints:
 Only one valid answer exists.
 */
 
-import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.HashMap;
 
 public class TwoSum {
 

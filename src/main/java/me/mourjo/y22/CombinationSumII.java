@@ -1,10 +1,6 @@
 package me.mourjo.y22;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class CombinationSumII {
 
@@ -27,10 +23,10 @@ public class CombinationSumII {
      */
 
     public static void dfs(int[] candidates,
-        List<List<Integer>> result,
-        Stack<Integer> currentPath,
-        int remaining,
-        int currentIndex) {
+                           List<List<Integer>> result,
+                           Stack<Integer> currentPath,
+                           int remaining,
+                           int currentIndex) {
         if (remaining == 0) {
             result.add(new ArrayList<>(currentPath));
         } else {

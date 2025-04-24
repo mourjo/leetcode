@@ -48,11 +48,11 @@ public class JumpGame {
         Utilities.check(canJump(new int[]{3, 2, 1, 0, 4}), false);
         Utilities.check(canJump(new int[]{300, 2, 1, 0, 4}), true);
         Utilities.check(canJump(
-            new int[]{2, 3, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0}), false);
+                new int[]{2, 3, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0}), false);
         Utilities.check(canJump(
-            new int[]{2, 3, 1, 1, 4, 0, 0, 0, 10000000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0}), true);
+                new int[]{2, 3, 1, 1, 4, 0, 0, 0, 10000000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0}), true);
         Utilities.check(canJump(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0}), false);
         Utilities.check(canJump(new int[]{0, 10000, 0, 0, 0, 0, 0, 0, 0}), false);
         Utilities.check(canJump(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1}), true);

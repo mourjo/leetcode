@@ -22,10 +22,10 @@ Your algorithm should run in O(n) time and use constant extra space.
 
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.math.BigInteger;
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FirstMissingSmallest {
 
@@ -112,12 +112,12 @@ public class FirstMissingSmallest {
         assertEquals(2, firstMissingPositive(new int[]{100, 102, -1, 1}));
         assertEquals(2, firstMissingPositive(new int[]{100000, 1000002, -1, 1}));
         assertEquals(1, firstMissingPositive(
-            new int[]{4, 27, -9, 35, 24, 11, 25, 8, -9, 16, 65, 60, 10, 13, 24, -2, -9, -10, 25, 9,
-                36,
-                29, 50, 46, 48, 35, 67, -8, 22, 66, -7, 36, 0, -6, 56, 9, -10, 12, 2, -8, 38, -2,
-                37,
-                34, 21, -7, 17, -2, -7, 53, 17, 15, 67, 52, -8, 47, 18, -9, 24, 50, 42, 27, -8, 27,
-                31,
-                58, 21, 7, 2}));
+                new int[]{4, 27, -9, 35, 24, 11, 25, 8, -9, 16, 65, 60, 10, 13, 24, -2, -9, -10, 25, 9,
+                        36,
+                        29, 50, 46, 48, 35, 67, -8, 22, 66, -7, 36, 0, -6, 56, 9, -10, 12, 2, -8, 38, -2,
+                        37,
+                        34, 21, -7, 17, -2, -7, 53, 17, 15, 67, 52, -8, 47, 18, -9, 24, 50, 42, 27, -8, 27,
+                        31,
+                        58, 21, 7, 2}));
     }
 }

@@ -39,7 +39,7 @@ public class InterleaveString {
     }
 
     public static boolean dfs(char[] c1, char[] c2, char[] c3, int p1, int p2, int p3,
-        boolean[][] invalidCache) {
+                              boolean[][] invalidCache) {
         boolean result = false;
 
         if (invalidCache[p1][p2]) {
@@ -48,8 +48,8 @@ public class InterleaveString {
             result = true; // max length = c3.length-1
         } else if (p1 < c1.length && p2 < c2.length && c3[p3] == c1[p1] && c3[p3] == c1[p1]) {
             result =
-                dfs(c1, c2, c3, p1 + 1, p2, p3 + 1, invalidCache) ||
-                    dfs(c1, c2, c3, p1, p2 + 1, p3 + 1, invalidCache);
+                    dfs(c1, c2, c3, p1 + 1, p2, p3 + 1, invalidCache) ||
+                            dfs(c1, c2, c3, p1, p2 + 1, p3 + 1, invalidCache);
         } else if (p1 < c1.length && c3[p3] == c1[p1]) {
             result = dfs(c1, c2, c3, p1 + 1, p2, p3 + 1, invalidCache);
         } else if (p2 < c2.length && c3[p3] == c2[p2]) {

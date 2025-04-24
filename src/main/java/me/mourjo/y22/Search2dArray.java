@@ -54,9 +54,6 @@ public class Search2dArray {
     }
 
     public static boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix.length == 0) {
-            return false;
-        }
 
         for (int[] row : matrix) {
             if (row.length == 0) {
@@ -79,21 +76,21 @@ public class Search2dArray {
 
     public static void main(String[] args) {
         assertTrue(searchMatrix(new int[][]{
-                {1, 3, 5, 7},
-                {10, 11, 16, 20},
-                {23, 30, 34, 50}},
-            3));
+                        {1, 3, 5, 7},
+                        {10, 11, 16, 20},
+                        {23, 30, 34, 50}},
+                3));
 
         assertTrue(searchMatrix(new int[][]{
-            {1, 3, 5, 7},
-            {10, 11, 16, 20},
-            {23, 30, 34, 50}
+                {1, 3, 5, 7},
+                {10, 11, 16, 20},
+                {23, 30, 34, 50}
         }, 1));
 
         assertFalse(searchMatrix(new int[][]{
-            {1, 3, 5, 7},
-            {10, 11, 16, 20},
-            {23, 30, 34, 50}
+                {1, 3, 5, 7},
+                {10, 11, 16, 20},
+                {23, 30, 34, 50}
         }, 13));
 
         assertFalse(searchMatrix(new int[][]{}, 13));

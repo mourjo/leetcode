@@ -25,10 +25,10 @@ pushed is a permutation of popped.
 pushed and popped have distinct values.
  */
 
+import java.util.Stack;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Stack;
 
 public class ValidateStackSequences {
 

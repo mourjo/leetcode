@@ -18,7 +18,7 @@ public class Permutations {
     static int marker = Integer.MIN_VALUE + 100; // Limitation : this cannot be part of the array
 
     public static void dfs(int[] nums, List<List<Integer>> result, Stack<Integer> current,
-        int index) {
+                           int index) {
         if (current.size() == nums.length) {
             result.add(new ArrayList<>(current));
             return;
@@ -45,7 +45,7 @@ public class Permutations {
     public static void main(String[] args) {
 
         System.out.println(
-            "Expected:\n[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]");
+                "Expected:\n[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]");
         System.out.println("Actual:\n" + permute(new int[]{1, 2, 3}));
         System.out.println("\n");
 

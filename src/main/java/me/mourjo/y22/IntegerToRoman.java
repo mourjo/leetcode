@@ -10,7 +10,7 @@ public class IntegerToRoman {
      * different symbols: I, V, X, L, C, D and M.
      * <p>
      * Symbol       Value I             1 V             5 X             10 L             50 C 100 D
-     *            500 M             1000 For example, two is written as II in Roman numeral, just
+     * 500 M             1000 For example, two is written as II in Roman numeral, just
      * two one's added together. Twelve is written as, XII, which is simply X + II. The number
      * twenty seven is written as XXVII, which is XX + V + II.
      * <p>
@@ -70,7 +70,6 @@ public class IntegerToRoman {
 
     public static void findNumeral(StringBuilder sb, int n) {
         if (n == 0) {
-            return;
         } else if (n >= 1000) {
             // we are filling up the string builder in reverse order
             sb.insert(0, "M");
@@ -108,10 +107,10 @@ public class IntegerToRoman {
     // taken from https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-Solution
 
     public static String intToRoman2(int num) {
-        String M[] = {"", "M", "MM", "MMM"};
-        String C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-        String X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-        String I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        String[] M = {"", "M", "MM", "MMM"};
+        String[] C = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        String[] X = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        String[] I = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
         return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
     }
 

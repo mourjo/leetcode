@@ -6,16 +6,16 @@ import java.util.Set;
 
 public class ConnectedGroups {
 
+    static Set<Integer> visited;
+
     public static void main(String[] args) {
         var app = new ConnectedGroups();
         System.out.println(app.findCircleNum(new int[][]{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}));
         System.out.println(app.findCircleNum(new int[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}));
         System.out.println(app.findCircleNum(new int[][]{
-            {1, 0, 0, 1}, {0, 1, 1, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}
+                {1, 0, 0, 1}, {0, 1, 1, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}
         }));
     }
-
-    static Set<Integer> visited;
 
     public static int countGroups(List<String> relationships) {
         if (relationships.isEmpty()) {

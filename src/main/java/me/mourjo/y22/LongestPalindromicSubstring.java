@@ -1,50 +1,8 @@
 package me.mourjo.y22;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LongestPalindromicSubstring {
-
-    /**
-     * Given a string s, find the longest palindromic substring in s. You may assume that the
-     * maximum length of s is 1000.
-     * <p>
-     * Example 1:
-     * <p>
-     * Input: "babad" Output: "bab" Note: "aba" is also a valid answer. Example 2:
-     * <p>
-     * Input: "cbbd" Output: "bb"
-     */
-    static class Lim implements Comparable {
-
-        int start, end;
-
-        Lim(int s, int e) {
-            start = s;
-            end = e;
-        }
-
-        @Override
-        public String toString() {
-            return "Lim{" +
-                "start=" + start +
-                ", end=" + end +
-                '}';
-        }
-
-        @Override
-        public int compareTo(Object o) {
-            if (o instanceof Lim) {
-                Lim other = (Lim) o;
-                return -((end - start) - (other.end - other.start));
-            } else {
-                return -1;
-            }
-        }
-    }
 
     static Map<Integer, Map<Integer, Boolean>> memo;
 
@@ -73,7 +31,6 @@ public class LongestPalindromicSubstring {
         }
         return result;
     }
-
 
     public static String longestPalindrome1(String s) {
         memo = new HashMap<>(1000);
@@ -113,7 +70,6 @@ public class LongestPalindromicSubstring {
 
         return s.length() == 0 ? "" : s.substring(0, 1);
     }
-
 
     /// --- Implemented after reading leetcode soln: ---
 
@@ -170,5 +126,42 @@ public class LongestPalindromicSubstring {
         Utilities.check(longestPalindrome("abc"), "a");
         Utilities.check(longestPalindrome("madam i madam 999"), "madam i madam");
         Utilities.check(longestPalindrome("ccc"), "ccc");
+    }
+
+    /**
+     * Given a string s, find the longest palindromic substring in s. You may assume that the
+     * maximum length of s is 1000.
+     * <p>
+     * Example 1:
+     * <p>
+     * Input: "babad" Output: "bab" Note: "aba" is also a valid answer. Example 2:
+     * <p>
+     * Input: "cbbd" Output: "bb"
+     */
+    static class Lim implements Comparable {
+
+        int start, end;
+
+        Lim(int s, int e) {
+            start = s;
+            end = e;
+        }
+
+        @Override
+        public String toString() {
+            return "Lim{" +
+                    "start=" + start +
+                    ", end=" + end +
+                    '}';
+        }
+
+        @Override
+        public int compareTo(Object o) {
+            if (o instanceof Lim other) {
+                return -((end - start) - (other.end - other.start));
+            } else {
+                return -1;
+            }
+        }
     }
 }

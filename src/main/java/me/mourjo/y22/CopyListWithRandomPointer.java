@@ -39,11 +39,9 @@ Node.random is null or pointing to a node in the linked list.
 Number of Nodes will not exceed 1000.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CopyListWithRandomPointer {
 
@@ -155,8 +153,8 @@ public class CopyListWithRandomPointer {
         @Override
         public String toString() {
             return "{ val=" + val + ", next=" + next + ", rand=" + (random == null ? ""
-                : random.val)
-                + " }";
+                    : random.val)
+                    + " }";
         }
     }
 }

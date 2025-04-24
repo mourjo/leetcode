@@ -1,8 +1,9 @@
 package me.mourjo.y24.arrays;
 
 
-import java.util.HashSet;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.HashSet;
 
 public class ContainsDuplicates {
 // https://leetcode.com/problems/contains-duplicate/

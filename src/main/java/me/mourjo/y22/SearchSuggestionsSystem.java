@@ -48,14 +48,14 @@ All characters of products[i] are lower-case English letters.
 All characters of searchWord are lower-case English letters.
  */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SearchSuggestionsSystem {
 
@@ -74,12 +74,12 @@ public class SearchSuggestionsSystem {
             // caching
             if (prevMatches != null) {
                 List<String> stillValidPrevs = prevMatches
-                    .stream()
-                    .filter(x -> x.startsWith(prefix))
-                    .collect(Collectors.toList());
+                        .stream()
+                        .filter(x -> x.startsWith(prefix))
+                        .collect(Collectors.toList());
 
                 if (prevMatches.size() < 3 || (prevMatches.size() == 3
-                    && stillValidPrevs.size() == 3)) {
+                        && stillValidPrevs.size() == 3)) {
                     res.add(stillValidPrevs);
                     prevMatches = stillValidPrevs;
                     continue;
@@ -112,30 +112,30 @@ public class SearchSuggestionsSystem {
 
     public static void main(String[] args) {
         assertEquals(Arrays.asList(
-                Arrays.asList("mobile", "moneypot", "monitor"),
-                Arrays.asList("mobile", "moneypot", "monitor"),
-                Arrays.asList("mouse", "mousepad"),
-                Arrays.asList("mouse", "mousepad"),
-                Arrays.asList("mouse", "mousepad")),
-            suggestedProducts(new String[]{"mobile", "mouse", "moneypot", "monitor", "mousepad"},
-                "mouse"));
+                        Arrays.asList("mobile", "moneypot", "monitor"),
+                        Arrays.asList("mobile", "moneypot", "monitor"),
+                        Arrays.asList("mouse", "mousepad"),
+                        Arrays.asList("mouse", "mousepad"),
+                        Arrays.asList("mouse", "mousepad")),
+                suggestedProducts(new String[]{"mobile", "mouse", "moneypot", "monitor", "mousepad"},
+                        "mouse"));
 
         assertEquals(Arrays.asList(
-                Arrays.asList("havana"),
-                Arrays.asList("havana"),
-                Arrays.asList("havana"),
-                Arrays.asList("havana"),
-                Arrays.asList("havana"),
-                Arrays.asList("havana")),
-            suggestedProducts(new String[]{"havana"},
-                "havana"));
+                        List.of("havana"),
+                        List.of("havana"),
+                        List.of("havana"),
+                        List.of("havana"),
+                        List.of("havana"),
+                        List.of("havana")),
+                suggestedProducts(new String[]{"havana"},
+                        "havana"));
 
         assertEquals(Arrays.asList(
-                Arrays.asList("baggage", "bags", "banner"),
-                Arrays.asList("baggage", "bags", "banner"),
-                Arrays.asList("baggage", "bags"),
-                Arrays.asList("bags")),
-            suggestedProducts(new String[]{"bags", "baggage", "banner", "box", "cloths"},
-                "bags"));
+                        Arrays.asList("baggage", "bags", "banner"),
+                        Arrays.asList("baggage", "bags", "banner"),
+                        Arrays.asList("baggage", "bags"),
+                        List.of("bags")),
+                suggestedProducts(new String[]{"bags", "baggage", "banner", "box", "cloths"},
+                        "bags"));
     }
 }

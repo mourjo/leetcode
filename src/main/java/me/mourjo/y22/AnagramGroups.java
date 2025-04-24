@@ -1,12 +1,12 @@
 package me.mourjo.y22;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AnagramGroups {
+
+    // 26 letters, use prime number for each
+    static final int[] hash = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
+            67, 71, 73, 79, 83, 89, 97, 101, 107};
 
     /**
      * https://leetcode.com/problems/group-anagrams/
@@ -24,7 +24,7 @@ public class AnagramGroups {
     public static String genKey2(String s) {
         // counting sort
         int[] counts = new int[26];
-        char chars[] = s.toCharArray();
+        char[] chars = s.toCharArray();
         for (char a : chars) {
             counts[(a - 'a')]++;
         }
@@ -35,7 +35,7 @@ public class AnagramGroups {
             total = counts[i];
         }
 
-        char res[] = new char[chars.length];
+        char[] res = new char[chars.length];
         for (char a : chars) {
             res[counts[(a - 'a')] - 1] = a;
             counts[(a - 'a')]--;
@@ -51,7 +51,7 @@ public class AnagramGroups {
 
     public static String genKey3(String s) {
         int[] counts = new int[26];
-        char chars[] = s.toCharArray();
+        char[] chars = s.toCharArray();
         for (char a : chars) {
             counts[(a - 'a')]++;
         }
@@ -65,10 +65,6 @@ public class AnagramGroups {
         return sb.toString();
     }
 
-    // 26 letters, use prime number for each
-    static final int[] hash = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
-        67, 71, 73, 79, 83, 89, 97, 101, 107};
-
     public static long genKey4(String s) {
         long result = 1;
         for (char c : s.toCharArray()) {
@@ -79,7 +75,7 @@ public class AnagramGroups {
 
     public static int genKey(String s) {
         int[] counts = new int[26];
-        char chars[] = s.toCharArray();
+        char[] chars = s.toCharArray();
         for (char a : chars) {
             counts[(a - 'a')]++;
         }
@@ -113,7 +109,7 @@ public class AnagramGroups {
 
         System.out.println("Expected:\n[[\"ate\",\"eat\",\"tea\"],[\"nat\",\"tan\"],[\"bat\"]]");
         System.out.println(
-            "Actual:\n" + groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+                "Actual:\n" + groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
         System.out.println();
 
         System.out.println("Expected:\n[[\"abcd\"],[\"bcde\"]]");
@@ -122,7 +118,7 @@ public class AnagramGroups {
 
         System.out.println("Expected:\n[[\"abcd\",\"abcd\",\"abcd\",\"abdc\",\"acdb\"]]");
         System.out.println(
-            "Actual:\n" + groupAnagrams(new String[]{"abcd", "abcd", "abcd", "abdc", "acdb"}));
+                "Actual:\n" + groupAnagrams(new String[]{"abcd", "abcd", "abcd", "abdc", "acdb"}));
         System.out.println();
     }
 }

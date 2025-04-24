@@ -95,8 +95,8 @@ public class PalindromicSubSequences {
         assertEquals(1, countPalindromicSubsequences("a"));
         assertEquals(6, countPalindromicSubsequences("bccb"));
         assertEquals(744991227, countPalindromicSubsequences(
-            "bddaabdbbccdcdcbbdbddccbaaccabbcacbadbdadbccddccdbdbdbdabdbddcccadddaaddbcbcbabdcaccaacabdbdaccbaacc"));
+                "bddaabdbbccdcdcbbdbddccbaaccabbcacbadbdadbccddccdbdbdbdabdbddcccadddaaddbcbcbabdcaccaacabdbdaccbaacc"));
         assertEquals(104860361, countPalindromicSubsequences(
-            "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"));
+                "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"));
     }
 }

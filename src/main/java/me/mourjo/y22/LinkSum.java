@@ -12,21 +12,6 @@ package me.mourjo.y22;
  */
 class LinkSum {
 
-    static class ListNode {
-
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            return "" + val + " -> " + (next != null ? next.toString() : "");
-        }
-    }
-
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
         int sum = 0;
@@ -35,8 +20,8 @@ class LinkSum {
         while (l1 != null || l2 != null) {
 
             sum = (l1 == null ? 0 : l1.val) +
-                (l2 == null ? 0 : l2.val) +
-                carry;
+                    (l2 == null ? 0 : l2.val) +
+                    carry;
 
             carry = sum / 10;
             sum = sum % 10;
@@ -71,5 +56,20 @@ class LinkSum {
 
         // cv cv
 
+    }
+
+    static class ListNode {
+
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+
+        @Override
+        public String toString() {
+            return val + " -> " + (next != null ? next.toString() : "");
+        }
     }
 }

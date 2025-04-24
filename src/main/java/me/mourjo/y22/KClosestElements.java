@@ -1,13 +1,10 @@
 package me.mourjo.y22;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KClosestElements {
 
@@ -84,55 +81,55 @@ public class KClosestElements {
     @Test
     public static void main(String[] args) {
         assertEquals(Arrays.asList(1, 2, 3, 4),
-            findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
+                findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
 
         assertEquals(Arrays.asList(1, 2, 3, 4),
-            findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
+                findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
 
         assertEquals(Arrays.asList(11, 12),
-            findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 2, 500));
+                findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 2, 500));
 
-        assertEquals(Arrays.asList(),
-            findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 0, 500));
+        assertEquals(List.of(),
+                findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 0, 500));
 
         assertEquals(Arrays.asList(6, 7, 8),
-            findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 3, 7));
+                findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 3, 7));
 
         assertEquals(Arrays.asList(5, 6, 8),
-            findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12}, 3, 7));
+                findClosestElements(new int[]{1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12}, 3, 7));
 
         assertEquals(Arrays.asList(1, 2, 4, 5000),
-            findClosestElements(new int[]{1, 2, 4, 5000}, 4, -1));
+                findClosestElements(new int[]{1, 2, 4, 5000}, 4, -1));
 
         assertEquals(Arrays.asList(1, 1, 1, 1),
-            findClosestElements(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                4,
-                2));
+                findClosestElements(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                        4,
+                        2));
 
         assertEquals(Arrays.asList(1, 1, 1, 1),
-            findClosestElements(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                4,
-                -2));
+                findClosestElements(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                        4,
+                        -2));
 
         assertEquals(Arrays.asList(-1, 1, 1, 1),
-            findClosestElements(new int[]{-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                4,
-                -2));
+                findClosestElements(new int[]{-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                        4,
+                        -2));
 
         assertEquals(Arrays.asList(3, 3, 4),
-            findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 8}, 3, 5));
+                findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 8}, 3, 5));
 
         assertEquals(Arrays.asList(4, 7, 7),
-            findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 8}, 3, 6));
+                findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 8}, 3, 6));
 
         assertEquals(Arrays.asList(4, 7, 7),
-            findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 800}, 3, 50));
+                findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 800}, 3, 50));
 
         assertEquals(Arrays.asList(7, 7, 55),
-            findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 55}, 3, 50));
+                findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 55}, 3, 50));
 
         assertEquals(Arrays.asList(7, 7, 50),
-            findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 50}, 3, 50));
+                findClosestElements(new int[]{0, 0, 1, 2, 3, 3, 4, 7, 7, 50}, 3, 50));
 
     }
 }

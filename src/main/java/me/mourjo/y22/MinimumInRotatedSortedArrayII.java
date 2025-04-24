@@ -64,17 +64,17 @@ public class MinimumInRotatedSortedArrayII {
         assertEquals(1, findMin(new int[]{1, 3, 5}));
         assertEquals(0, findMin(new int[]{2, 2, 2, 0, 1}));
         assertEquals(1, findMin(
-            new int[]{1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5,
-                5}));
+                new int[]{1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+                        5,
+                        5}));
         assertEquals(1, findMin(
-            new int[]{5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-                5,
-                5}));
+                new int[]{5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+                        5,
+                        5}));
         assertEquals(1, findMin(
-            new int[]{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 2,
-                3,
-                4}));
+                new int[]{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 2,
+                        3,
+                        4}));
         assertEquals(5, findMin(new int[]{5}));
         assertEquals(4, findMin(new int[]{4, 5}));
         assertEquals(4, findMin(new int[]{5, 4}));
