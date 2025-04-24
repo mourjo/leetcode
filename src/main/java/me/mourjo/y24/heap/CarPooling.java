@@ -79,19 +79,19 @@ public class CarPooling {
     }
 
     public boolean carPooling(int[][] trips, int capacity) {
-        int[] passengersAtPosition = new int[1002];
+        int[] deltaAtPositions = new int[1002];
         for (var trip : trips) {
             int starting = trip[1];
             int ending = trip[2];
             int passengerCount = trip[0];
 
-            passengersAtPosition[starting] += passengerCount;
-            passengersAtPosition[ending] -= passengerCount;
+            deltaAtPositions[starting] += passengerCount;
+            deltaAtPositions[ending] -= passengerCount;
         }
 
         int runningCapacity = 0;
-        for (int capacityAtPosition : passengersAtPosition) {
-            runningCapacity += capacityAtPosition;
+        for (int delta : deltaAtPositions) {
+            runningCapacity += delta;
             if (runningCapacity > capacity) {
                 // at any point in time, capacity should not be breached
                 return false;
