@@ -24,7 +24,6 @@ import java.util.*;
 // To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
 //
 // Constraints:
-//
 // 1 <= numCourses <= 2000
 // 0 <= prerequisites.length <= 5000
 // prerequisites[i].length == 2
